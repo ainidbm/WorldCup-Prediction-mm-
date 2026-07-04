@@ -1,0 +1,482 @@
+{
+  "墨西哥": {
+    "group": "A",
+    "tier": "host",
+    "fifaRank": 15,
+    "keyPlayers": ["希门尼斯", "S·希门尼斯"],
+    "squadValue": 280,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "16强常客"},
+    "avgAge": 27.5,
+    "host": true
+  },
+  "南非": {
+    "group": "A",
+    "tier": "mid",
+    "fifaRank": 58,
+    "keyPlayers": [],
+    "squadValue": 60,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2010参赛"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "韩国": {
+    "group": "A",
+    "tier": "second",
+    "fifaRank": 22,
+    "keyPlayers": ["孙兴慜", "李刚仁", "金玟哉"],
+    "squadValue": 180,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "捷克": {
+    "group": "A",
+    "tier": "mid",
+    "fifaRank": 38,
+    "keyPlayers": ["希克"],
+    "squadValue": 120,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2006参赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "加拿大": {
+    "group": "B",
+    "tier": "host",
+    "fifaRank": 35,
+    "keyPlayers": ["戴维斯", "乔纳森·戴维"],
+    "squadValue": 150,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 26.5,
+    "host": true
+  },
+  "波黑": {
+    "group": "B",
+    "tier": "mid",
+    "fifaRank": 55,
+    "keyPlayers": ["哲科"],
+    "squadValue": 70,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2014参赛"},
+    "avgAge": 28.5,
+    "host": false
+  },
+  "卡塔尔": {
+    "group": "B",
+    "tier": "mid",
+    "fifaRank": 48,
+    "keyPlayers": [],
+    "squadValue": 80,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022东道主"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "瑞士": {
+    "group": "B",
+    "tier": "second",
+    "fifaRank": 16,
+    "keyPlayers": ["扎卡"],
+    "squadValue": 250,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 28.0,
+    "host": false
+  },
+  "巴西": {
+    "group": "C",
+    "tier": "top",
+    "fifaRank": 5,
+    "keyPlayers": ["维尼修斯", "拉菲尼亚", "罗德里戈", "恩德里克"],
+    "squadValue": 900,
+    "majorHistory": {"worldCupTitles": 5, "recentBest": "2022 8强"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "摩洛哥": {
+    "group": "C",
+    "tier": "first",
+    "fifaRank": 14,
+    "keyPlayers": ["阿什拉夫", "布拉欣·迪亚斯", "恩内斯里"],
+    "squadValue": 350,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 4强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "海地": {
+    "group": "C",
+    "tier": "mid",
+    "fifaRank": 85,
+    "keyPlayers": [],
+    "squadValue": 30,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1974参赛"},
+    "avgAge": 25.5,
+    "host": false
+  },
+  "苏格兰": {
+    "group": "C",
+    "tier": "second",
+    "fifaRank": 32,
+    "keyPlayers": ["麦克托米奈", "罗伯逊"],
+    "squadValue": 200,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1998参赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "美国": {
+    "group": "D",
+    "tier": "host",
+    "fifaRank": 11,
+    "keyPlayers": ["普利西奇", "麦肯尼", "巴洛贡"],
+    "squadValue": 300,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 25.5,
+    "host": true
+  },
+  "巴拉圭": {
+    "group": "D",
+    "tier": "mid",
+    "fifaRank": 52,
+    "keyPlayers": [],
+    "squadValue": 80,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2010参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "澳大利亚": {
+    "group": "D",
+    "tier": "second",
+    "fifaRank": 25,
+    "keyPlayers": [],
+    "squadValue": 100,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 28.0,
+    "host": false
+  },
+  "土耳其": {
+    "group": "D",
+    "tier": "second",
+    "fifaRank": 28,
+    "keyPlayers": ["居莱尔", "恰尔汗奥卢", "耶尔德兹"],
+    "squadValue": 280,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2002 4强"},
+    "avgAge": 25.5,
+    "host": false
+  },
+  "德国": {
+    "group": "E",
+    "tier": "first",
+    "fifaRank": 8,
+    "keyPlayers": ["基米希", "维尔茨", "穆夏拉", "富尔克鲁格"],
+    "squadValue": 700,
+    "majorHistory": {"worldCupTitles": 4, "recentBest": "2022小组赛"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "库拉索": {
+    "group": "E",
+    "tier": "mid",
+    "fifaRank": 78,
+    "keyPlayers": [],
+    "squadValue": 25,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "首次参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "科特迪瓦": {
+    "group": "E",
+    "tier": "second",
+    "fifaRank": 34,
+    "keyPlayers": [],
+    "squadValue": 180,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2014参赛"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "厄瓜多尔": {
+    "group": "E",
+    "tier": "second",
+    "fifaRank": 30,
+    "keyPlayers": ["凯塞多"],
+    "squadValue": 200,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "荷兰": {
+    "group": "F",
+    "tier": "first",
+    "fifaRank": 6,
+    "keyPlayers": ["范迪克", "加克波", "西蒙斯", "德容"],
+    "squadValue": 600,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 8强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "日本": {
+    "group": "F",
+    "tier": "first",
+    "fifaRank": 18,
+    "keyPlayers": ["久保建英", "三笘薰", "远藤航", "富安健洋"],
+    "squadValue": 300,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "瑞典": {
+    "group": "F",
+    "tier": "second",
+    "fifaRank": 23,
+    "keyPlayers": ["伊萨克", "哲凯赖什"],
+    "squadValue": 280,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2018 8强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "突尼斯": {
+    "group": "F",
+    "tier": "mid",
+    "fifaRank": 42,
+    "keyPlayers": [],
+    "squadValue": 90,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "比利时": {
+    "group": "G",
+    "tier": "second",
+    "fifaRank": 4,
+    "keyPlayers": ["德布劳内", "多库", "奥彭达"],
+    "squadValue": 450,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022小组赛"},
+    "avgAge": 29.0,
+    "host": false
+  },
+  "埃及": {
+    "group": "G",
+    "tier": "second",
+    "fifaRank": 33,
+    "keyPlayers": ["萨拉赫"],
+    "squadValue": 150,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2018参赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "伊朗": {
+    "group": "G",
+    "tier": "mid",
+    "fifaRank": 20,
+    "keyPlayers": ["塔雷米"],
+    "squadValue": 100,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 28.5,
+    "host": false
+  },
+  "新西兰": {
+    "group": "G",
+    "tier": "mid",
+    "fifaRank": 95,
+    "keyPlayers": ["克里斯·伍德"],
+    "squadValue": 40,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2010参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "西班牙": {
+    "group": "H",
+    "tier": "top",
+    "fifaRank": 1,
+    "keyPlayers": ["亚马尔", "佩德里", "罗德里", "尼科·威廉姆斯"],
+    "squadValue": 1000,
+    "majorHistory": {"worldCupTitles": 1, "recentBest": "2024欧洲杯冠军"},
+    "avgAge": 25.5,
+    "host": false
+  },
+  "佛得角": {
+    "group": "H",
+    "tier": "mid",
+    "fifaRank": 72,
+    "keyPlayers": [],
+    "squadValue": 35,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "首次参赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "沙特": {
+    "group": "H",
+    "tier": "mid",
+    "fifaRank": 56,
+    "keyPlayers": [],
+    "squadValue": 80,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "乌拉圭": {
+    "group": "H",
+    "tier": "first",
+    "fifaRank": 12,
+    "keyPlayers": ["巴尔韦德", "努涅斯", "阿劳霍"],
+    "squadValue": 400,
+    "majorHistory": {"worldCupTitles": 2, "recentBest": "2022小组赛"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "法国": {
+    "group": "I",
+    "tier": "top",
+    "fifaRank": 2,
+    "keyPlayers": ["姆巴佩", "楚阿梅尼", "卡马文加", "萨利巴"],
+    "squadValue": 1100,
+    "majorHistory": {"worldCupTitles": 2, "recentBest": "2022亚军"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "塞内加尔": {
+    "group": "I",
+    "tier": "second",
+    "fifaRank": 24,
+    "keyPlayers": ["马内"],
+    "squadValue": 200,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 16强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "伊拉克": {
+    "group": "I",
+    "tier": "mid",
+    "fifaRank": 62,
+    "keyPlayers": [],
+    "squadValue": 50,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1986参赛"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "挪威": {
+    "group": "I",
+    "tier": "first",
+    "fifaRank": 36,
+    "keyPlayers": ["哈兰德", "厄德高", "索尔洛特"],
+    "squadValue": 350,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1998参赛"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "阿根廷": {
+    "group": "J",
+    "tier": "top",
+    "fifaRank": 3,
+    "keyPlayers": ["梅西", "劳塔罗", "阿尔瓦雷斯", "麦卡利斯特", "恩佐"],
+    "squadValue": 800,
+    "majorHistory": {"worldCupTitles": 3, "recentBest": "2022冠军"},
+    "avgAge": 28.0,
+    "host": false
+  },
+  "阿尔及利亚": {
+    "group": "J",
+    "tier": "mid",
+    "fifaRank": 40,
+    "keyPlayers": ["马赫雷斯", "阿穆拉"],
+    "squadValue": 120,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2014 16强"},
+    "avgAge": 27.5,
+    "host": false
+  },
+  "奥地利": {
+    "group": "J",
+    "tier": "second",
+    "fifaRank": 26,
+    "keyPlayers": ["萨比策", "莱默"],
+    "squadValue": 200,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1998参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "约旦": {
+    "group": "J",
+    "tier": "mid",
+    "fifaRank": 68,
+    "keyPlayers": [],
+    "squadValue": 40,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "首次参赛"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "葡萄牙": {
+    "group": "K",
+    "tier": "first",
+    "fifaRank": 7,
+    "keyPlayers": ["C罗", "布鲁诺", "贝尔纳多", "维蒂尼亚", "若昂·内维斯"],
+    "squadValue": 650,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022 8强"},
+    "avgAge": 28.0,
+    "host": false
+  },
+  "刚果金": {
+    "group": "K",
+    "tier": "mid",
+    "fifaRank": 65,
+    "keyPlayers": [],
+    "squadValue": 60,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "1974参赛"},
+    "avgAge": 26.5,
+    "host": false
+  },
+  "乌兹别克斯坦": {
+    "group": "K",
+    "tier": "mid",
+    "fifaRank": 60,
+    "keyPlayers": [],
+    "squadValue": 55,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "首次参赛"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "哥伦比亚": {
+    "group": "K",
+    "tier": "first",
+    "fifaRank": 13,
+    "keyPlayers": ["J罗", "路易斯·迪亚斯"],
+    "squadValue": 350,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2014 8强"},
+    "avgAge": 27.0,
+    "host": false
+  },
+  "英格兰": {
+    "group": "L",
+    "tier": "top",
+    "fifaRank": 9,
+    "keyPlayers": ["凯恩", "贝林厄姆", "萨卡", "帕尔默", "福登"],
+    "squadValue": 950,
+    "majorHistory": {"worldCupTitles": 1, "recentBest": "2022 8强"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "克罗地亚": {
+    "group": "L",
+    "tier": "first",
+    "fifaRank": 10,
+    "keyPlayers": ["莫德里奇", "科瓦契奇", "格瓦迪奥尔"],
+    "squadValue": 350,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022季军"},
+    "avgAge": 29.5,
+    "host": false
+  },
+  "加纳": {
+    "group": "L",
+    "tier": "mid",
+    "fifaRank": 50,
+    "keyPlayers": ["库杜斯"],
+    "squadValue": 120,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2022参赛"},
+    "avgAge": 26.0,
+    "host": false
+  },
+  "巴拿马": {
+    "group": "L",
+    "tier": "mid",
+    "fifaRank": 45,
+    "keyPlayers": [],
+    "squadValue": 60,
+    "majorHistory": {"worldCupTitles": 0, "recentBest": "2018参赛"},
+    "avgAge": 27.5,
+    "host": false
+  }
+}

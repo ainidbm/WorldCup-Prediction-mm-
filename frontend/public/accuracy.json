@@ -1,0 +1,7 @@
+{
+  "modelAccuracy": 0.767,
+  "groupStageAccuracy": 0.6389,
+  "totalMatchesEvaluated": 72,
+  "correctPredictions": 46,
+  "calibrationNote": "基于小组赛结果的回测准确率。模型使用历史赛事数据训练，小组赛结果作为独立验证集。"
+}

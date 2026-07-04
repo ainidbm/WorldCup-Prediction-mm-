@@ -1,0 +1,45 @@
+{
+  "round_of_16": [
+    {"id": "R16_1", "teamA": "墨西哥", "teamB": "科特迪瓦"},
+    {"id": "R16_2", "teamA": "巴西", "teamB": "厄瓜多尔"},
+    {"id": "R16_3", "teamA": "瑞士", "teamB": "日本"},
+    {"id": "R16_4", "teamA": "荷兰", "teamB": "克罗地亚"},
+    {"id": "R16_5", "teamA": "德国", "teamB": "摩洛哥"},
+    {"id": "R16_6", "teamA": "比利时", "teamB": "韩国"},
+    {"id": "R16_7", "teamA": "美国", "teamB": "埃及"},
+    {"id": "R16_8", "teamA": "土耳其", "teamB": "葡萄牙"},
+    {"id": "R16_9", "teamA": "西班牙", "teamB": "挪威"},
+    {"id": "R16_10", "teamA": "法国", "teamB": "乌拉圭"},
+    {"id": "R16_11", "teamA": "塞内加尔", "teamB": "哥伦比亚"},
+    {"id": "R16_12", "teamA": "阿根廷", "teamB": "奥地利"},
+    {"id": "R16_13", "teamA": "英格兰", "teamB": "伊朗"},
+    {"id": "R16_14", "teamA": "加拿大", "teamB": "捷克"},
+    {"id": "R16_15", "teamA": "波黑", "teamB": "加纳"},
+    {"id": "R16_16", "teamA": "瑞典", "teamB": "巴拉圭"}
+  ],
+  "bracket_structure": {
+    "quarter": [
+      {"id": "QF_1", "from": ["R16_1", "R16_2"]},
+      {"id": "QF_2", "from": ["R16_3", "R16_4"]},
+      {"id": "QF_3", "from": ["R16_5", "R16_6"]},
+      {"id": "QF_4", "from": ["R16_7", "R16_8"]},
+      {"id": "QF_5", "from": ["R16_9", "R16_10"]},
+      {"id": "QF_6", "from": ["R16_11", "R16_12"]},
+      {"id": "QF_7", "from": ["R16_13", "R16_14"]},
+      {"id": "QF_8", "from": ["R16_15", "R16_16"]}
+    ],
+    "semi": [
+      {"id": "SF_1", "from": ["QF_1", "QF_2"]},
+      {"id": "SF_2", "from": ["QF_3", "QF_4"]},
+      {"id": "SF_3", "from": ["QF_5", "QF_6"]},
+      {"id": "SF_4", "from": ["QF_7", "QF_8"]}
+    ],
+    "final": [
+      {"id": "F_1", "from": ["SF_1", "SF_2"]},
+      {"id": "F_2", "from": ["SF_3", "SF_4"]}
+    ],
+    "championship": [
+      {"id": "CHAMP", "from": ["F_1", "F_2"]}
+    ]
+  }
+}
