@@ -30,12 +30,36 @@ export interface TopScorer {
   remainingMatches: number;
 }
 
+export interface KnockoutMatch {
+  id: string;
+  teamA: string;
+  teamB: string;
+  completed: boolean;
+  scoreA?: number;
+  scoreB?: number;
+  winner?: string;
+  penaltyScoreA?: number;
+  penaltyScoreB?: number;
+  probA?: number;
+  probB?: number;
+}
+
+export interface KnockoutRound {
+  name: string;
+  matches: KnockoutMatch[];
+}
+
+export interface KnockoutBracket {
+  rounds: KnockoutRound[];
+}
+
 export interface PredictionsData {
   generatedAt: string;
   championProb: ChampionProb[];
   stageProb: Record<string, StageProb>;
   matches: MatchPrediction[];
   topScorers: TopScorer[];
+  knockoutBracket?: KnockoutBracket;
 }
 
 export interface AccuracyData {

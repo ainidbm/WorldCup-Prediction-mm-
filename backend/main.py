@@ -57,7 +57,7 @@ def main():
 
     # 4. 蒙特卡洛模拟
     print("\n[4/6] 运行蒙特卡洛模拟 (10000 次)...")
-    stage_probs, match_predictions = run_monte_carlo_simulation(
+    stage_probs, match_predictions, actual_results = run_monte_carlo_simulation(
         bracket, predictor, teams
     )
     print("  - 模拟完成")
@@ -72,7 +72,8 @@ def main():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     predictions = generate_predictions_json(
-        stage_probs, match_predictions, top_scorers, feature_engine
+        stage_probs, match_predictions, top_scorers, feature_engine,
+        bracket=bracket, actual_results=actual_results, predictor=predictor,
     )
     with open(PREDICTIONS_OUTPUT, "w", encoding="utf-8") as f:
         json.dump(predictions, f, ensure_ascii=False, indent=2)

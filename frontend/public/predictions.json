@@ -1,641 +1,528 @@
 {
-  "generatedAt": "2026-07-05T15:45:04.708485",
+  "generatedAt": "2026-07-05T16:05:16.449930",
   "championProb": [
     {
-      "team": "巴西",
-      "prob": 0.1195
-    },
-    {
-      "team": "哥伦比亚",
-      "prob": 0.0918
-    },
-    {
       "team": "法国",
-      "prob": 0.0834
+      "prob": 0.1951
     },
     {
-      "team": "墨西哥",
-      "prob": 0.0793
+      "team": "巴西",
+      "prob": 0.1462
     },
     {
       "team": "摩洛哥",
-      "prob": 0.0706
+      "prob": 0.1382
+    },
+    {
+      "team": "哥伦比亚",
+      "prob": 0.0984
     },
     {
       "team": "比利时",
-      "prob": 0.0617
+      "prob": 0.0789
     },
     {
-      "team": "德国",
-      "prob": 0.0604
-    },
-    {
-      "team": "阿根廷",
-      "prob": 0.0586
+      "team": "墨西哥",
+      "prob": 0.0741
     },
     {
       "team": "西班牙",
-      "prob": 0.0504
+      "prob": 0.0607
+    },
+    {
+      "team": "阿根廷",
+      "prob": 0.057
     },
     {
       "team": "埃及",
-      "prob": 0.0453
+      "prob": 0.0562
     },
     {
       "team": "挪威",
-      "prob": 0.036
-    },
-    {
-      "team": "加拿大",
-      "prob": 0.0293
-    },
-    {
-      "team": "塞内加尔",
-      "prob": 0.0255
+      "prob": 0.0399
     },
     {
       "team": "瑞士",
-      "prob": 0.0249
+      "prob": 0.0209
     },
     {
       "team": "英格兰",
-      "prob": 0.0239
-    },
-    {
-      "team": "南非",
       "prob": 0.0202
     },
     {
-      "team": "刚果金",
-      "prob": 0.0163
-    },
-    {
       "team": "美国",
-      "prob": 0.0134
-    },
-    {
-      "team": "荷兰",
-      "prob": 0.012
-    },
-    {
-      "team": "奥地利",
-      "prob": 0.0114
-    },
-    {
-      "team": "克罗地亚",
-      "prob": 0.0112
-    },
-    {
-      "team": "佛得角",
-      "prob": 0.0107
-    },
-    {
-      "team": "加纳",
-      "prob": 0.01
-    },
-    {
-      "team": "巴拉圭",
-      "prob": 0.0093
+      "prob": 0.0076
     },
     {
       "team": "葡萄牙",
-      "prob": 0.0078
-    },
-    {
-      "team": "厄瓜多尔",
-      "prob": 0.0071
-    },
-    {
-      "team": "日本",
-      "prob": 0.0031
-    },
-    {
-      "team": "科特迪瓦",
-      "prob": 0.0025
-    },
-    {
-      "team": "波黑",
-      "prob": 0.0023
-    },
-    {
-      "team": "瑞典",
-      "prob": 0.0011
-    },
-    {
-      "team": "阿尔及利亚",
-      "prob": 0.0005
-    },
-    {
-      "team": "澳大利亚",
-      "prob": 0.0005
+      "prob": 0.0066
     }
   ],
   "stageProb": {
-    "墨西哥": {
-      "roundOf16": 1.0,
-      "quarter": 0.8954,
-      "semi": 0.5395,
-      "final": 0.2507,
-      "champion": 0.0793
-    },
-    "英格兰": {
-      "roundOf16": 1.0,
-      "quarter": 0.7933,
-      "semi": 0.2987,
-      "final": 0.1076,
-      "champion": 0.0239
-    },
-    "西班牙": {
-      "roundOf16": 1.0,
-      "quarter": 0.8154,
-      "semi": 0.5089,
-      "final": 0.1973,
-      "champion": 0.0504
-    },
-    "佛得角": {
-      "roundOf16": 1.0,
-      "quarter": 0.1242,
-      "semi": 0.0714,
-      "final": 0.0401,
-      "champion": 0.0107
-    },
-    "奥地利": {
-      "roundOf16": 1.0,
-      "quarter": 0.1846,
-      "semi": 0.099,
-      "final": 0.0565,
-      "champion": 0.0114
-    },
-    "厄瓜多尔": {
-      "roundOf16": 1.0,
-      "quarter": 0.1046,
-      "semi": 0.0528,
-      "final": 0.0289,
-      "champion": 0.0071
-    },
-    "埃及": {
-      "roundOf16": 1.0,
-      "quarter": 0.8925,
-      "semi": 0.4587,
-      "final": 0.2068,
-      "champion": 0.0453
-    },
     "巴西": {
       "roundOf16": 1.0,
-      "quarter": 0.8874,
-      "semi": 0.5654,
-      "final": 0.363,
-      "champion": 0.1195
-    },
-    "科特迪瓦": {
-      "roundOf16": 1.0,
-      "quarter": 0.1047,
-      "semi": 0.0362,
-      "final": 0.0161,
-      "champion": 0.0025
-    },
-    "挪威": {
-      "roundOf16": 1.0,
-      "quarter": 0.8953,
-      "semi": 0.3627,
-      "final": 0.1571,
-      "champion": 0.036
-    },
-    "日本": {
-      "roundOf16": 1.0,
-      "quarter": 0.1126,
-      "semi": 0.0357,
-      "final": 0.0153,
-      "champion": 0.0031
-    },
-    "巴拉圭": {
-      "roundOf16": 1.0,
-      "quarter": 0.4737,
-      "semi": 0.099,
-      "final": 0.045,
-      "champion": 0.0093
-    },
-    "瑞典": {
-      "roundOf16": 1.0,
-      "quarter": 0.1009,
-      "semi": 0.0238,
-      "final": 0.0082,
-      "champion": 0.0011
-    },
-    "加纳": {
-      "roundOf16": 1.0,
-      "quarter": 0.1769,
-      "semi": 0.0907,
-      "final": 0.0505,
-      "champion": 0.01
-    },
-    "阿尔及利亚": {
-      "roundOf16": 1.0,
-      "quarter": 0.0932,
-      "semi": 0.0285,
-      "final": 0.0056,
-      "champion": 0.0005
-    },
-    "阿根廷": {
-      "roundOf16": 1.0,
-      "quarter": 0.8758,
-      "semi": 0.4513,
-      "final": 0.252,
-      "champion": 0.0586
-    },
-    "葡萄牙": {
-      "roundOf16": 1.0,
-      "quarter": 0.6847,
-      "semi": 0.2907,
-      "final": 0.0785,
-      "champion": 0.0078
-    },
-    "哥伦比亚": {
-      "roundOf16": 1.0,
-      "quarter": 0.8231,
-      "semi": 0.5027,
-      "final": 0.3011,
-      "champion": 0.0918
-    },
-    "法国": {
-      "roundOf16": 1.0,
-      "quarter": 0.8991,
-      "semi": 0.4971,
-      "final": 0.2678,
-      "champion": 0.0834
-    },
-    "荷兰": {
-      "roundOf16": 1.0,
-      "quarter": 0.1426,
-      "semi": 0.0692,
-      "final": 0.0386,
-      "champion": 0.012
-    },
-    "南非": {
-      "roundOf16": 1.0,
-      "quarter": 0.2966,
-      "semi": 0.1493,
-      "final": 0.0831,
-      "champion": 0.0202
-    },
-    "刚果金": {
-      "roundOf16": 1.0,
-      "quarter": 0.2067,
-      "semi": 0.109,
-      "final": 0.0613,
-      "champion": 0.0163
-    },
-    "摩洛哥": {
-      "roundOf16": 1.0,
-      "quarter": 0.8574,
-      "semi": 0.5947,
-      "final": 0.2335,
-      "champion": 0.0706
-    },
-    "加拿大": {
-      "roundOf16": 1.0,
-      "quarter": 0.7034,
-      "semi": 0.1868,
-      "final": 0.1109,
-      "champion": 0.0293
+      "quarter": 1.0,
+      "semi": 0.6264,
+      "final": 0.4117,
+      "champion": 0.1462
     },
     "瑞士": {
       "roundOf16": 1.0,
-      "quarter": 0.9068,
-      "semi": 0.3781,
-      "final": 0.1388,
-      "champion": 0.0249
+      "quarter": 1.0,
+      "semi": 0.3991,
+      "final": 0.1476,
+      "champion": 0.0209
     },
-    "克罗地亚": {
+    "英格兰": {
       "roundOf16": 1.0,
-      "quarter": 0.3153,
-      "semi": 0.1014,
-      "final": 0.0441,
-      "champion": 0.0112
+      "quarter": 1.0,
+      "semi": 0.3816,
+      "final": 0.1396,
+      "champion": 0.0202
     },
-    "塞内加尔": {
+    "阿根廷": {
       "roundOf16": 1.0,
-      "quarter": 0.3065,
-      "semi": 0.193,
-      "final": 0.1207,
-      "champion": 0.0255
+      "quarter": 1.0,
+      "semi": 0.4727,
+      "final": 0.2581,
+      "champion": 0.057
     },
-    "德国": {
+    "哥伦比亚": {
       "roundOf16": 1.0,
-      "quarter": 0.5263,
-      "semi": 0.3801,
-      "final": 0.2129,
-      "champion": 0.0604
-    },
-    "美国": {
-      "roundOf16": 1.0,
-      "quarter": 0.8364,
-      "semi": 0.1695,
-      "final": 0.0828,
-      "champion": 0.0134
+      "quarter": 1.0,
+      "semi": 0.6009,
+      "final": 0.3683,
+      "champion": 0.0984
     },
     "比利时": {
       "roundOf16": 1.0,
-      "quarter": 0.6935,
-      "semi": 0.5867,
-      "final": 0.3943,
-      "champion": 0.0617
+      "quarter": 1.0,
+      "semi": 0.8845,
+      "final": 0.6389,
+      "champion": 0.0789
     },
-    "澳大利亚": {
+    "美国": {
       "roundOf16": 1.0,
-      "quarter": 0.1075,
-      "semi": 0.0186,
-      "final": 0.0051,
-      "champion": 0.0005
+      "quarter": 1.0,
+      "semi": 0.1155,
+      "final": 0.0565,
+      "champion": 0.0076
     },
-    "波黑": {
+    "墨西哥": {
       "roundOf16": 1.0,
-      "quarter": 0.1636,
-      "semi": 0.0508,
-      "final": 0.0258,
-      "champion": 0.0023
+      "quarter": 1.0,
+      "semi": 0.6184,
+      "final": 0.2759,
+      "champion": 0.0741
+    },
+    "摩洛哥": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3533,
+      "champion": 0.1382
+    },
+    "法国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6467,
+      "champion": 0.1951
+    },
+    "挪威": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.3736,
+      "final": 0.1728,
+      "champion": 0.0399
+    },
+    "葡萄牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.4352,
+      "final": 0.0866,
+      "champion": 0.0066
+    },
+    "西班牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.5648,
+      "final": 0.218,
+      "champion": 0.0607
+    },
+    "埃及": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.5273,
+      "final": 0.226,
+      "champion": 0.0562
     }
   },
-  "matches": [
-    {
-      "matchId": "R16_1",
-      "round": "16强",
-      "teamA": "南非",
-      "teamB": "加拿大",
-      "probA": 0.1764,
-      "probDraw": 0.2297,
-      "probB": 0.5939,
-      "keyFactors": [
-        "加拿大近期状态更佳"
-      ]
-    },
-    {
-      "matchId": "R16_2",
-      "round": "16强",
-      "teamA": "巴西",
-      "teamB": "日本",
-      "probA": 0.85,
-      "probDraw": 0.0744,
-      "probB": 0.0756,
-      "keyFactors": [
-        "巴西近期状态更佳",
-        "巴西整体实力占优",
-        "巴西大赛底蕴更深"
-      ]
-    },
-    {
-      "matchId": "R16_3",
-      "round": "16强",
-      "teamA": "德国",
-      "teamB": "巴拉圭",
-      "probA": 0.4825,
-      "probDraw": 0.078,
-      "probB": 0.4395,
-      "keyFactors": [
-        "德国近期状态更佳"
-      ]
-    },
-    {
-      "matchId": "R16_4",
-      "round": "16强",
-      "teamA": "荷兰",
-      "teamB": "摩洛哥",
-      "probA": 0.0952,
-      "probDraw": 0.0866,
-      "probB": 0.8182,
-      "keyFactors": [
-        "摩洛哥整体实力占优"
-      ]
-    },
-    {
-      "matchId": "R16_5",
-      "round": "16强",
-      "teamA": "科特迪瓦",
-      "teamB": "挪威",
-      "probA": 0.0637,
-      "probDraw": 0.0863,
-      "probB": 0.85,
-      "keyFactors": [
-        "挪威整体实力占优"
-      ]
-    },
-    {
-      "matchId": "R16_6",
-      "round": "16强",
-      "teamA": "法国",
-      "teamB": "瑞典",
-      "probA": 0.85,
-      "probDraw": 0.0995,
-      "probB": 0.0505,
-      "keyFactors": [
-        "法国近期状态更佳",
-        "法国整体实力占优",
-        "法国大赛底蕴更深"
-      ]
-    },
-    {
-      "matchId": "R16_7",
-      "round": "16强",
-      "teamA": "墨西哥",
-      "teamB": "厄瓜多尔",
-      "probA": 0.85,
-      "probDraw": 0.0948,
-      "probB": 0.0552,
-      "keyFactors": [
-        "墨西哥近期状态更佳",
-        "墨西哥整体实力占优",
-        "墨西哥东道主主场优势"
-      ]
-    },
-    {
-      "matchId": "R16_8",
-      "round": "16强",
-      "teamA": "英格兰",
-      "teamB": "刚果金",
-      "probA": 0.6316,
-      "probDraw": 0.3229,
-      "probB": 0.0455,
-      "keyFactors": [
-        "英格兰近期状态更佳",
-        "英格兰整体实力占优",
-        "英格兰大赛底蕴更深"
-      ]
-    },
-    {
-      "matchId": "R16_9",
-      "round": "16强",
-      "teamA": "比利时",
-      "teamB": "塞内加尔",
-      "probA": 0.4581,
-      "probDraw": 0.4642,
-      "probB": 0.0777,
-      "keyFactors": [
-        "比利时整体实力占优"
-      ]
-    },
-    {
-      "matchId": "R16_10",
-      "round": "16强",
-      "teamA": "美国",
-      "teamB": "波黑",
-      "probA": 0.7341,
-      "probDraw": 0.2149,
-      "probB": 0.051,
-      "keyFactors": [
-        "美国近期状态更佳",
-        "美国整体实力占优",
-        "美国东道主主场优势"
-      ]
-    },
-    {
-      "matchId": "R16_11",
-      "round": "16强",
-      "teamA": "西班牙",
-      "teamB": "奥地利",
-      "probA": 0.6688,
-      "probDraw": 0.2871,
-      "probB": 0.0442,
-      "keyFactors": [
-        "西班牙近期状态更佳",
-        "西班牙整体实力占优",
-        "西班牙大赛底蕴更深"
-      ]
-    },
-    {
-      "matchId": "R16_12",
-      "round": "16强",
-      "teamA": "葡萄牙",
-      "teamB": "克罗地亚",
-      "probA": 0.4624,
-      "probDraw": 0.4503,
-      "probB": 0.0873,
-      "keyFactors": [
-        "葡萄牙整体实力占优"
-      ]
-    },
-    {
-      "matchId": "R16_13",
-      "round": "16强",
-      "teamA": "瑞士",
-      "teamB": "阿尔及利亚",
-      "probA": 0.85,
-      "probDraw": 0.1114,
-      "probB": 0.0386,
-      "keyFactors": [
-        "瑞士近期状态更佳",
-        "瑞士整体实力占优"
-      ]
-    },
-    {
-      "matchId": "R16_14",
-      "round": "16强",
-      "teamA": "澳大利亚",
-      "teamB": "埃及",
-      "probA": 0.0654,
-      "probDraw": 0.0846,
-      "probB": 0.85,
-      "keyFactors": [
-        "埃及近期状态更佳"
-      ]
-    },
-    {
-      "matchId": "R16_15",
-      "round": "16强",
-      "teamA": "阿根廷",
-      "teamB": "佛得角",
-      "probA": 0.8122,
-      "probDraw": 0.1254,
-      "probB": 0.0625,
-      "keyFactors": [
-        "阿根廷近期状态更佳",
-        "阿根廷整体实力占优",
-        "阿根廷大赛底蕴更深"
-      ]
-    },
-    {
-      "matchId": "R16_16",
-      "round": "16强",
-      "teamA": "哥伦比亚",
-      "teamB": "加纳",
-      "probA": 0.7188,
-      "probDraw": 0.2122,
-      "probB": 0.069,
-      "keyFactors": [
-        "哥伦比亚近期状态更佳",
-        "哥伦比亚整体实力占优"
-      ]
-    }
-  ],
+  "matches": [],
   "topScorers": [
     {
       "player": "姆巴佩",
       "team": "法国",
       "existingGoals": 7,
-      "predictedGoals": 7.9,
-      "remainingMatches": 1.7
+      "predictedGoals": 8,
+      "remainingMatches": 2.8
     },
     {
       "player": "梅西",
       "team": "阿根廷",
       "existingGoals": 7,
-      "predictedGoals": 7.6,
-      "remainingMatches": 1.6
+      "predictedGoals": 8,
+      "remainingMatches": 1.8
     },
     {
       "player": "哈兰德",
       "team": "挪威",
       "existingGoals": 5,
-      "predictedGoals": 5.7,
-      "remainingMatches": 1.5
+      "predictedGoals": 6,
+      "remainingMatches": 1.6
     },
     {
       "player": "凯恩",
       "team": "英格兰",
       "existingGoals": 5,
-      "predictedGoals": 5.5,
-      "remainingMatches": 1.2
+      "predictedGoals": 6,
+      "remainingMatches": 1.5
     },
     {
       "player": "维尼修斯",
       "team": "巴西",
       "existingGoals": 4,
-      "predictedGoals": 4.8,
-      "remainingMatches": 1.9
+      "predictedGoals": 5,
+      "remainingMatches": 2.2
     },
     {
       "player": "登贝莱",
       "team": "法国",
       "existingGoals": 4,
-      "predictedGoals": 4.4,
-      "remainingMatches": 1.7
-    },
-    {
-      "player": "伊斯梅拉·萨尔",
-      "team": "塞内加尔",
-      "existingGoals": 4,
-      "predictedGoals": 4.2,
-      "remainingMatches": 0.6
+      "predictedGoals": 5,
+      "remainingMatches": 2.8
     },
     {
       "player": "基尼奥内斯",
       "team": "墨西哥",
       "existingGoals": 3,
-      "predictedGoals": 3.5,
-      "remainingMatches": 1.8
+      "predictedGoals": 4,
+      "remainingMatches": 2.0
+    },
+    {
+      "player": "赛巴里",
+      "team": "摩洛哥",
+      "existingGoals": 3,
+      "predictedGoals": 4,
+      "remainingMatches": 2.5
     },
     {
       "player": "库尼亚",
       "team": "巴西",
       "existingGoals": 3,
-      "predictedGoals": 3.5,
-      "remainingMatches": 1.9
+      "predictedGoals": 4,
+      "remainingMatches": 2.2
     },
     {
-      "player": "约翰·曼赞比",
-      "team": "瑞士",
-      "existingGoals": 3,
-      "predictedGoals": 3.4,
-      "remainingMatches": 1.4
+      "player": "伊斯梅拉·萨尔",
+      "team": "塞内加尔",
+      "existingGoals": 4,
+      "predictedGoals": 4,
+      "remainingMatches": 0.5
     }
-  ]
+  ],
+  "knockoutBracket": {
+    "rounds": [
+      {
+        "name": "16强",
+        "matches": [
+          {
+            "id": "R16_1",
+            "teamA": "南非",
+            "teamB": "加拿大",
+            "completed": true,
+            "scoreA": 0,
+            "scoreB": 1,
+            "winner": "加拿大"
+          },
+          {
+            "id": "R16_2",
+            "teamA": "巴西",
+            "teamB": "日本",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 1,
+            "winner": "巴西"
+          },
+          {
+            "id": "R16_3",
+            "teamA": "德国",
+            "teamB": "巴拉圭",
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 1,
+            "winner": "巴拉圭"
+          },
+          {
+            "id": "R16_4",
+            "teamA": "荷兰",
+            "teamB": "摩洛哥",
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 1,
+            "winner": "摩洛哥"
+          },
+          {
+            "id": "R16_5",
+            "teamA": "科特迪瓦",
+            "teamB": "挪威",
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 2,
+            "winner": "挪威"
+          },
+          {
+            "id": "R16_6",
+            "teamA": "法国",
+            "teamB": "瑞典",
+            "completed": true,
+            "scoreA": 3,
+            "scoreB": 0,
+            "winner": "法国"
+          },
+          {
+            "id": "R16_7",
+            "teamA": "墨西哥",
+            "teamB": "厄瓜多尔",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 0,
+            "winner": "墨西哥"
+          },
+          {
+            "id": "R16_8",
+            "teamA": "英格兰",
+            "teamB": "刚果金",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 1,
+            "winner": "英格兰"
+          },
+          {
+            "id": "R16_9",
+            "teamA": "比利时",
+            "teamB": "塞内加尔",
+            "completed": true,
+            "scoreA": 3,
+            "scoreB": 2,
+            "winner": "比利时"
+          },
+          {
+            "id": "R16_10",
+            "teamA": "美国",
+            "teamB": "波黑",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 0,
+            "winner": "美国"
+          },
+          {
+            "id": "R16_11",
+            "teamA": "西班牙",
+            "teamB": "奥地利",
+            "completed": true,
+            "scoreA": 3,
+            "scoreB": 0,
+            "winner": "西班牙"
+          },
+          {
+            "id": "R16_12",
+            "teamA": "葡萄牙",
+            "teamB": "克罗地亚",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 1,
+            "winner": "葡萄牙"
+          },
+          {
+            "id": "R16_13",
+            "teamA": "瑞士",
+            "teamB": "阿尔及利亚",
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 0,
+            "winner": "瑞士"
+          },
+          {
+            "id": "R16_14",
+            "teamA": "澳大利亚",
+            "teamB": "埃及",
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 1,
+            "winner": "埃及"
+          },
+          {
+            "id": "R16_15",
+            "teamA": "阿根廷",
+            "teamB": "佛得角",
+            "completed": true,
+            "scoreA": 3,
+            "scoreB": 2,
+            "winner": "阿根廷"
+          },
+          {
+            "id": "R16_16",
+            "teamA": "哥伦比亚",
+            "teamB": "加纳",
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 0,
+            "winner": "哥伦比亚"
+          }
+        ]
+      },
+      {
+        "name": "8强",
+        "matches": [
+          {
+            "id": "QF_1",
+            "teamA": "加拿大",
+            "teamB": "摩洛哥",
+            "completed": true,
+            "scoreA": 0,
+            "scoreB": 3,
+            "winner": "摩洛哥"
+          },
+          {
+            "id": "QF_2",
+            "teamA": "巴拉圭",
+            "teamB": "法国",
+            "completed": true,
+            "scoreA": 0,
+            "scoreB": 1,
+            "winner": "法国"
+          },
+          {
+            "id": "QF_3",
+            "teamA": "巴西",
+            "teamB": "挪威",
+            "completed": false,
+            "probA": 0.4509,
+            "probB": 0.1979
+          },
+          {
+            "id": "QF_4",
+            "teamA": "墨西哥",
+            "teamB": "英格兰",
+            "completed": false,
+            "probA": 0.4894,
+            "probB": 0.2291
+          },
+          {
+            "id": "QF_5",
+            "teamA": "葡萄牙",
+            "teamB": "西班牙",
+            "completed": false,
+            "probA": 0.1638,
+            "probB": 0.3048
+          },
+          {
+            "id": "QF_6",
+            "teamA": "美国",
+            "teamB": "比利时",
+            "completed": false,
+            "probA": 0.0859,
+            "probB": 0.3981
+          },
+          {
+            "id": "QF_7",
+            "teamA": "阿根廷",
+            "teamB": "埃及",
+            "completed": false,
+            "probA": 0.5248,
+            "probB": 0.1816
+          },
+          {
+            "id": "QF_8",
+            "teamA": "瑞士",
+            "teamB": "哥伦比亚",
+            "completed": false,
+            "probA": 0.4774,
+            "probB": 0.2139
+          }
+        ]
+      },
+      {
+        "name": "4强",
+        "matches": [
+          {
+            "id": "SF_1",
+            "teamA": "法国",
+            "teamB": "摩洛哥",
+            "completed": false,
+            "probA": 0.85,
+            "probB": 0.0513
+          },
+          {
+            "id": "SF_2",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          },
+          {
+            "id": "SF_3",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          },
+          {
+            "id": "SF_4",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          }
+        ]
+      },
+      {
+        "name": "决赛",
+        "matches": [
+          {
+            "id": "F_1",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          },
+          {
+            "id": "F_2",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          }
+        ]
+      },
+      {
+        "name": "季军赛",
+        "matches": [
+          {
+            "id": "THIRD",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          }
+        ]
+      },
+      {
+        "name": "冠军赛",
+        "matches": [
+          {
+            "id": "CHAMP",
+            "teamA": "待定",
+            "teamB": "待定",
+            "completed": false
+          }
+        ]
+      }
+    ]
+  }
 }

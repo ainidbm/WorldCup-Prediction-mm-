@@ -48,9 +48,12 @@ def _simulate_one_tournament(
     bracket: Dict,
     prob_cache: Dict,
     rng: random.Random,
+    actual_results: Dict[str, str],
 ) -> Dict[str, str]:
     """
     模拟一次完整淘汰赛。
+
+    actual_results: 已有真实赛果 {match_id: winner}，优先使用。
 
     返回:
         {match_id: winner_team} 所有比赛的结果
@@ -59,19 +62,29 @@ def _simulate_one_tournament(
 
     # 16 强赛
     for match in bracket["round_of_16"]:
-        winner = _simulate_match_cached(match["teamA"], match["teamB"], prob_cache, rng)
-        results[match["id"]] = winner
+        mid = match["id"]
+        if mid in actual_results:
+            results[mid] = actual_results[mid]
+        else:
+            results[mid] = _simulate_match_cached(
+                match["teamA"], match["teamB"], prob_cache, rng
+            )
 
     # 按 bracket_structure 逐轮模拟
     structure = bracket["bracket_structure"]
 
     for round_name in ["quarter", "semi", "final", "championship"]:
         for match in structure[round_name]:
+            mid = match["id"]
             from_matches = match["from"]
             team_a = results[from_matches[0]]
             team_b = results[from_matches[1]]
-            winner = _simulate_match_cached(team_a, team_b, prob_cache, rng)
-            results[match["id"]] = winner
+            if mid in actual_results:
+                results[mid] = actual_results[mid]
+            else:
+                results[mid] = _simulate_match_cached(
+                    team_a, team_b, prob_cache, rng
+                )
 
     return results
 
@@ -89,6 +102,13 @@ def run_monte_carlo_simulation(
         match_predictions: 16 强各场比赛的预测详情
     """
     rng = random.Random(RANDOM_SEED)
+
+    # 从 bracket["results"] 中提取已有真实赛果
+    actual_results: Dict[str, str] = {}
+    for r in bracket.get("results", []):
+        if "winner" in r:
+            actual_results[r["id"]] = r["winner"]
+    print(f"  - 已有 {len(actual_results)} 场真实赛果")
 
     # 收集所有淘汰赛参赛队
     knockout_teams = set()
@@ -113,7 +133,7 @@ def run_monte_carlo_simulation(
 
     # 运行 N 次模拟
     for _ in range(MONTE_CARLO_ITERATIONS):
-        results = _simulate_one_tournament(bracket, prob_cache, rng)
+        results = _simulate_one_tournament(bracket, prob_cache, rng, actual_results)
 
         # 16 强：所有参赛队
         for team in knockout_teams:
@@ -151,9 +171,12 @@ def run_monte_carlo_simulation(
             "champion": counts["champion"] / n,
         }
 
-    # 生成 16 强各场比赛的预测详情
+    # 生成各轮次比赛预测（仅未完成的比赛）
     match_predictions = []
+    # R16 已完成则跳过
     for match in bracket["round_of_16"]:
+        if match["id"] in actual_results:
+            continue
         p_a, p_draw, p_b = prob_cache[(match["teamA"], match["teamB"])]
         match_predictions.append({
             "matchId": match["id"],
@@ -165,4 +188,4 @@ def run_monte_carlo_simulation(
             "probB": round(p_b, 4),
         })
 
-    return stage_probs, match_predictions
+    return stage_probs, match_predictions, actual_results

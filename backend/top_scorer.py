@@ -156,7 +156,7 @@ def predict_top_scorers(
             "player": player,
             "team": team,
             "existingGoals": existing_goals,
-            "predictedGoals": round(predicted_total, 1),
+            "predictedGoals": round(predicted_total),
             "remainingMatches": round(remaining, 1),
         })
 

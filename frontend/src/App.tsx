@@ -2,8 +2,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import { loadPredictions, loadAccuracy } from './data/loader';
 import type { PredictionsData, AccuracyData } from './data/loader';
 const ChampionBar = lazy(() => import('./components/ChampionBar'));
-import MatchCard from './components/MatchCard';
-import BracketView from './components/BracketView';
+import KnockoutProgress from './components/KnockoutProgress';
 import TopScorer from './components/TopScorer';
 import AccuracyPanel from './components/AccuracyPanel';
 import './styles/global.css';
@@ -65,17 +64,10 @@ export default function App() {
       </div>
 
       <div className="section">
-        <h2 className="section-title">淘汰赛对阵图</h2>
-        <BracketView matches={predictions.matches} stageProb={predictions.stageProb} />
-      </div>
-
-      <div className="section">
-        <h2 className="section-title">16 强对阵预测</h2>
-        <div className="grid-2">
-          {predictions.matches.map((m) => (
-            <MatchCard key={m.matchId} match={m} />
-          ))}
-        </div>
+        <h2 className="section-title">淘汰赛晋级图</h2>
+        {predictions.knockoutBracket && (
+          <KnockoutProgress bracket={predictions.knockoutBracket} />
+        )}
       </div>
 
       <div className="section">
