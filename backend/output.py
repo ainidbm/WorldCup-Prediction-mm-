@@ -186,18 +186,22 @@ def generate_accuracy_json(
     model_accuracy: float,
     group_results: list,
     predictor: Callable,
+    bracket: dict = None,
 ) -> Dict[str, Any]:
-    """生成 accuracy.json"""
+    """生成 accuracy.json，回测小组赛 + 淘汰赛全部已完成比赛"""
 
-    # 用小组赛结果做简单回测
     correct = 0
     total = 0
+    group_correct = 0
+    group_total = 0
+    knockout_correct = 0
+    knockout_total = 0
 
+    # --- 小组赛回测 ---
     for match in group_results:
         team_a, team_b = match["teamA"], match["teamB"]
         score_a, score_b = match["scoreA"], match["scoreB"]
 
-        # 实际结果
         if score_a > score_b:
             actual = "A"
         elif score_a < score_b:
@@ -205,7 +209,6 @@ def generate_accuracy_json(
         else:
             actual = "D"
 
-        # 模型预测
         try:
             p_a, p_draw, p_b = predictor(team_a, team_b)
             if p_a > p_b and p_a > p_draw:
@@ -217,16 +220,54 @@ def generate_accuracy_json(
 
             if predicted == actual:
                 correct += 1
+                group_correct += 1
             total += 1
+            group_total += 1
         except Exception:
             pass
 
-    group_accuracy = correct / total if total > 0 else 0.0
+    # --- 淘汰赛回测（仅已完成比赛）---
+    if bracket:
+        for match in bracket.get("results", []):
+            if "winner" not in match:
+                continue
+            team_a, team_b = match["teamA"], match["teamB"]
+            winner = match["winner"]
+
+            try:
+                p_a, p_draw, p_b = predictor(team_a, team_b)
+                # 淘汰赛无平局，比较两队胜率
+                if p_a >= p_b:
+                    predicted_winner = team_a
+                else:
+                    predicted_winner = team_b
+
+                if predicted_winner == winner:
+                    correct += 1
+                    knockout_correct += 1
+                total += 1
+                knockout_total += 1
+            except Exception:
+                pass
+
+    overall_accuracy = correct / total if total > 0 else 0.0
+    group_accuracy = group_correct / group_total if group_total > 0 else 0.0
+    knockout_accuracy = knockout_correct / knockout_total if knockout_total > 0 else 0.0
+
+    note = (
+        f"回测范围：{group_total} 场小组赛 + {knockout_total} 场淘汰赛 = {total} 场。"
+        f"小组赛准确率 {group_accuracy:.1%}，淘汰赛准确率 {knockout_accuracy:.1%}。"
+        f"模型使用历史赛事数据训练，已完赛结果作为独立验证集。"
+    )
 
     return {
         "modelAccuracy": round(model_accuracy, 4),
         "groupStageAccuracy": round(group_accuracy, 4),
+        "knockoutAccuracy": round(knockout_accuracy, 4),
+        "overallAccuracy": round(overall_accuracy, 4),
         "totalMatchesEvaluated": total,
         "correctPredictions": correct,
-        "calibrationNote": "基于小组赛结果的回测准确率。模型使用历史赛事数据训练，小组赛结果作为独立验证集。",
+        "groupMatches": group_total,
+        "knockoutMatches": knockout_total,
+        "calibrationNote": note,
     }

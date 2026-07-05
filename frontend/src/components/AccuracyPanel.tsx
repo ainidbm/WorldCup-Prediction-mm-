@@ -7,26 +7,42 @@ interface Props {
 export default function AccuracyPanel({ data }: Props) {
   return (
     <div className="card">
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1.5rem' }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#38bdf8' }}>
-            {(data.modelAccuracy * 100).toFixed(1)}%
+            {(data.overallAccuracy * 100).toFixed(1)}%
           </div>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>交叉验证准确率</div>
+          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>综合准确率</div>
+          <div style={{ color: '#64748b', fontSize: '0.75rem' }}>
+            {data.correctPredictions}/{data.totalMatchesEvaluated} 场
+          </div>
         </div>
 
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#4ade80' }}>
             {(data.groupStageAccuracy * 100).toFixed(1)}%
           </div>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>小组赛回测准确率</div>
+          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>小组赛准确率</div>
+          <div style={{ color: '#64748b', fontSize: '0.75rem' }}>
+            {data.groupMatches} 场
+          </div>
         </div>
 
         <div style={{ textAlign: 'center' }}>
           <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#fbbf24' }}>
-            {data.correctPredictions}/{data.totalMatchesEvaluated}
+            {(data.knockoutAccuracy * 100).toFixed(1)}%
           </div>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>正确预测 / 总场次</div>
+          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>淘汰赛准确率</div>
+          <div style={{ color: '#64748b', fontSize: '0.75rem' }}>
+            {data.knockoutMatches} 场
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#a78bfa' }}>
+            {(data.modelAccuracy * 100).toFixed(1)}%
+          </div>
+          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>交叉验证准确率</div>
         </div>
       </div>
 

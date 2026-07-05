@@ -80,7 +80,7 @@ def main():
         json.dump(predictions, f, ensure_ascii=False, indent=2)
     print(f"  - predictions.json -> {PREDICTIONS_OUTPUT}")
 
-    accuracy_data = generate_accuracy_json(accuracy, group_results, predictor)
+    accuracy_data = generate_accuracy_json(accuracy, group_results, predictor, bracket)
     with open(ACCURACY_OUTPUT, "w", encoding="utf-8") as f:
         json.dump(accuracy_data, f, ensure_ascii=False, indent=2)
     print(f"  - accuracy.json -> {ACCURACY_OUTPUT}")

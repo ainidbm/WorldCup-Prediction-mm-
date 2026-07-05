@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T17:30:42.373981",
+  "generatedAt": "2026-07-05T17:41:20.064034",
   "championProb": [
     {
       "team": "法国",
@@ -59,41 +59,6 @@
     }
   ],
   "stageProb": {
-    "瑞士": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.3991,
-      "final": 0.1476,
-      "champion": 0.0209
-    },
-    "美国": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.1155,
-      "final": 0.0565,
-      "champion": 0.0076
-    },
-    "埃及": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.5273,
-      "final": 0.226,
-      "champion": 0.0562
-    },
-    "巴西": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.6264,
-      "final": 0.4117,
-      "champion": 0.1462
-    },
-    "葡萄牙": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.4352,
-      "final": 0.0866,
-      "champion": 0.0066
-    },
     "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
@@ -101,33 +66,12 @@
       "final": 0.2581,
       "champion": 0.057
     },
-    "西班牙": {
+    "墨西哥": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 0.5648,
-      "final": 0.218,
-      "champion": 0.0607
-    },
-    "哥伦比亚": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.6009,
-      "final": 0.3683,
-      "champion": 0.0984
-    },
-    "法国": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6467,
-      "champion": 0.1951
-    },
-    "摩洛哥": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3533,
-      "champion": 0.1382
+      "semi": 0.6184,
+      "final": 0.2759,
+      "champion": 0.0741
     },
     "英格兰": {
       "roundOf16": 1.0,
@@ -143,6 +87,20 @@
       "final": 0.6389,
       "champion": 0.0789
     },
+    "哥伦比亚": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.6009,
+      "final": 0.3683,
+      "champion": 0.0984
+    },
+    "西班牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.5648,
+      "final": 0.218,
+      "champion": 0.0607
+    },
     "挪威": {
       "roundOf16": 1.0,
       "quarter": 1.0,
@@ -150,12 +108,54 @@
       "final": 0.1728,
       "champion": 0.0399
     },
-    "墨西哥": {
+    "摩洛哥": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 0.6184,
-      "final": 0.2759,
-      "champion": 0.0741
+      "semi": 1.0,
+      "final": 0.3533,
+      "champion": 0.1382
+    },
+    "瑞士": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.3991,
+      "final": 0.1476,
+      "champion": 0.0209
+    },
+    "美国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.1155,
+      "final": 0.0565,
+      "champion": 0.0076
+    },
+    "葡萄牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.4352,
+      "final": 0.0866,
+      "champion": 0.0066
+    },
+    "法国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6467,
+      "champion": 0.1951
+    },
+    "埃及": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.5273,
+      "final": 0.226,
+      "champion": 0.0562
+    },
+    "巴西": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.6264,
+      "final": 0.4117,
+      "champion": 0.1462
     }
   },
   "matches": [],

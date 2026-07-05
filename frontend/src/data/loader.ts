@@ -65,8 +65,12 @@ export interface PredictionsData {
 export interface AccuracyData {
   modelAccuracy: number;
   groupStageAccuracy: number;
+  knockoutAccuracy: number;
+  overallAccuracy: number;
   totalMatchesEvaluated: number;
   correctPredictions: number;
+  groupMatches: number;
+  knockoutMatches: number;
   calibrationNote: string;
 }
 
