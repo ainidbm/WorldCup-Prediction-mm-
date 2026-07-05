@@ -26,8 +26,8 @@ DEFAULT_SHOTS_PER_GAME = {
     "莱默": 2.0, "麦肯尼": 2.0, "巴洛贡": 2.5,
 }
 
-DEFAULT_CONVERSION_RATE = 0.12  # 默认射门转化率
-DEFAULT_APPEARANCE_PROB = 0.85  # 默认出场概率
+DEFAULT_CONVERSION_RATE = 0.15  # 射门转化率（淘汰赛阶段精英射手偏高）
+DEFAULT_APPEARANCE_PROB = 0.95  # 出场概率（淘汰赛核心球员几乎必上场）
 
 
 def _is_excluded(scorer: str) -> bool:
@@ -122,11 +122,13 @@ def predict_top_scorers(
     group_results: list,
     stage_probs: Dict,
     bracket: dict = None,
+    remaining_matches: Dict[str, float] = None,
 ) -> List[Dict[str, Any]]:
     """
     预测最佳射手 Top 10。
 
     公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
+    remaining_matches 由蒙特卡洛模拟的条件概率计算得出。
     """
     group_scorers = _extract_group_scorers(group_results)
 
@@ -143,7 +145,16 @@ def predict_top_scorers(
     for player, data in group_scorers.items():
         existing_goals = data["goals"]
         team = data["team"]
-        remaining = _estimate_remaining_matches(team, stage_probs)
+
+        # 使用条件概率计算的剩余场次，淘汰队伍为0
+        if remaining_matches is not None:
+            remaining = remaining_matches.get(team, 0.0)
+        else:
+            remaining = 0.0
+
+        # 已淘汰的队伍不参与预测
+        if remaining <= 0:
+            continue
 
         shots_per_game = DEFAULT_SHOTS_PER_GAME.get(player, 2.5)
         conversion_rate = DEFAULT_CONVERSION_RATE

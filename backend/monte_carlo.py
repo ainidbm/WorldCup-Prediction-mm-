@@ -189,3 +189,71 @@ def run_monte_carlo_simulation(
         })
 
     return stage_probs, match_predictions, actual_results
+
+
+def compute_remaining_matches(
+    bracket: Dict,
+    stage_probs: Dict,
+    actual_results: Dict[str, str],
+) -> Dict[str, float]:
+    """
+    计算每支球队的条件剩余场次。
+
+    根据实际赛果确定当前阶段，再用条件概率计算未来期望场次：
+    - QF 队伍: 1(保证打QF) + P(SF|QF) + P(决赛轮|QF)
+    - SF 队伍: 1(保证打SF) + P(决赛轮|SF)
+    - 决赛队伍: 1(保证打冠军赛/季军赛)
+    """
+    results_map = {}
+    for r in bracket.get("results", []):
+        results_map[r["id"]] = r
+    structure = bracket["bracket_structure"]
+
+    # 确定每支球队已到达的最远已完成轮次
+    team_furthest: Dict[str, str] = {}
+    for stage_key, round_id in [
+        ("championship", "championship"),
+        ("final", "final"),
+        ("semi", "semi"),
+        ("quarter", "quarter"),
+    ]:
+        for m in structure.get(stage_key, []):
+            if m["id"] in actual_results:
+                winner = actual_results[m["id"]]
+                # 记录该队已到达的最远轮次
+                if winner not in team_furthest:
+                    team_furthest[winner] = round_id
+                # 负者也参与了这场比赛
+                r = results_map.get(m["id"], {})
+                loser = r["teamA"] if r.get("teamB") == winner else r.get("teamB")
+                if loser and loser not in team_furthest:
+                    team_furthest[loser] = round_id
+
+    remaining: Dict[str, float] = {}
+    for team, probs in stage_probs.items():
+        furthest = team_furthest.get(team)
+
+        # 已淘汰的队伍
+        if probs["champion"] == 0 and probs["roundOf16"] > 0:
+            remaining[team] = 0.0
+            continue
+
+        if furthest == "quarter":
+            # 已打完QF: 保证已打1场 + 条件概率
+            rem = 1.0
+            rem += probs["semi"] / max(probs["quarter"], 0.01)
+            rem += probs["champion"] / max(probs["quarter"], 0.01)
+        elif furthest == "semi":
+            rem = 1.0
+            rem += probs["champion"] / max(probs["semi"], 0.01)
+        elif furthest in ("final", "championship"):
+            rem = 1.0
+        else:
+            # 默认在 QF 阶段（R16 全部完成）
+            rem = 1.0
+            rem += probs["semi"] / max(probs["quarter"], 0.01)
+            rem += probs["champion"] / max(probs["quarter"], 0.01)
+
+        remaining[team] = round(rem, 2)
+
+    return remaining

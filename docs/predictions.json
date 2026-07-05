@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T16:05:16.449930",
+  "generatedAt": "2026-07-05T17:30:42.373981",
   "championProb": [
     {
       "team": "法国",
@@ -59,47 +59,12 @@
     }
   ],
   "stageProb": {
-    "巴西": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.6264,
-      "final": 0.4117,
-      "champion": 0.1462
-    },
     "瑞士": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 0.3991,
       "final": 0.1476,
       "champion": 0.0209
-    },
-    "英格兰": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.3816,
-      "final": 0.1396,
-      "champion": 0.0202
-    },
-    "阿根廷": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.4727,
-      "final": 0.2581,
-      "champion": 0.057
-    },
-    "哥伦比亚": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.6009,
-      "final": 0.3683,
-      "champion": 0.0984
-    },
-    "比利时": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.8845,
-      "final": 0.6389,
-      "champion": 0.0789
     },
     "美国": {
       "roundOf16": 1.0,
@@ -108,33 +73,19 @@
       "final": 0.0565,
       "champion": 0.0076
     },
-    "墨西哥": {
+    "埃及": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 0.6184,
-      "final": 0.2759,
-      "champion": 0.0741
+      "semi": 0.5273,
+      "final": 0.226,
+      "champion": 0.0562
     },
-    "摩洛哥": {
+    "巴西": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3533,
-      "champion": 0.1382
-    },
-    "法国": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6467,
-      "champion": 0.1951
-    },
-    "挪威": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.3736,
-      "final": 0.1728,
-      "champion": 0.0399
+      "semi": 0.6264,
+      "final": 0.4117,
+      "champion": 0.1462
     },
     "葡萄牙": {
       "roundOf16": 1.0,
@@ -143,6 +94,13 @@
       "final": 0.0866,
       "champion": 0.0066
     },
+    "阿根廷": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.4727,
+      "final": 0.2581,
+      "champion": 0.057
+    },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
@@ -150,12 +108,54 @@
       "final": 0.218,
       "champion": 0.0607
     },
-    "埃及": {
+    "哥伦比亚": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 0.5273,
-      "final": 0.226,
-      "champion": 0.0562
+      "semi": 0.6009,
+      "final": 0.3683,
+      "champion": 0.0984
+    },
+    "法国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6467,
+      "champion": 0.1951
+    },
+    "摩洛哥": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3533,
+      "champion": 0.1382
+    },
+    "英格兰": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.3816,
+      "final": 0.1396,
+      "champion": 0.0202
+    },
+    "比利时": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.8845,
+      "final": 0.6389,
+      "champion": 0.0789
+    },
+    "挪威": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.3736,
+      "final": 0.1728,
+      "champion": 0.0399
+    },
+    "墨西哥": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 0.6184,
+      "final": 0.2759,
+      "champion": 0.0741
     }
   },
   "matches": [],
@@ -164,71 +164,71 @@
       "player": "姆巴佩",
       "team": "法国",
       "existingGoals": 7,
-      "predictedGoals": 8,
-      "remainingMatches": 2.8
+      "predictedGoals": 9,
+      "remainingMatches": 2.2
     },
     {
       "player": "梅西",
       "team": "阿根廷",
       "existingGoals": 7,
       "predictedGoals": 8,
-      "remainingMatches": 1.8
+      "remainingMatches": 1.5
     },
     {
       "player": "哈兰德",
       "team": "挪威",
       "existingGoals": 5,
       "predictedGoals": 6,
-      "remainingMatches": 1.6
+      "remainingMatches": 1.4
     },
     {
       "player": "凯恩",
       "team": "英格兰",
       "existingGoals": 5,
       "predictedGoals": 6,
-      "remainingMatches": 1.5
+      "remainingMatches": 1.4
     },
     {
       "player": "维尼修斯",
       "team": "巴西",
       "existingGoals": 4,
       "predictedGoals": 5,
-      "remainingMatches": 2.2
+      "remainingMatches": 1.8
     },
     {
       "player": "登贝莱",
       "team": "法国",
       "existingGoals": 4,
       "predictedGoals": 5,
-      "remainingMatches": 2.8
+      "remainingMatches": 2.2
     },
     {
       "player": "基尼奥内斯",
       "team": "墨西哥",
       "existingGoals": 3,
       "predictedGoals": 4,
-      "remainingMatches": 2.0
+      "remainingMatches": 1.7
+    },
+    {
+      "player": "约翰·曼赞比",
+      "team": "瑞士",
+      "existingGoals": 3,
+      "predictedGoals": 4,
+      "remainingMatches": 1.4
     },
     {
       "player": "赛巴里",
       "team": "摩洛哥",
       "existingGoals": 3,
       "predictedGoals": 4,
-      "remainingMatches": 2.5
+      "remainingMatches": 2.1
     },
     {
       "player": "库尼亚",
       "team": "巴西",
       "existingGoals": 3,
       "predictedGoals": 4,
-      "remainingMatches": 2.2
-    },
-    {
-      "player": "伊斯梅拉·萨尔",
-      "team": "塞内加尔",
-      "existingGoals": 4,
-      "predictedGoals": 4,
-      "remainingMatches": 0.5
+      "remainingMatches": 1.8
     }
   ],
   "knockoutBracket": {

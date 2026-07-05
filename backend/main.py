@@ -20,7 +20,7 @@ from config import (
 )
 from features import build_feature_engine
 from model import train_model, create_match_predictor
-from monte_carlo import run_monte_carlo_simulation
+from monte_carlo import run_monte_carlo_simulation, compute_remaining_matches
 from top_scorer import predict_top_scorers
 from output import generate_predictions_json, generate_accuracy_json
 
@@ -64,7 +64,8 @@ def main():
 
     # 5. 射手预测
     print("\n[5/6] 预测最佳射手 Top 10...")
-    top_scorers = predict_top_scorers(teams, group_results, stage_probs, bracket)
+    remaining_matches = compute_remaining_matches(bracket, stage_probs, actual_results)
+    top_scorers = predict_top_scorers(teams, group_results, stage_probs, bracket, remaining_matches)
     print(f"  - Top 10 射手已生成")
 
     # 6. 输出 JSON
