@@ -3,8 +3,9 @@ JSON 输出生成模块
 
 生成 predictions.json 和 accuracy.json，全中文字段。
 """
+import math
 from datetime import datetime
-from typing import Dict, List, Any, Callable
+from typing import Dict, List, Any, Callable, Tuple
 
 
 def generate_predictions_json(
@@ -66,14 +67,96 @@ def generate_predictions_json(
         "stageProb": stage_prob_detail,
         "matches": enriched_matches,
         "topScorers": top_scorers,
-        "knockoutBracket": _build_knockout_bracket(bracket, actual_results, predictor),
+        "knockoutBracket": _build_knockout_bracket(bracket, actual_results, predictor, feature_engine),
     }
+
+
+def _poisson_pmf(k: int, lam: float) -> float:
+    """Poisson 概率质量函数 P(X=k | lambda=lam)"""
+    if lam <= 0:
+        return 1.0 if k == 0 else 0.0
+    return (lam ** k) * math.exp(-lam) / math.factorial(k)
+
+
+def _predict_score(
+    team_a: str,
+    team_b: str,
+    feature_engine: Any,
+    prob_a: float,
+    prob_b: float,
+) -> Tuple[int, int]:
+    """
+    基于小组赛统计数据 + 胜率概率，预测最可能的比分。
+
+    方法：
+    1. 从小组赛统计中计算每队的场均进球/失球
+    2. 交叉计算预期进球（A 进攻 vs B 防守）
+    3. 淘汰赛系数衰减（比赛更保守）
+    4. 用胜率比例微调
+    5. Poisson PMF 搜索最可能的整数比分
+    """
+    stats_a = feature_engine.group_stats.get(team_a, {})
+    stats_b = feature_engine.group_stats.get(team_b, {})
+
+    games_a = max(stats_a.get("played", 3), 1)
+    games_b = max(stats_b.get("played", 3), 1)
+
+    # 场均进球 / 失球
+    gpg_a = stats_a.get("goals_for", 3) / games_a
+    gpg_b = stats_b.get("goals_for", 3) / games_b
+    gapg_a = stats_a.get("goals_against", 3) / games_a
+    gapg_b = stats_b.get("goals_against", 3) / games_b
+
+    # 交叉预期进球：A 的攻击力 vs B 的防守
+    xg_a = (gpg_a * 0.5 + gapg_b * 0.5)
+    xg_b = (gpg_b * 0.5 + gapg_a * 0.5)
+
+    # 淘汰赛衰减（更保守，进球更少）
+    xg_a *= 0.72
+    xg_b *= 0.72
+
+    # 用胜率比例微调（概率高的一方略增进球）
+    total_prob = prob_a + prob_b
+    if total_prob > 0:
+        ratio_a = prob_a / total_prob
+        ratio_b = prob_b / total_prob
+    else:
+        ratio_a = ratio_b = 0.5
+
+    # 60% 统计 + 40% 概率
+    xg_a = xg_a * 0.6 + ratio_a * 1.8 * 0.4
+    xg_b = xg_b * 0.6 + ratio_b * 1.8 * 0.4
+
+    # 限制范围
+    xg_a = max(0.2, min(xg_a, 3.0))
+    xg_b = max(0.2, min(xg_b, 3.0))
+
+    # Poisson PMF 搜索最可能的比分（0-4 球范围）
+    best_score = (1, 0)
+    best_prob = 0.0
+
+    for sa in range(5):
+        for sb in range(5):
+            p = _poisson_pmf(sa, xg_a) * _poisson_pmf(sb, xg_b)
+            if p > best_prob:
+                best_prob = p
+                best_score = (sa, sb)
+
+    # 保证至少有 1 个进球（淘汰赛不会 0-0 永远下去）
+    if best_score == (0, 0):
+        if ratio_a >= ratio_b:
+            best_score = (1, 0)
+        else:
+            best_score = (0, 1)
+
+    return best_score
 
 
 def _build_knockout_bracket(
     bracket: Dict,
     actual_results: Dict[str, str],
     predictor: Any,
+    feature_engine: Any = None,
 ) -> Dict[str, Any]:
     """构建淘汰赛晋级图数据"""
     if not bracket or not actual_results:
@@ -168,6 +251,11 @@ def _build_knockout_bracket(
                     p_a, p_draw, p_b = predictor(team_a, team_b)
                     entry["probA"] = round(p_a, 4)
                     entry["probB"] = round(p_b, 4)
+                    # 预测比分
+                    if feature_engine:
+                        sa, sb = _predict_score(team_a, team_b, feature_engine, p_a, p_b)
+                        entry["predScoreA"] = sa
+                        entry["predScoreB"] = sb
                 except Exception:
                     pass
 

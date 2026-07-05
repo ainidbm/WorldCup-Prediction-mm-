@@ -23,6 +23,9 @@ function MatchCard({ match }: { match: KnockoutMatch }) {
   const isPenalty = done && match.penaltyScoreA !== undefined;
   const aWin = done && match.winner === match.teamA;
   const bWin = done && match.winner === match.teamB;
+  const hasPred = !done && match.predScoreA != null && match.predScoreB != null;
+  const aPredWin = hasPred && match.predScoreA! > match.predScoreB!;
+  const bPredWin = hasPred && match.predScoreB! > match.predScoreA!;
 
   const cls = (isWinner: boolean, tbd: boolean) =>
     ['match-team', isWinner && 'winner', tbd && 'tbd'].filter(Boolean).join(' ');
@@ -37,8 +40,11 @@ function MatchCard({ match }: { match: KnockoutMatch }) {
             {isPenalty && <span className="match-penalty">({match.penaltyScoreA})</span>}
           </span>
         ) : match.probA != null ? (
-          <span className={`prob${match.probA >= (match.probB ?? 0) ? ' high' : ''}`}>
-            {(match.probA * 100).toFixed(0)}%
+          <span className="match-stats">
+            {hasPred && <span className={`pred-score${aPredWin ? ' win' : ''}`}>{match.predScoreA}</span>}
+            <span className={`prob${match.probA >= (match.probB ?? 0) ? ' high' : ''}`}>
+              {(match.probA * 100).toFixed(0)}%
+            </span>
           </span>
         ) : null}
       </div>
@@ -50,8 +56,11 @@ function MatchCard({ match }: { match: KnockoutMatch }) {
             {isPenalty && <span className="match-penalty">({match.penaltyScoreB})</span>}
           </span>
         ) : match.probB != null ? (
-          <span className={`prob${match.probB >= (match.probA ?? 0) ? ' high' : ''}`}>
-            {(match.probB * 100).toFixed(0)}%
+          <span className="match-stats">
+            {hasPred && <span className={`pred-score${bPredWin ? ' win' : ''}`}>{match.predScoreB}</span>}
+            <span className={`prob${match.probB >= (match.probA ?? 0) ? ' high' : ''}`}>
+              {(match.probB * 100).toFixed(0)}%
+            </span>
           </span>
         ) : null}
       </div>

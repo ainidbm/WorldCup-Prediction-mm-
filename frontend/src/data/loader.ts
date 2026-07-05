@@ -42,6 +42,8 @@ export interface KnockoutMatch {
   penaltyScoreB?: number;
   probA?: number;
   probB?: number;
+  predScoreA?: number;
+  predScoreB?: number;
 }
 
 export interface KnockoutRound {
