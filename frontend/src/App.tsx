@@ -1,6 +1,7 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { loadPredictions, loadAccuracy } from './data/loader';
 import type { PredictionsData, AccuracyData } from './data/loader';
+import { Trophy, GitBranch, Target, BarChart3 } from 'lucide-react';
 const ChampionBar = lazy(() => import('./components/ChampionBar'));
 import KnockoutProgress from './components/KnockoutProgress';
 import TopScorer from './components/TopScorer';
@@ -57,26 +58,38 @@ export default function App() {
       </div>
 
       <div className="section">
-        <h2 className="section-title">夺冠概率排行</h2>
+        <h2 className="section-title">
+          <Trophy size={20} color="#fbbf24" />
+          夺冠概率排行
+        </h2>
         <Suspense fallback={<div className="loading">加载图表...</div>}>
           <ChampionBar data={predictions.championProb} />
         </Suspense>
       </div>
 
       <div className="section">
-        <h2 className="section-title">淘汰赛晋级图</h2>
+        <h2 className="section-title">
+          <GitBranch size={20} color="#38bdf8" />
+          淘汰赛晋级图
+        </h2>
         {predictions.knockoutBracket && (
           <KnockoutProgress bracket={predictions.knockoutBracket} />
         )}
       </div>
 
       <div className="section">
-        <h2 className="section-title">最佳射手预测 Top 10</h2>
+        <h2 className="section-title">
+          <Target size={20} color="#fb7185" />
+          最佳射手预测 Top 10
+        </h2>
         <TopScorer data={predictions.topScorers} />
       </div>
 
       <div className="section">
-        <h2 className="section-title">模型准确率</h2>
+        <h2 className="section-title">
+          <BarChart3 size={20} color="#4ade80" />
+          模型准确率
+        </h2>
         <AccuracyPanel data={accuracy} />
       </div>
 

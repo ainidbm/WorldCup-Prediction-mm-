@@ -1,139 +1,177 @@
+import { useRef, useEffect, useState, useCallback } from 'react';
 import type { KnockoutBracket, KnockoutMatch } from '../data/loader';
 
 interface Props {
   bracket: KnockoutBracket;
 }
 
-function MatchBox({ match }: { match: KnockoutMatch }) {
-  const isCompleted = match.completed;
-  const isPenalty = isCompleted && match.penaltyScoreA !== undefined;
+/* ── bracket structure: which matches feed into which ── */
+const FEEDER_MAP: Record<string, [string, string]> = {
+  QF_1: ['R16_1', 'R16_4'], QF_2: ['R16_3', 'R16_6'],
+  QF_3: ['R16_2', 'R16_5'], QF_4: ['R16_7', 'R16_8'],
+  QF_5: ['R16_12', 'R16_11'], QF_6: ['R16_10', 'R16_9'],
+  QF_7: ['R16_15', 'R16_14'], QF_8: ['R16_13', 'R16_16'],
+  SF_1: ['QF_2', 'QF_1'], SF_2: ['QF_5', 'QF_6'],
+  SF_3: ['QF_3', 'QF_4'], SF_4: ['QF_7', 'QF_8'],
+  F_1: ['SF_1', 'SF_2'], F_2: ['SF_3', 'SF_4'],
+  CHAMP: ['F_1', 'F_2'],
+};
 
-  const teamAIsWinner = isCompleted && match.winner === match.teamA;
-  const teamBIsWinner = isCompleted && match.winner === match.teamB;
+/* ── single match card ── */
+function MatchCard({ match }: { match: KnockoutMatch }) {
+  const done = match.completed;
+  const isPenalty = done && match.penaltyScoreA !== undefined;
+  const aWin = done && match.winner === match.teamA;
+  const bWin = done && match.winner === match.teamB;
 
-  const teamStyle = (isWinner: boolean) => ({
-    padding: '0.35rem 0.6rem',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: '0.5rem',
-    background: isWinner ? 'rgba(74, 222, 128, 0.12)' : 'rgba(51, 65, 85, 0.4)',
-    borderRadius: 4,
-    borderLeft: isWinner ? '3px solid #4ade80' : '3px solid transparent',
-    fontSize: '0.82rem',
-    minWidth: 0,
-  });
-
-  const nameStyle = (isWinner: boolean) => ({
-    fontWeight: isWinner ? 700 : 500,
-    color: isWinner ? '#4ade80' : '#e2e8f0',
-    whiteSpace: 'nowrap' as const,
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    flex: 1,
-    minWidth: 0,
-  });
-
-  const scoreStyle = {
-    fontWeight: 700,
-    fontSize: '0.85rem',
-    color: '#f1f5f9',
-    flexShrink: 0,
-  };
-
-  const probStyle = (higher: boolean) => ({
-    fontSize: '0.75rem',
-    fontWeight: higher ? 700 : 400,
-    color: higher ? '#4ade80' : '#94a3b8',
-    flexShrink: 0,
-  });
+  const cls = (isWinner: boolean, tbd: boolean) =>
+    ['match-team', isWinner && 'winner', tbd && 'tbd'].filter(Boolean).join(' ');
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2px',
-        padding: '0.5rem',
-        background: 'rgba(15, 23, 42, 0.6)',
-        borderRadius: 8,
-        border: isCompleted ? '1px solid rgba(74, 222, 128, 0.2)' : '1px solid #334155',
-      }}
-    >
-      {/* Team A */}
-      <div style={teamStyle(teamAIsWinner)}>
-        <span style={nameStyle(teamAIsWinner)}>{match.teamA}</span>
-        {isCompleted ? (
-          <span style={scoreStyle}>
+    <div className={`match-card${done ? ' done' : ''}`} data-match-id={match.id}>
+      <div className={cls(aWin, match.teamA === '待定')}>
+        <span className="name">{match.teamA}</span>
+        {done ? (
+          <span className="score">
             {match.scoreA}
-            {isPenalty && <span style={{ fontSize: '0.65rem', color: '#fbbf24' }}> ({match.penaltyScoreA})</span>}
+            {isPenalty && <span className="match-penalty">({match.penaltyScoreA})</span>}
           </span>
-        ) : match.probA !== undefined ? (
-          <span style={probStyle(match.probA >= (match.probB ?? 0))}>{(match.probA * 100).toFixed(0)}%</span>
+        ) : match.probA != null ? (
+          <span className={`prob${match.probA >= (match.probB ?? 0) ? ' high' : ''}`}>
+            {(match.probA * 100).toFixed(0)}%
+          </span>
         ) : null}
       </div>
-
-      {/* Team B */}
-      <div style={teamStyle(teamBIsWinner)}>
-        <span style={nameStyle(teamBIsWinner)}>{match.teamB}</span>
-        {isCompleted ? (
-          <span style={scoreStyle}>
+      <div className={cls(bWin, match.teamB === '待定')}>
+        <span className="name">{match.teamB}</span>
+        {done ? (
+          <span className="score">
             {match.scoreB}
-            {isPenalty && <span style={{ fontSize: '0.65rem', color: '#fbbf24' }}> ({match.penaltyScoreB})</span>}
+            {isPenalty && <span className="match-penalty">({match.penaltyScoreB})</span>}
           </span>
-        ) : match.probB !== undefined ? (
-          <span style={probStyle(match.probB >= (match.probA ?? 0))}>{(match.probB * 100).toFixed(0)}%</span>
+        ) : match.probB != null ? (
+          <span className={`prob${match.probB >= (match.probA ?? 0) ? ' high' : ''}`}>
+            {(match.probB * 100).toFixed(0)}%
+          </span>
         ) : null}
       </div>
     </div>
   );
 }
 
-export default function KnockoutProgress({ bracket }: Props) {
-  if (!bracket?.rounds?.length) return null;
+/* ── SVG connector column between two round columns ── */
+function ConnectorCol({
+  leftRef,
+  rightRef,
+  containerRef,
+}: {
+  leftRef: React.RefObject<HTMLDivElement | null>;
+  rightRef: React.RefObject<HTMLDivElement | null>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
+  const [paths, setPaths] = useState<string[]>([]);
+
+  const recalc = useCallback(() => {
+    const lc = leftRef.current;
+    const rc = rightRef.current;
+    const cc = containerRef.current;
+    if (!lc || !rc || !cc) return;
+
+    const ccRect = cc.getBoundingClientRect();
+    const rightCards = rc.querySelectorAll<HTMLElement>('.match-card');
+    const newPaths: string[] = [];
+
+    rightCards.forEach((rcEl) => {
+      const rcId = rcEl.getAttribute('data-match-id') || '';
+      const feeders = FEEDER_MAP[rcId];
+      if (!feeders) return;
+
+      const rcRect = rcEl.getBoundingClientRect();
+      const rcMidY = rcRect.top + rcRect.height / 2 - ccRect.top;
+
+      const f1 = lc.querySelector(`[data-match-id="${feeders[0]}"]`) as HTMLElement | null;
+      const f2 = lc.querySelector(`[data-match-id="${feeders[1]}"]`) as HTMLElement | null;
+      if (!f1 || !f2) return;
+
+      const f1R = f1.getBoundingClientRect();
+      const f2R = f2.getBoundingClientRect();
+      const y1 = f1R.top + f1R.height / 2 - ccRect.top;
+      const y2 = f2R.top + f2R.height / 2 - ccRect.top;
+
+      // Two horizontal stubs from left, joined by vertical, then one stub to right
+      newPaths.push(`M0,${y1} H14 V${y2} H0`);
+      newPaths.push(`M14,${rcMidY} H28`);
+    });
+
+    setPaths(newPaths);
+  }, [leftRef, rightRef, containerRef]);
+
+  useEffect(() => {
+    // Initial calc + observer for resize
+    const timer = setTimeout(recalc, 50);
+    const obs = new ResizeObserver(recalc);
+    if (containerRef.current) obs.observe(containerRef.current);
+    return () => { clearTimeout(timer); obs.disconnect(); };
+  }, [recalc, containerRef]);
 
   return (
-    <div className="card" style={{ overflowX: 'auto', padding: '1rem 0.5rem' }}>
-      <div
-        style={{
-          display: 'flex',
-          gap: '1rem',
-          minWidth: 'max-content',
-          padding: '0 0.5rem',
-          alignItems: 'flex-start',
-        }}
-      >
-        {bracket.rounds.map((round) => (
-          <div
-            key={round.name}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.5rem',
-              minWidth: 170,
-              maxWidth: 200,
-            }}
-          >
-            {/* Round header */}
-            <div
-              style={{
-                textAlign: 'center',
-                fontWeight: 700,
-                fontSize: '0.9rem',
-                color: '#38bdf8',
-                padding: '0.3rem 0',
-                borderBottom: '2px solid #334155',
-                marginBottom: '0.25rem',
-              }}
-            >
-              {round.name}
-            </div>
+    <div className="bracket-connectors">
+      <svg width="28" height="100%" style={{ overflow: 'visible' }}>
+        {paths.map((d, i) => (
+          <path key={i} d={d} stroke="#475569" strokeWidth="1.5" fill="none" />
+        ))}
+      </svg>
+    </div>
+  );
+}
 
-            {/* Matches */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {round.matches.map((match) => (
-                <MatchBox key={match.id} match={match} />
-              ))}
+/* ── main bracket ── */
+export default function KnockoutProgress({ bracket }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const roundRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 150);
+    return () => clearTimeout(t);
+  }, []);
+
+  if (!bracket?.rounds?.length) return null;
+  const { rounds } = bracket;
+
+  // Connector pairs: [leftRoundIndex, rightRoundIndex]
+  // Rounds: 0=16强, 1=8强, 2=4强, 3=决赛, 4=季军赛, 5=冠军赛
+  // Connectors between: 0→1, 1→2, 2→3 (skip 3→4, 3→5)
+  const connectorPairs: [number, number][] = [];
+  for (let i = 0; i < rounds.length - 1; i++) {
+    const next = rounds[i + 1].name;
+    if (next === '季军赛' || next === '冠军赛') continue;
+    connectorPairs.push([i, i + 1]);
+  }
+
+  return (
+    <div className="card bracket-scroll">
+      <div className="bracket" ref={containerRef}>
+        {rounds.map((round, ri) => (
+          <div key={round.name} style={{ display: 'contents' }}>
+            {/* Insert connector before this round if needed */}
+            {connectorPairs.some(([, r]) => r === ri) && ready && (
+              <ConnectorCol
+                leftRef={{ current: roundRefs.current[connectorPairs.find(([, r]) => r === ri)![0]] }}
+                rightRef={{ current: roundRefs.current[ri] }}
+                containerRef={containerRef}
+              />
+            )}
+            <div
+              className="bracket-round"
+              ref={(el) => { roundRefs.current[ri] = el; }}
+            >
+              <div className="round-header">{round.name}</div>
+              <div className="round-matches">
+                {round.matches.map((m) => (
+                  <MatchCard key={m.id} match={m} />
+                ))}
+              </div>
             </div>
           </div>
         ))}

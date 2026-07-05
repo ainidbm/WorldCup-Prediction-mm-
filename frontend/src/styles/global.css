@@ -133,3 +133,133 @@ body {
   .grid-2, .grid-3 { grid-template-columns: 1fr; }
   .container { padding: 1rem; }
 }
+
+/* ===== Tournament Bracket ===== */
+.bracket-scroll {
+  overflow-x: auto;
+  padding: 1rem 0.5rem;
+}
+
+.bracket {
+  display: flex;
+  align-items: stretch;
+  min-width: max-content;
+}
+
+.bracket-round {
+  display: flex;
+  flex-direction: column;
+  width: 190px;
+  flex-shrink: 0;
+}
+
+.round-header {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--accent);
+  padding: 0.4rem 0;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.round-matches {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+/* Connector column between rounds */
+.bracket-connectors {
+  width: 28px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.conn-line {
+  position: absolute;
+  background: none;
+  border: none;
+  pointer-events: none;
+}
+
+/* Match card */
+.match-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.match-card.done {
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.match-team {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 6px;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+}
+
+.match-team:last-child {
+  border-bottom: none;
+}
+
+.match-team .name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.match-team.winner .name {
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+.match-team .score {
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.match-team.winner .score {
+  color: var(--accent-green);
+}
+
+.match-team .prob {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.match-team .prob.high {
+  color: var(--accent-green);
+  font-weight: 700;
+}
+
+.match-penalty {
+  font-size: 0.65rem;
+  color: var(--accent-amber);
+  margin-left: 2px;
+}
+
+.match-team.tbd .name {
+  color: #475569;
+  font-style: italic;
+}
