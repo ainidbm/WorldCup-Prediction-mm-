@@ -57,7 +57,7 @@ def _build_training_data(
                 "tier": "mid",
                 "fifaRank": 50,
                 "keyPlayers": [],
-                "squadValue": 100,
+                "squadValue": 1.0,
                 "majorHistory": {"worldCupTitles": 0, "recentBest": "无"},
                 "avgAge": 27.0,
                 "host": False,

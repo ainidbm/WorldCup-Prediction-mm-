@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { loadPredictions, loadAccuracy } from './data/loader';
 import type { PredictionsData, AccuracyData } from './data/loader';
-import ChampionBar from './components/ChampionBar';
+const ChampionBar = lazy(() => import('./components/ChampionBar'));
 import MatchCard from './components/MatchCard';
 import BracketView from './components/BracketView';
 import TopScorer from './components/TopScorer';
@@ -59,7 +59,9 @@ export default function App() {
 
       <div className="section">
         <h2 className="section-title">夺冠概率排行</h2>
-        <ChampionBar data={predictions.championProb} />
+        <Suspense fallback={<div className="loading">加载图表...</div>}>
+          <ChampionBar data={predictions.championProb} />
+        </Suspense>
       </div>
 
       <div className="section">

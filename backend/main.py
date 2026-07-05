@@ -64,7 +64,7 @@ def main():
 
     # 5. 射手预测
     print("\n[5/6] 预测最佳射手 Top 10...")
-    top_scorers = predict_top_scorers(teams, group_results, stage_probs)
+    top_scorers = predict_top_scorers(teams, group_results, stage_probs, bracket)
     print(f"  - Top 10 射手已生成")
 
     # 6. 输出 JSON

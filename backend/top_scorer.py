@@ -30,19 +30,28 @@ DEFAULT_CONVERSION_RATE = 0.12  # 默认射门转化率
 DEFAULT_APPEARANCE_PROB = 0.85  # 默认出场概率
 
 
+def _is_excluded(scorer: str) -> bool:
+    """判断进球者是否应排除（乌龙球或点球大战）"""
+    return "(乌龙)" in scorer or "(点球)" in scorer
+
+
 def _extract_group_scorers(group_results: list) -> Dict[str, Dict[str, Any]]:
     """从小组赛结果中提取射手统计"""
     scorers = {}
 
     for match in group_results:
-        # 处理 A 队射手
+        # 处理 A 队射手（过滤乌龙球）
         for scorer in match.get("scorersA", []):
+            if _is_excluded(scorer):
+                continue
             if scorer not in scorers:
                 scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0}
             scorers[scorer]["goals"] += 1
 
-        # 处理 B 队射手
+        # 处理 B 队射手（过滤乌龙球）
         for scorer in match.get("scorersB", []):
+            if _is_excluded(scorer):
+                continue
             if scorer not in scorers:
                 scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0}
             scorers[scorer]["goals"] += 1
@@ -58,6 +67,34 @@ def _extract_group_scorers(group_results: list) -> Dict[str, Dict[str, Any]]:
         team = data["team"]
         total_team_matches = team_matches.get(team, 3)
         data["matches"] = total_team_matches  # 简化为全部出场
+
+    return scorers
+
+
+def _extract_knockout_scorers(bracket: dict) -> Dict[str, Dict[str, Any]]:
+    """
+    从淘汰赛结果中提取射手统计。
+
+    只计入常规时间/加时赛进球（scorersA/B），
+    不计入点球大战进球（penaltyA/B）。
+    """
+    scorers = {}
+    results = bracket.get("results", [])
+
+    for match in results:
+        for scorer in match.get("scorersA", []):
+            if _is_excluded(scorer):
+                continue
+            if scorer not in scorers:
+                scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0}
+            scorers[scorer]["goals"] += 1
+
+        for scorer in match.get("scorersB", []):
+            if _is_excluded(scorer):
+                continue
+            if scorer not in scorers:
+                scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0}
+            scorers[scorer]["goals"] += 1
 
     return scorers
 
@@ -84,6 +121,7 @@ def predict_top_scorers(
     teams: Dict,
     group_results: list,
     stage_probs: Dict,
+    bracket: dict = None,
 ) -> List[Dict[str, Any]]:
     """
     预测最佳射手 Top 10。
@@ -91,6 +129,15 @@ def predict_top_scorers(
     公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
     """
     group_scorers = _extract_group_scorers(group_results)
+
+    # 合并淘汰赛进球（如有）
+    if bracket:
+        knockout_scorers = _extract_knockout_scorers(bracket)
+        for player, data in knockout_scorers.items():
+            if player in group_scorers:
+                group_scorers[player]["goals"] += data["goals"]
+            else:
+                group_scorers[player] = data
 
     predictions = []
     for player, data in group_scorers.items():

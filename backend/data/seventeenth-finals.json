@@ -1,0 +1,18 @@
+[
+  {"id": "1/16_1", "teamA": "南非", "teamB": "加拿大", "scoreA": 0, "scoreB": 1, "scorersA": [], "scorersB": ["欧斯塔基奥"], "winner": "加拿大"},
+  {"id": "1/16_2 ", "teamA": "巴西", "teamB": "日本", "scoreA": 2, "scoreB": 1, "scorersA": ["卡塞米罗", "马丁内斯"], "scorersB": ["佐野海舟"], "winner": "巴西"},
+  {"id": "1/16_3", "teamA": "德国", "teamB": "巴拉圭", "scoreA": 1, "scoreB": 1, "scorersA": ["哈弗茨"], "scorersB": ["胡里奥·恩西索"], "penaltyA": ["基米希", "穆夏拉", "阿米里"], "penaltyB": ["毛里西奥", "戈麦斯", "加拉扎", "何塞·卡纳莱"], "penaltyScoreA": 3, "penaltyScoreB": 4, "winner": "巴拉圭"},
+  {"id": "1/16_4", "teamA": "荷兰", "teamB": "摩洛哥", "scoreA": 1, "scoreB": 1, "scorersA": ["加克波"], "scorersB": ["伊萨·迪奥普"], "penaltyA": ["科普迈纳斯", "韦霍斯特"], "penaltyB": ["拉希米", "塔尔比", "赛巴里"], "penaltyScoreA": 2, "penaltyScoreB": 3, "winner": "摩洛哥"},
+  {"id": "1/16_5", "teamA": "科特迪瓦", "teamB": "挪威", "scoreA": 1, "scoreB": 2, "scorersA": ["阿马德"], "scorersB": ["安东尼奥·努萨", "哈兰德"], "winner": "挪威"},
+  {"id": "1/16_6", "teamA": "法国", "teamB": "瑞典", "scoreA": 3, "scoreB": 0, "scorersA": ["姆巴佩", "巴科拉", "姆巴佩"], "scorersB": [], "winner": "法国"},
+  {"id": "1/16_7", "teamA": "墨西哥", "teamB": "厄瓜多尔", "scoreA": 2, "scoreB": 0, "scorersA": ["基尼奥内斯", "希门尼斯"], "scorersB": [], "winner": "墨西哥"},
+  {"id": "1/16_8", "teamA": "英格兰", "teamB": "刚果金", "scoreA": 2, "scoreB": 1, "scorersA": ["凯恩", "凯恩"], "scorersB": ["布莱恩·西彭加"], "winner": "英格兰"},
+  {"id": "1/16_9", "teamA": "比利时", "teamB": "塞内加尔", "scoreA": 3, "scoreB": 2, "scorersA": ["卢卡库", "蒂莱曼斯", "蒂莱曼斯"], "scorersB": ["迪亚拉", "伊斯梅拉·萨尔"], "winner": "比利时"},
+  {"id": "1/16_10", "teamA": "美国", "teamB": "波黑", "scoreA": 2, "scoreB": 0, "scorersA": ["弗拉林·巴洛贡", "蒂尔曼"], "scorersB": [], "winner": "美国"},
+  {"id": "1/16_11", "teamA": "西班牙", "teamB": "奥地利", "scoreA": 3, "scoreB": 0, "scorersA": ["奥亚萨瓦尔", "波罗", "奥亚萨瓦尔"], "scorersB": [], "winner": "西班牙"},
+  {"id": "1/16_12", "teamA": "葡萄牙", "teamB": "克罗地亚", "scoreA": 2, "scoreB": 1, "scorersA": ["C罗", "拉莫斯"], "scorersB": ["佩里希奇"], "winner": "葡萄牙"},
+  {"id": "1/16_13", "teamA": "瑞士", "teamB": "阿尔及利亚", "scoreA": 2, "scoreB": 0, "scorersA": ["恩博洛", "恩多耶"], "scorersB": [], "winner": "瑞士"},
+  {"id": "1/16_14", "teamA": "澳大利亚", "teamB": "埃及", "scoreA": 1, "scoreB": 1, "scorersA": [], "scorersB": ["阿舒尔", "穆罕默德·哈尼(乌龙)"], "penaltyA": ["欧文", "马比尔"], "penaltyB": ["萨比尔", "拉米·拉比亚", "萨拉赫", "阿卜杜勒马吉德"], "penaltyScoreA": 2, "penaltyScoreB": 4, "winner": "埃及"},
+  {"id": "1/16_15", "teamA": "阿根廷", "teamB": "佛得角", "scoreA": 3, "scoreB": 2, "scorersA": ["梅西", "马丁内斯"], "scorersB": ["杜阿尔特", "L·卡布拉尔", "迪内伊(乌龙)"], "winner": "阿根廷"},
+  {"id": "1/16_16", "teamA": "哥伦比亚", "teamB": "加纳", "scoreA": 1, "scoreB": 0, "scorersA": ["约翰·阿瑞斯"], "scorersB": [], "winner": "哥伦比亚"}
+]

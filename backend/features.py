@@ -90,9 +90,9 @@ class FeatureEngine:
         fifa_rank = info.get("fifaRank", 50)
         rank_score = max(0, (100 - fifa_rank) / 100.0)
 
-        # 身价归一化 (最高约1100M)
-        squad_value = info.get("squadValue", 50)
-        value_score = min(squad_value / 1100.0, 1.0)
+        # 身价归一化 (最高约11亿欧元)
+        squad_value = info.get("squadValue", 0.5)
+        value_score = min(squad_value / 11.0, 1.0)
 
         # 历史大赛成绩
         titles = info.get("majorHistory", {}).get("worldCupTitles", 0)
