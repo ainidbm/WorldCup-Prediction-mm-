@@ -76,16 +76,35 @@ export interface AccuracyData {
   calibrationNote: string;
 }
 
+const API_MODE = import.meta.env.VITE_API_MODE === 'true';
 const BASE = import.meta.env.BASE_URL;
 
 export async function loadPredictions(): Promise<PredictionsData> {
-  const res = await fetch(`${BASE}predictions.json`);
-  if (!res.ok) throw new Error('Failed to load predictions.json');
+  const url = API_MODE ? '/api/predictions' : `${BASE}predictions.json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load predictions (${res.status})`);
   return res.json();
 }
 
 export async function loadAccuracy(): Promise<AccuracyData> {
-  const res = await fetch(`${BASE}accuracy.json`);
-  if (!res.ok) throw new Error('Failed to load accuracy.json');
+  const url = API_MODE ? '/api/accuracy' : `${BASE}accuracy.json`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load accuracy (${res.status})`);
+  return res.json();
+}
+
+/** 触发预测重新生成（仅 API 模式可用） */
+export async function regeneratePredictions(): Promise<{ message: string }> {
+  if (!API_MODE) throw new Error('仅 API 部署模式支持重新生成');
+  const res = await fetch('/api/regenerate', { method: 'POST' });
+  if (!res.ok) throw new Error(`重新生成失败 (${res.status})`);
+  return res.json();
+}
+
+/** 获取健康状态（仅 API 模式可用） */
+export async function getHealth(): Promise<{ status: string; lastGenerated: string }> {
+  if (!API_MODE) throw new Error('仅 API 部署模式支持健康检查');
+  const res = await fetch('/api/health');
+  if (!res.ok) throw new Error(`健康检查失败 (${res.status})`);
   return res.json();
 }

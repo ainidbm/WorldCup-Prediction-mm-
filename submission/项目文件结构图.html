@@ -1,0 +1,209 @@
+<svg viewBox="0 0 680 615" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="33%" stop-color="#34d399"/>
+      <stop offset="66%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="680" height="615" rx="14" fill="url(#bg)"/>
+  <rect width="680" height="615" rx="14" fill="none" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Title -->
+  <text x="340" y="30" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700" font-family="sans-serif">项目文件结构</text>
+  <text x="340" y="48" text-anchor="middle" fill="#475569" font-size="11" font-family="'SF Mono','Consolas',monospace">WorldCup-Prediction-mm-/</text>
+  <rect x="220" y="54" width="240" height="2" rx="1" fill="url(#accent)" opacity="0.5"/>
+
+  <!-- Column headers -->
+  <rect x="20" y="63" width="130" height="20" rx="10" fill="#a78bfa15" stroke="#a78bfa30" stroke-width="0.5"/>
+  <text x="85" y="77" text-anchor="middle" fill="#a78bfa" font-size="9" font-weight="700" font-family="sans-serif">BACKEND · Python 引擎</text>
+
+  <rect x="340" y="63" width="170" height="20" rx="10" fill="#34d39915" stroke="#34d39930" stroke-width="0.5"/>
+  <text x="425" y="77" text-anchor="middle" fill="#34d399" font-size="9" font-weight="700" font-family="sans-serif">FRONTEND · React + 文档 + CI/CD</text>
+
+  <!-- Divider -->
+  <line x1="328" y1="58" x2="328" y2="585" stroke="#1e293b" stroke-width="1" stroke-dasharray="3 5"/>
+
+  <!-- ===== LEFT COLUMN: backend ===== -->
+
+  <!-- backend/ root -->
+  <text x="25" y="103" font-size="12" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#a78bfa" font-weight="700">backend/</tspan><tspan fill="#64748b" dx="8" font-size="10">Python 预测引擎</tspan>
+  </text>
+
+  <text x="25" y="121" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">main.py</tspan><tspan fill="#64748b" dx="8" font-size="10">主入口 · 6步编排</tspan>
+  </text>
+  <text x="25" y="139" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">config.py</tspan><tspan fill="#64748b" dx="8" font-size="10">路径 / 参数 / 权重</tspan>
+  </text>
+  <text x="25" y="157" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">features.py</tspan><tspan fill="#64748b" dx="8" font-size="10">4维特征 + 可解释性</tspan>
+  </text>
+  <text x="25" y="175" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">model.py</tspan><tspan fill="#64748b" dx="8" font-size="10">随机森林 · 78.99%</tspan>
+  </text>
+  <text x="25" y="193" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">monte_carlo.py</tspan><tspan fill="#64748b" dx="8" font-size="10">10000次模拟</tspan>
+  </text>
+  <text x="25" y="211" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">output.py</tspan><tspan fill="#64748b" dx="8" font-size="10">JSON + Poisson比分</tspan>
+  </text>
+  <text x="25" y="229" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#fbbf24">top_scorer.py</tspan><tspan fill="#64748b" dx="8" font-size="10">加权 + 条件概率</tspan>
+  </text>
+  <text x="25" y="247" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#94a3b8">requirements.txt</tspan><tspan fill="#64748b" dx="8" font-size="10">Python依赖</tspan>
+  </text>
+
+  <!-- data/ subfolder -->
+  <text x="25" y="265" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">└── </tspan><tspan fill="#a78bfa" font-weight="700">data/</tspan><tspan fill="#64748b" dx="8" font-size="10">数据目录</tspan>
+  </text>
+  <text x="25" y="283" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">    ├── </tspan><tspan fill="#34d399">teams.json</tspan><tspan fill="#64748b" dx="8" font-size="10">14支球队档案</tspan>
+  </text>
+  <text x="25" y="301" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">    ├── </tspan><tspan fill="#34d399">group_results.json</tspan><tspan fill="#64748b" dx="8" font-size="10">72场小组赛</tspan>
+  </text>
+  <text x="25" y="319" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">    ├── </tspan><tspan fill="#34d399">knockout_bracket.json</tspan><tspan fill="#64748b" dx="8" font-size="10">对阵图+赛果</tspan>
+  </text>
+  <text x="25" y="337" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">    └── </tspan><tspan fill="#fb923c">historical.csv</tspan><tspan fill="#64748b" dx="8" font-size="10">395场历史赛事</tspan>
+  </text>
+
+  <!-- Stats box -->
+  <rect x="25" y="362" width="285" height="148" rx="10" fill="#a78bfa08" stroke="#a78bfa20" stroke-width="1"/>
+  <text x="40" y="385" fill="#a78bfa" font-size="11" font-weight="700" font-family="sans-serif">数据规模</text>
+  <line x1="40" y1="392" x2="295" y2="392" stroke="#a78bfa15" stroke-width="1"/>
+
+  <text x="40" y="410" font-size="11" font-family="sans-serif">
+    <tspan fill="#fbbf24">●</tspan><tspan fill="#cbd5e1" dx="6">7 个 Python 模块</tspan>
+  </text>
+  <text x="40" y="428" font-size="11" font-family="sans-serif">
+    <tspan fill="#34d399">●</tspan><tspan fill="#cbd5e1" dx="6">4 个数据文件</tspan>
+  </text>
+  <text x="40" y="446" font-size="11" font-family="sans-serif">
+    <tspan fill="#fb923c">●</tspan><tspan fill="#cbd5e1" dx="6">395 场训练数据</tspan>
+  </text>
+  <text x="40" y="464" font-size="11" font-family="sans-serif">
+    <tspan fill="#60a5fa">●</tspan><tspan fill="#cbd5e1" dx="6">10,000 次蒙特卡洛模拟</tspan>
+  </text>
+  <text x="40" y="482" font-size="11" font-family="sans-serif">
+    <tspan fill="#a78bfa">●</tspan><tspan fill="#cbd5e1" dx="6">78.99% 交叉验证准确率</tspan>
+  </text>
+  <text x="40" y="500" font-size="11" font-family="sans-serif">
+    <tspan fill="#34d399">●</tspan><tspan fill="#cbd5e1" dx="6">14 支球队完整档案</tspan>
+  </text>
+
+  <!-- ===== RIGHT COLUMN: frontend + docs + .github ===== -->
+
+  <!-- frontend/ root -->
+  <text x="340" y="103" font-size="12" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#34d399" font-weight="700">frontend/</tspan><tspan fill="#64748b" dx="8" font-size="10">React 前端</tspan>
+  </text>
+
+  <!-- src/ -->
+  <text x="340" y="121" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#34d399" font-weight="700">src/</tspan>
+  </text>
+  <text x="340" y="139" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   ├── </tspan><tspan fill="#60a5fa">App.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">4大模块编排</tspan>
+  </text>
+  <text x="340" y="157" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   ├── </tspan><tspan fill="#60a5fa">main.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">入口</tspan>
+  </text>
+  <text x="340" y="175" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   ├── </tspan><tspan fill="#34d399" font-weight="700">data/</tspan>
+  </text>
+  <text x="340" y="193" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   │   └── </tspan><tspan fill="#60a5fa">loader.ts</tspan><tspan fill="#64748b" dx="8" font-size="10">类型+加载</tspan>
+  </text>
+  <text x="340" y="211" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   ├── </tspan><tspan fill="#34d399" font-weight="700">components/</tspan>
+  </text>
+  <text x="340" y="229" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   │   ├── </tspan><tspan fill="#60a5fa">ChampionBar.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">夺冠概率</tspan>
+  </text>
+  <text x="340" y="247" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   │   ├── </tspan><tspan fill="#60a5fa">KnockoutProgress.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">SVG连线树</tspan>
+  </text>
+  <text x="340" y="265" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   │   ├── </tspan><tspan fill="#60a5fa">TopScorer.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">射手榜</tspan>
+  </text>
+  <text x="340" y="283" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   │   └── </tspan><tspan fill="#60a5fa">AccuracyPanel.tsx</tspan><tspan fill="#64748b" dx="8" font-size="10">准确率面板</tspan>
+  </text>
+  <text x="340" y="301" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   └── </tspan><tspan fill="#34d399" font-weight="700">styles/</tspan>
+  </text>
+  <text x="340" y="319" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│       └── </tspan><tspan fill="#c084fc">global.css</tspan><tspan fill="#64748b" dx="8" font-size="10">深色主题</tspan>
+  </text>
+
+  <!-- public/ -->
+  <text x="340" y="337" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#34d399" font-weight="700">public/</tspan>
+  </text>
+  <text x="340" y="355" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   ├── </tspan><tspan fill="#34d399">predictions.json</tspan><tspan fill="#64748b" dx="8" font-size="10">预测结果</tspan>
+  </text>
+  <text x="340" y="373" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">│   └── </tspan><tspan fill="#34d399">accuracy.json</tspan><tspan fill="#64748b" dx="8" font-size="10">准确率数据</tspan>
+  </text>
+  <text x="340" y="391" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">└── </tspan><tspan fill="#34d399">package.json</tspan><tspan fill="#64748b" dx="8" font-size="10">依赖配置</tspan>
+  </text>
+
+  <!-- docs/ -->
+  <text x="340" y="419" font-size="12" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#fbbf24" font-weight="700">docs/</tspan><tspan fill="#64748b" dx="8" font-size="10">文档目录</tspan>
+  </text>
+  <text x="340" y="437" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#34d399">predictions.json</tspan><tspan fill="#64748b" dx="8" font-size="10">后端输出</tspan>
+  </text>
+  <text x="340" y="455" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">├── </tspan><tspan fill="#34d399">accuracy.json</tspan><tspan fill="#64748b" dx="8" font-size="10">后端输出</tspan>
+  </text>
+  <text x="340" y="473" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">└── </tspan><tspan fill="#94a3b8">competition-submission.md</tspan><tspan fill="#64748b" dx="8" font-size="10">参赛文档</tspan>
+  </text>
+
+  <!-- .github/ -->
+  <text x="340" y="501" font-size="12" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#60a5fa" font-weight="700">.github/</tspan>
+  </text>
+  <text x="340" y="519" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">└── </tspan><tspan fill="#60a5fa" font-weight="700">workflows/</tspan>
+  </text>
+  <text x="340" y="537" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#334155">    └── </tspan><tspan fill="#f87171">deploy.yml</tspan><tspan fill="#64748b" dx="8" font-size="10">CI/CD管线</tspan>
+  </text>
+
+  <!-- README.md -->
+  <text x="340" y="565" font-size="11" font-family="'SF Mono','Consolas',monospace">
+    <tspan fill="#94a3b8">README.md</tspan>
+  </text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="20" y="585" width="640" height="22" rx="6" fill="#1e293b50"/>
+  <text x="30" y="600" font-size="10" font-family="sans-serif">
+    <tspan fill="#64748b">图例：</tspan>
+    <tspan fill="#a78bfa" dx="4">■</tspan><tspan fill="#94a3b8" dx="3"> 文件夹</tspan>
+    <tspan fill="#fbbf24" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .py</tspan>
+    <tspan fill="#60a5fa" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .tsx/.ts</tspan>
+    <tspan fill="#34d399" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .json</tspan>
+    <tspan fill="#c084fc" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .css</tspan>
+    <tspan fill="#fb923c" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .csv</tspan>
+    <tspan fill="#f87171" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .yml</tspan>
+    <tspan fill="#94a3b8" dx="10">●</tspan><tspan fill="#94a3b8" dx="3"> .md/.txt</tspan>
+  </text>
+</svg>
