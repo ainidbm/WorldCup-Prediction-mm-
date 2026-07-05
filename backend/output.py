@@ -73,6 +73,8 @@ def generate_predictions_json(
 
 def _poisson_pmf(k: int, lam: float) -> float:
     """Poisson 概率质量函数 P(X=k | lambda=lam)"""
+    if k < 0:
+        return 0.0
     if lam <= 0:
         return 1.0 if k == 0 else 0.0
     return (lam ** k) * math.exp(-lam) / math.factorial(k)
@@ -88,12 +90,21 @@ def _predict_score(
     """
     基于小组赛统计数据 + 胜率概率，预测最可能的比分。
 
-    方法：
-    1. 从小组赛统计中计算每队的场均进球/失球
-    2. 交叉计算预期进球（A 进攻 vs B 防守）
-    3. 淘汰赛系数衰减（比赛更保守）
-    4. 用胜率比例微调
-    5. Poisson PMF 搜索最可能的整数比分
+    改进版算法 v2（解决比分过于保守的问题）：
+
+    根本原因分析：
+    - 旧参数 decay=0.72, base=1.8, blend=60/40 导致 xG 过低（0.6-1.4）
+    - 纯 Poisson MAP 在 lambda<1.5 时几乎总是选 0 或 1 球
+    - 所有比赛预测都是 1-0 或 0-1
+
+    核心改进：
+    1. 淘汰赛衰减 0.72→0.85（淘汰赛仍有进球，平均 2.5 球/场）
+    2. 胜率基础值 1.8→3.5（大幅提高预期进球基线）
+    3. 统计/概率混合 60/40→30/70（概率权重远大于统计）
+    4. 总进球下限 2.5（保证至少 2-3 球的比赛预期）
+    5. 强弱悬殊非对称放大（强队 ×1.15，弱队 ×0.80）
+    6. Poisson MAP 搜索范围扩展至 0-6 球
+    7. 平局修正：当 MAP 给出平局但胜率差异显著时，给强者加 1 球
     """
     stats_a = feature_engine.group_stats.get(team_a, {})
     stats_b = feature_engine.group_stats.get(team_b, {})
@@ -102,20 +113,20 @@ def _predict_score(
     games_b = max(stats_b.get("played", 3), 1)
 
     # 场均进球 / 失球
-    gpg_a = stats_a.get("goals_for", 3) / games_a
-    gpg_b = stats_b.get("goals_for", 3) / games_b
-    gapg_a = stats_a.get("goals_against", 3) / games_a
-    gapg_b = stats_b.get("goals_against", 3) / games_b
+    gpg_a = stats_a.get("goals_for", 4) / games_a
+    gpg_b = stats_b.get("goals_for", 4) / games_b
+    gapg_a = stats_a.get("goals_against", 2) / games_a
+    gapg_b = stats_b.get("goals_against", 2) / games_b
 
-    # 交叉预期进球：A 的攻击力 vs B 的防守
-    xg_a = (gpg_a * 0.5 + gapg_b * 0.5)
-    xg_b = (gpg_b * 0.5 + gapg_a * 0.5)
+    # 交叉预期进球：A 进攻力 vs B 防守力（偏重进攻 55:45）
+    xg_a = gpg_a * 0.55 + gapg_b * 0.45
+    xg_b = gpg_b * 0.55 + gapg_a * 0.45
 
-    # 淘汰赛衰减（更保守，进球更少）
-    xg_a *= 0.72
-    xg_b *= 0.72
+    # 淘汰赛微调（0.85，而非 0.72）
+    xg_a *= 0.85
+    xg_b *= 0.85
 
-    # 用胜率比例微调（概率高的一方略增进球）
+    # 胜率比例
     total_prob = prob_a + prob_b
     if total_prob > 0:
         ratio_a = prob_a / total_prob
@@ -123,31 +134,55 @@ def _predict_score(
     else:
         ratio_a = ratio_b = 0.5
 
-    # 60% 统计 + 40% 概率
-    xg_a = xg_a * 0.6 + ratio_a * 1.8 * 0.4
-    xg_b = xg_b * 0.6 + ratio_b * 1.8 * 0.4
+    # 混合：30% 统计 + 70% 概率（概率在淘汰赛决定性更强）
+    xg_a = xg_a * 0.30 + ratio_a * 3.5 * 0.70
+    xg_b = xg_b * 0.30 + ratio_b * 3.5 * 0.70
+
+    # 总进球下限 2.5（淘汰赛场均 2.5+ 球）
+    xg_total = xg_a + xg_b
+    if xg_total < 2.5:
+        scale = 2.5 / xg_total
+        xg_a *= scale
+        xg_b *= scale
+
+    # 强弱悬殊时非对称放大
+    if ratio_a > 0.75:
+        xg_a = min(xg_a * 1.15, 3.5)
+        xg_b = max(xg_b * 0.80, 0.25)
+    elif ratio_b > 0.75:
+        xg_b = min(xg_b * 1.15, 3.5)
+        xg_a = max(xg_a * 0.80, 0.25)
 
     # 限制范围
-    xg_a = max(0.2, min(xg_a, 3.0))
-    xg_b = max(0.2, min(xg_b, 3.0))
+    xg_a = max(0.25, min(xg_a, 3.5))
+    xg_b = max(0.25, min(xg_b, 3.5))
 
-    # Poisson PMF 搜索最可能的比分（0-4 球范围）
+    # Poisson PMF 搜索最可能的比分（0-6 球范围）
     best_score = (1, 0)
     best_prob = 0.0
 
-    for sa in range(5):
-        for sb in range(5):
+    for sa in range(7):
+        for sb in range(7):
             p = _poisson_pmf(sa, xg_a) * _poisson_pmf(sb, xg_b)
             if p > best_prob:
                 best_prob = p
                 best_score = (sa, sb)
 
-    # 保证至少有 1 个进球（淘汰赛不会 0-0 永远下去）
+    # 避免 0-0（淘汰赛不会 0-0 永远下去）
     if best_score == (0, 0):
         if ratio_a >= ratio_b:
             best_score = (1, 0)
         else:
             best_score = (0, 1)
+
+    # 平局修正：当 MAP 给出平局但胜率差异显著（>15%）时，
+    # 给胜率高的一方加 1 球，打破平局
+    prob_diff = abs(ratio_a - ratio_b)
+    if best_score[0] == best_score[1] and prob_diff > 0.15:
+        if ratio_a > ratio_b:
+            best_score = (best_score[0] + 1, best_score[1])
+        else:
+            best_score = (best_score[0], best_score[1] + 1)
 
     return best_score
 
