@@ -22,7 +22,6 @@ export default function TopScorer({ data }: Props) {
               <th style={{ textAlign: 'left', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>球员</th>
               <th style={{ textAlign: 'left', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>球队</th>
               <th style={{ textAlign: 'center', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>已进球</th>
-              <th style={{ textAlign: 'center', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>剩余场次</th>
               <th style={{ textAlign: 'center', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>预测总进球</th>
               <th style={{ textAlign: 'center', padding: '0.6rem 0.5rem', color: '#94a3b8', fontSize: '0.8rem' }}>置信度</th>
             </tr>
@@ -45,9 +44,6 @@ export default function TopScorer({ data }: Props) {
                   <td style={{ padding: '0.6rem 0.5rem', fontWeight: 600 }}>{s.player}</td>
                   <td style={{ padding: '0.6rem 0.5rem', color: '#94a3b8' }}>{s.team}</td>
                   <td style={{ padding: '0.6rem 0.5rem', textAlign: 'center' }}>{s.existingGoals}</td>
-                  <td style={{ padding: '0.6rem 0.5rem', textAlign: 'center', color: '#94a3b8' }}>
-                    {s.remainingMatches}
-                  </td>
                   <td style={{ padding: '0.6rem 0.5rem', textAlign: 'center' }}>
                     <span
                       style={{

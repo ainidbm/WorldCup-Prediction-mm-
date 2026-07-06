@@ -1,11 +1,13 @@
 """
-射手预测模块 v2
+射手预测模块 v3
 
 改进点：
 1. 根据 actual_results 自动识别已淘汰球队，已淘汰球队的球员不进 Top 10
 2. 球员级差异化：场均进球率、转化率基于实际表现计算
 3. 置信度评估：基于预测差距 + 球队晋级概率
-4. 公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
+4. 状态加成：已进 5+ 球的球员施加 1.25 倍乘数，3+ 球施加 1.15 倍乘数
+5. 公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率 × 状态加成
+6. 取整偏移：round(total + 0.3) 避免保守取整
 """
 from typing import Dict, List, Any, Set, Tuple
 
@@ -58,10 +60,10 @@ DEFAULT_SHOTS_PER_GAME: Dict[str, float] = {
 # 球队核心射手（默认射门数查不到时使用）
 TEAM_FALLBACK_SHOTS = 2.5
 
-# 转化率（射门转进球）
-ELITE_CONVERSION = 0.20   # 精英射手
-STARTER_CONVERSION = 0.16  # 主力射手
-ROLE_CONVERSION = 0.10     # 角色球员
+# 转化率（射门转进球）—— v3 提升，解决预测过于保守问题
+ELITE_CONVERSION = 0.30   # 精英射手（1/3.3 射门转化）
+STARTER_CONVERSION = 0.22  # 主力射手
+ROLE_CONVERSION = 0.15     # 角色球员
 
 # 出场概率（淘汰赛核心球员几乎必上场）
 ELITE_APPEARANCE = 0.97
@@ -97,6 +99,24 @@ def _get_player_params(player: str) -> Tuple[float, float, float]:
         conversion = ROLE_CONVERSION
         appearance = ROLE_APPEARANCE
     return shots, conversion, appearance
+
+
+def _get_form_multiplier(existing_goals: int) -> float:
+    """
+    状态加成乘数。
+
+    世界杯射手榜前列的球员往往处于"火热状态"，
+    在后续比赛中保持或超越之前进球效率的概率较高。
+
+    - 已进 5+ 球：1.25x（射手王争夺者，状态爆发）
+    - 已进 3+ 球：1.15x（稳定输出）
+    - 其他：1.0x（无加成）
+    """
+    if existing_goals >= 5:
+        return 1.25
+    elif existing_goals >= 3:
+        return 1.15
+    return 1.0
 
 
 def _get_eliminated_teams(bracket: dict) -> Set[str]:
@@ -203,12 +223,14 @@ def predict_top_scorers(
     """
     预测最佳射手 Top 10。
 
-    公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
+    公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率 × 状态加成
 
     改进点：
     1. 自动识别已淘汰球队，剔除其球员
     2. 球员级差异化（精英/主力/角色）
-    3. 置信度评估
+    3. 状态加成（已进 5+ 球 ×1.25，3+ 球 ×1.15）
+    4. 置信度评估
+    5. 取整偏移 +0.3 避免保守
     """
     # 1. 收集已淘汰球队
     eliminated_teams = _get_eliminated_teams(bracket) if bracket else set()
@@ -236,7 +258,6 @@ def predict_top_scorers(
                 "team": team,
                 "existingGoals": existing_goals,
                 "predictedGoals": existing_goals,  # 已淘汰，预测=已进球
-                "remainingMatches": 0.0,
                 "confidence": "已淘汰",
                 "status": "eliminated",
             })
@@ -254,7 +275,10 @@ def predict_top_scorers(
         # 球员级差异化参数
         shots, conversion, appearance = _get_player_params(player)
 
-        predicted_additional = remaining * shots * conversion * appearance
+        # 状态加成：已进多球的球员后续更可能继续进球
+        form_mult = _get_form_multiplier(existing_goals)
+
+        predicted_additional = remaining * shots * conversion * appearance * form_mult
         predicted_total = existing_goals + predicted_additional
 
         predictions.append({
@@ -262,7 +286,6 @@ def predict_top_scorers(
             "team": team,
             "existingGoals": existing_goals,
             "predictedGoals": round(predicted_total, 1),
-            "remainingMatches": round(remaining, 1),
             "confidence": "中",  # 后面统一计算
             "status": "active",
         })
@@ -286,7 +309,7 @@ def predict_top_scorers(
             p["confidence"] = _estimate_confidence(
                 p["predictedGoals"], runner_up_pred, team_champion
             )
-            # 标准化 predictedGoals 为整数（用于展示）
-            p["predictedGoals"] = round(p["predictedGoals"])
+            # 标准化 predictedGoals 为整数（向上偏移 0.3，避免保守取整）
+            p["predictedGoals"] = round(p["predictedGoals"] + 0.3)
 
     return top_active

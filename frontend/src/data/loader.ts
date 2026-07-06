@@ -27,7 +27,6 @@ export interface TopScorer {
   team: string;
   existingGoals: number;
   predictedGoals: number;
-  remainingMatches: number;
   confidence?: string;
   status?: string;
 }

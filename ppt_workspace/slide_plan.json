@@ -1,0 +1,434 @@
+{
+  "deck_meta": {
+    "title": "2026世界杯冠军预测Agent",
+    "subtitle": "一个会记忆、会想象、知道边界的预测Agent",
+    "scenario": "竞赛路演答辩",
+    "audience": "竞赛评委（技术+业务混合）",
+    "duration_min": 14,
+    "page_count": 20,
+    "language": "zh-CN",
+    "visual_theme": {
+      "mode": "dark",
+      "bg": "#0f172a",
+      "panel": "#1e293b",
+      "accent_cyan": "#38bdf8",
+      "accent_green": "#4ade80",
+      "accent_gold": "#fbbf24",
+      "accent_pink": "#fb7185",
+      "font": "系统无衬线 / 数据用等宽"
+    },
+    "online_url": "https://ainidbm.github.io/WorldCup-Prediction-mm-/",
+    "repo_url": "https://github.com/ainidbm/WorldCup-Prediction-mm-",
+    "narrative_spine": "它记住已发生的，学习过去的，想象一万种未来，用人话说出判断，并清楚自己能信到几成。"
+  },
+  "slides": [
+    {
+      "id": "P01",
+      "chapter": "序幕",
+      "title": "2026世界杯冠军预测Agent",
+      "subtitle": "一个会记忆、会想象、知道边界的预测Agent",
+      "layout": "cover",
+      "purpose": "第一眼定调：这是造一个会思考的Agent，不是预测比赛",
+      "key_sentence": "这不是预测比赛，是造一个会思考的Agent。",
+      "content_blocks": [
+        {"type": "title", "text": "2026世界杯冠军预测Agent"},
+        {"type": "subtitle", "text": "一个会记忆、会想象、知道边界的预测Agent"},
+        {"type": "meta", "items": ["线上：ainidbm.github.io/WorldCup-Prediction-mm-", "GitHub：ainidbm/WorldCup-Prediction-mm-", "答辩人 / 2026-07"]}
+      ],
+      "visual_elements": [
+        {"kind": "trophy_or_world_cup_glyph", "note": "极简奖杯/地球图标，金色描边，居中或右上"},
+        {"kind": "dark_gradient_bg", "note": "深蓝灰渐变，与产品视觉一致"}
+      ],
+      "animation": {"type": "fade_in_title", "note": "标题逐字浮现，2秒内完成"}
+    },
+    {
+      "id": "P02",
+      "chapter": "序幕",
+      "title": "为什么是世界杯",
+      "layout": "hook_three_column",
+      "purpose": "把评委预设从'预测比赛'抬到'处理复合不确定性'",
+      "key_sentence": "世界杯难，不是因为建模难，是因为真实和概率要同时处理。",
+      "content_blocks": [
+        {"type": "lead", "text": "预测世界杯，难的从来不是建模。"},
+        {"type": "triple", "items": [
+          {"label": "真实会变", "desc": "已完赛18场结果锁定，赛况天天在变"},
+          {"label": "概率要叠", "desc": "10000次模拟，每场都要算晋级路径"},
+          {"label": "必须实时", "desc": "每日UTC 06:00自动重算，不能算一次就死"}
+        ]},
+        {"type": "punchline", "text": "世界杯是Agent能力的终极试炼场：它必须在'已确定的真实'和'未发生的概率'之间持续思考。"}
+      ],
+      "visual_elements": [
+        {"kind": "three_pillar", "note": "三根并列柱子/卡片，分别青/绿/金高亮"},
+        {"kind": "contrast_diagram", "note": "底部小图：确定性(锁)vs 不确定性(骰子) 的并列"}
+      ],
+      "animation": {"type": "pillar_reveal", "note": "三根柱子依次升起"}
+    },
+    {
+      "id": "P03",
+      "chapter": "Act I Agent如何思考",
+      "title": "Agent ≠ 模型",
+      "layout": "split_compare",
+      "purpose": "把'Agent'从营销词变成可检验的五个动作",
+      "key_sentence": "Agent和模型的区别，是它知道自己能信到几成。",
+      "content_blocks": [
+        {"type": "compare_left", "title": "传统预测", "items": ["数据→模型→柱状图", "只回答'谁赢'"]},
+        {"type": "compare_right", "title": "本系统·一个Agent", "items": [
+          "记忆 — 赛果锁定", "学习 — 395场历史", "想象 — 蒙特卡洛10000次", "表达 — 中文关键因素", "谦逊 — 85%上限"
+        ]},
+        {"type": "punchline", "text": "模型只回答'谁赢'，Agent要回答'凭什么、能信几成、新赛果来了怎么办'。"}
+      ],
+      "visual_elements": [
+        {"kind": "vs_split", "note": "左右分屏，左灰右亮，五个能力用图标圆形排列在右侧"},
+        {"kind": "five_capability_icons", "note": "记忆(锁)/学习(书)/想象(骰子)/表达(对话气泡)/谦逊(盾)"}
+      ],
+      "animation": {"type": "icon_pop", "note": "右侧五个能力图标依次弹出"}
+    },
+    {
+      "id": "P04",
+      "chapter": "Act I Agent如何思考",
+      "title": "六步思考流程",
+      "layout": "horizontal_pipeline",
+      "purpose": "把main.py的6步打印日志变成'一个思考者的六个动作'",
+      "key_sentence": "六步不是管线，是一个会思考的过程。",
+      "content_blocks": [
+        {"type": "pipeline", "steps": [
+          {"n": "1", "tech": "加载数据", "human": "记住事实", "scale": "14队·72场·395历史"},
+          {"n": "2", "tech": "特征工程", "human": "形成直觉", "scale": "4维·10向量"},
+          {"n": "3", "tech": "模型训练", "human": "学习历史", "scale": "RF 200棵·78.99%"},
+          {"n": "4", "tech": "蒙特卡洛", "human": "想象未来", "scale": "10000次"},
+          {"n": "5", "tech": "射手预测", "human": "推演个体", "scale": "47名球员"},
+          {"n": "6", "tech": "JSON输出", "human": "开口说话", "scale": "predictions+accuracy"}
+        ]}
+      ],
+      "visual_elements": [
+        {"kind": "pipeline_flow", "note": "六个圆形节点横向连线，上行技术名下行人化动词"},
+        {"kind": "data_badges", "note": "每节点下方小数据徽章"}
+      ],
+      "animation": {"type": "flow_draw", "note": "连线从左到右逐步画出"}
+    },
+    {
+      "id": "P05",
+      "chapter": "Act I Agent如何思考",
+      "title": "特征工程：Agent的直觉从哪来",
+      "layout": "radar_with_notes",
+      "purpose": "让评委理解判断依据是可解释的，并埋下Act II决策一的伏笔",
+      "key_sentence": "它的直觉来自四件事：状态、实力、交锋、情境。",
+      "content_blocks": [
+        {"type": "radar", "axes": [
+          {"name": "近期状态", "weight": "40%", "human": "最近踢得怎样", "calc": "积分50%+净胜球30%+进球20%"},
+          {"name": "硬实力", "weight": "30%", "human": "家底有多厚", "calc": "FIFA40%+身价35%+历史25%"},
+          {"name": "交锋记录", "weight": "15%", "human": "历史谁克谁", "calc": "395场历史胜平负概率"},
+          {"name": "情境因素", "weight": "15%", "human": "东道主与经验", "calc": "东道主40%+经验35%+年龄25%"}
+        ]},
+        {"type": "callout", "text": "关键决策：这4维权重只用于展示，模型用原始10维特征训练（见Act II决策一）", "accent": "gold"}
+      ],
+      "visual_elements": [
+        {"kind": "radar_chart", "note": "4轴雷达图，权重数字大字标注"},
+        {"kind": "decision_tag", "note": "金色'关键决策'标签，指向后续"}
+      ],
+      "animation": {"type": "radar_draw", "note": "雷达图轮廓逐步绘出"}
+    },
+    {
+      "id": "P06",
+      "chapter": "Act I Agent如何思考",
+      "title": "蒙特卡洛：想象一万种未来",
+      "layout": "before_after_perf",
+      "purpose": "用100x戏剧数字同时证明想象力和工程力",
+      "key_sentence": "它想象一万种未来，但因为预计算，只要两秒。",
+      "content_blocks": [
+        {"type": "concept", "text": "同一个赛程，跑一万遍，数谁拿冠军最多。"},
+        {"type": "before", "label": "朴素做法", "stats": [{"k": "模型调用", "v": "310,000次"}, {"k": "耗时", "v": ">60秒"}]},
+        {"type": "after", "label": "预计算后", "stats": [{"k": "对阵预计算", "v": "91组"}, {"k": "实际调用", "v": "496次"}, {"k": "耗时", "v": "<2秒"}, {"k": "提速", "v": "100x+"}]},
+        {"type": "punchline", "text": "不是算得慢就认真，预计算让'想象一万次'变成可日常运行的事。"}
+      ],
+      "visual_elements": [
+        {"kind": "before_after_bar", "note": "两根粗条对比：310000 vs 496，绿色箭头标注100x"},
+        {"kind": "timer_glyph", "note": "60s→2s 的时钟图标"}
+      ],
+      "animation": {"type": "bar_shrink", "note": "长条压缩成短条，数字跳动"}
+    },
+    {
+      "id": "P07",
+      "chapter": "Act I Agent如何思考",
+      "title": "记忆与谦逊",
+      "layout": "dual_capability",
+      "purpose": "全场最人感的一页：Agent有人格",
+      "key_sentence": "它把已踢完的锁住，再强也只敢说八成五。",
+      "content_blocks": [
+        {"type": "left_card", "title": "记忆 · 渐进式赛果融合", "icon": "lock", "items": [
+          "已完赛18场真实结果锁定进模拟", "剩余只推演未完成场次", "随赛况进化，越往后越准"
+        ]},
+        {"type": "right_card", "title": "谦逊 · 85%胜率硬上限", "icon": "shield", "items": [
+          "超出85%的部分按比例退给平局和对手", "再强也不说自己稳赢", "防过度自信的设计红线"
+        ]},
+        {"type": "punchline", "text": "记忆让它随赛况进化，谦逊让它不翻车。"}
+      ],
+      "visual_elements": [
+        {"kind": "two_card", "note": "左右两张深色卡片，左青右金"},
+        {"kind": "cap_diagram", "note": "右卡内：85%红线图，超出部分回流箭头"}
+      ],
+      "animation": {"type": "card_rise", "note": "两张卡片上浮入场"}
+    },
+    {
+      "id": "P08",
+      "chapter": "Act II 架构如何支撑",
+      "title": "四层架构总览",
+      "layout": "four_layer_stack",
+      "purpose": "给骨架图，立刻把注意力引向后面三页的'为什么'",
+      "key_sentence": "四层，每层只干一件事，边界清楚。",
+      "content_blocks": [
+        {"type": "layers", "stack": [
+          {"name": "数据层", "duty": "管'事实'", "items": ["teams.json·14队", "group_results·72场", "knockout_bracket", "historical.csv·395场"]},
+          {"name": "预测引擎层", "duty": "管'思考'", "items": ["features→model→monte_carlo→output→top_scorer", "7个后端模块"]},
+          {"name": "可视化层", "duty": "管'翻译'", "items": ["React19+TS+Recharts+SVG", "4大组件"]},
+          {"name": "部署层", "duty": "管'活着'", "items": ["GitHub Actions→Pages", "Docker→阿里云ECS"]}
+        ]},
+        {"type": "hint", "text": "接下来三页，不讲'是什么'，讲'为什么这么搭'。", "accent": "cyan"}
+      ],
+      "visual_elements": [
+        {"kind": "stacked_layers", "note": "四层水平条带，自上而下，每层一种主色"},
+        {"kind": "module_strip", "note": "引擎层内横向小方块表示7模块"}
+      ],
+      "animation": {"type": "layer_cascade", "note": "四层自上而下依次落下"}
+    },
+    {
+      "id": "P09",
+      "chapter": "Act II 架构如何支撑",
+      "title": "决策一：模型与可解释性分离",
+      "layout": "decision_three_part",
+      "purpose": "证明不是随手加权，是deliberate解耦",
+      "key_sentence": "模型归模型，解释归解释，两层分开才都稳。",
+      "content_blocks": [
+        {"type": "problem", "text": "如果用4维加权直接训练，模型会过拟合权重，且黑箱不可解释。"},
+        {"type": "tradeoff", "options": [
+          {"name": "方案A", "desc": "权重即特征，简单但黑箱"},
+          {"name": "方案B", "desc": "原始特征训练+4维仅展示，复杂但双解释层", "chosen": true}
+        ]},
+        {"type": "choice", "text": "选B：随机森林吃10维原始特征；4维权重(40/30/15/15)只生成中文关键因素给前端。"},
+        {"type": "evidence", "text": "比赛旁出现：'法国整体实力占优''摩洛哥近期状态更佳'这种人话。"}
+      ],
+      "visual_elements": [
+        {"kind": "ab_compare", "note": "A/B两列，B列高亮+对勾"},
+        {"kind": "split_arrow", "note": "一条线分叉：上=模型特征(10维)，下=展示权重(4维)"}
+      ],
+      "animation": {"type": "branch_draw", "note": "分叉线画出，B列点亮"}
+    },
+    {
+      "id": "P10",
+      "chapter": "Act II 架构如何支撑",
+      "title": "决策二：概率预计算 + 静态部署",
+      "layout": "causal_chain",
+      "purpose": "把性能优化和部署架构串成因果：因为快，所以敢静",
+      "key_sentence": "算得快，才敢把后端塞进CI，前端纯静态。",
+      "content_blocks": [
+        {"type": "wall", "text": "性能墙：朴素蒙特卡洛310000次调用，>60秒，CI里跑不动。"},
+        {"type": "solution", "text": "14队两两预计算91组对阵概率，模拟内只查表，调用降到496次。"},
+        {"type": "consequence", "text": "连带决策：因为算得快，敢做'纯静态部署'——所有计算在CI跑完，GitHub Pages只发静态文件，零服务端依赖。"},
+        {"type": "chain", "nodes": ["310000次", "→预计算91组", "→496次", "→<2秒", "→敢塞进CI", "→纯静态Pages"]}
+      ],
+      "visual_elements": [
+        {"kind": "causal_chain", "note": "横向因果链，箭头串联六个节点"},
+        {"kind": "ci_badge", "note": "GitHub Actions齿轮图标收尾"}
+      ],
+      "animation": {"type": "chain_light", "note": "因果链节点逐个点亮"}
+    },
+    {
+      "id": "P11",
+      "chapter": "Act II 架构如何支撑",
+      "title": "决策三：双部署路径",
+      "layout": "dual_path",
+      "purpose": "证明部署是按场景给两条路的产品思维",
+      "key_sentence": "静态给人看，Docker给人玩，两条路都通。",
+      "content_blocks": [
+        {"type": "path_a", "title": "GitHub Pages · 静态", "tag": "看", "items": ["每日UTC06:00自动重算", "零成本·零服务端", "所有计算在CI完成"]},
+        {"type": "path_b", "title": "阿里云Docker · 互动", "tag": "玩", "items": ["FastAPI 4端点", "POST /api/regenerate 触发重算", "Dockerfile多阶段(node22→python3.13)单容器"]},
+        {"type": "tradeoff", "text": "静态稳但不能交互；Docker能交互但要运维。两个都要：静态做看，Docker做玩。"},
+        {"type": "ci_steps", "text": "CI/CD 10步：checkout→py3.12→pip→main.py→node20→npm ci→build→cp json→artifact→pages"}
+      ],
+      "visual_elements": [
+        {"kind": "two_road", "note": "两条平行路径图，左静右动"},
+        {"kind": "ci_pipeline_strip", "note": "底部10步小图标流水线"}
+      ],
+      "animation": {"type": "path_draw", "note": "两条路径同时绘制"}
+    },
+    {
+      "id": "P12",
+      "chapter": "Act III 工具链如何落地",
+      "title": "八轮迭代地图",
+      "layout": "timeline_three_phase",
+      "purpose": "给开发地形图，后三页放大三段",
+      "key_sentence": "八轮迭代，handoff接力，每轮解决一个真问题。",
+      "content_blocks": [
+        {"type": "timeline", "rounds": [
+          {"r": "1-3", "phase": "从0到1", "theme": "打地基：代码·文档·数据"},
+          {"r": "4-6", "phase": "核心演进", "theme": "进化：过滤·比分·像样"},
+          {"r": "7-8", "phase": "上线交付", "theme": "收口：文档·容器·交互"}
+        ]},
+        {"type": "punchline", "text": "这不是一次成型，是一个真实迭代过程，每轮都用handoff skill交接上下文。"}
+      ],
+      "visual_elements": [
+        {"kind": "horizontal_timeline", "note": "8个圆点时间轴，分三段着色"},
+        {"kind": "handoff_arrows", "note": "轮与轮之间小箭头标注'handoff'"}
+      ],
+      "animation": {"type": "timeline_progress", "note": "时间轴从左到右推进"}
+    },
+    {
+      "id": "P13",
+      "chapter": "Act III 工具链如何落地",
+      "title": "第一阶段：从0到1（轮1-3）",
+      "layout": "three_round_card",
+      "purpose": "讲清地基怎么打的：代码、文档、数据各一轮",
+      "key_sentence": "前三轮打地基：代码、文档、数据。",
+      "content_blocks": [
+        {"type": "round", "n": "轮1", "problem": "从零搭一个全栈预测系统", "tool": "WorkBuddy多Task编排（12个Task：7后端+5前端+CI/CD）", "breakthrough": "一次会话产出可运行全栈"},
+        {"type": "round", "n": "轮2", "problem": "代码有了但缺架构文档", "tool": "Qoder RepoWiki自动生成知识库", "breakthrough": "6页架构文档+3张知识卡+wiki_plan.yaml"},
+        {"type": "round", "n": "轮3", "problem": "训练数据只有117场，太少", "tool": "openfootball/worldcup.json+euro.json+清洗脚本", "breakthrough": "117→395场（三届世界杯+两届欧洲杯），身价单位统一"}
+      ],
+      "visual_elements": [
+        {"kind": "three_card_stack", "note": "三张卡片纵向或横向，统一'问题→工具→突破'三段式"},
+        {"kind": "growth_number", "note": "轮3突出117→395的增长数字"}
+      ],
+      "animation": {"type": "card_reveal_seq", "note": "三张卡依次展开"}
+    },
+    {
+      "id": "P14",
+      "chapter": "Act III 工具链如何落地",
+      "title": "第二阶段：核心演进（轮4-6）",
+      "layout": "three_round_card",
+      "purpose": "技术含金量最高段，三个进化层层递进",
+      "key_sentence": "三轮核心进化：先算对谁晋级，再算比分，最后让比分像真比赛。",
+      "content_blocks": [
+        {"type": "round", "n": "轮4", "problem": "模拟按全部32队跑，已淘汰队伍污染预测", "tool": "actual_results赛果注入+KnockoutProgress组件+Vite分包", "breakthrough": "32→14队过滤，回测扩到90场，包体547KB→193KB"},
+        {"type": "round", "n": "轮5", "problem": "只预测谁赢，不够直观", "tool": "Poisson PMF比分预测+CSS badge", "breakthrough": "每场给出预测比分（如巴西2-1挪威）"},
+        {"type": "round", "n": "轮6", "problem": "纯Poisson比分太保守（全是1-0）", "tool": "参数调优(decay0.72→0.85·blend60:40→30:70)+平局修正", "breakthrough": "比分多样化（2-1/0-2/3-0都有）"}
+      ],
+      "visual_elements": [
+        {"kind": "three_card_stack", "note": "同P13结构，保持一致"},
+        {"kind": "score_badge_demo", "note": "轮5/6展示比分badge样例演进：1-0 → 2-1"}
+      ],
+      "animation": {"type": "card_reveal_seq", "note": "三张卡依次展开，比分badge微动"}
+    },
+    {
+      "id": "P15",
+      "chapter": "Act III 工具链如何落地",
+      "title": "第三阶段：上线交付（轮7-8）",
+      "layout": "two_round_card",
+      "purpose": "收束工具链：从能跑到能答辩到能交互",
+      "key_sentence": "最后两轮：先写成文档，再做成能玩的线上服务。",
+      "content_blocks": [
+        {"type": "round", "n": "轮7", "problem": "要参赛提交，得有完整答辩材料", "tool": "通读全部源码+撰写competition-submission.md", "breakthrough": "覆盖架构30分/可视化30分/创新20分/加分项完整文档"},
+        {"type": "round", "n": "轮8", "problem": "静态站不能交互，评委想'按一下重算'", "tool": "FastAPI(4端点)+Docker多阶段+Nginx+Let's Encrypt+CloudStudio", "breakthrough": "阿里云ECS一键部署，POST /api/regenerate触发重算"}
+      ],
+      "visual_elements": [
+        {"kind": "two_card", "note": "两张大卡，左文档右容器"},
+        {"kind": "docker_layers", "note": "轮8卡内：node:22→python:3.13 多阶段示意"}
+      ],
+      "animation": {"type": "card_rise", "note": "两张卡上浮"}
+    },
+    {
+      "id": "P16",
+      "chapter": "Act IV 结果有多准",
+      "title": "冠军预测：法国19.51%",
+      "layout": "bar_with_reasoning",
+      "purpose": "展示有推理过程的结论，而非孤数字",
+      "key_sentence": "法国19.5%排第一，因为它每一步都稳，不是某一步爆。",
+      "content_blocks": [
+        {"type": "bar_top5", "items": [
+          {"team": "法国", "prob": "19.51%"}, {"team": "巴西", "prob": "14.62%"}, {"team": "摩洛哥", "prob": "13.82%"}, {"team": "哥伦比亚", "prob": "9.84%"}, {"team": "比利时", "prob": "7.89%"}
+        ]},
+        {"type": "reasoning_chain", "title": "法国夺冠推理链", "steps": ["R16 已完成✓", "QF 预测3-0", "SF 约65%", "决赛 约55%", "夺冠 约60%"]},
+        {"type": "punchline", "text": "不是法国最强，是法国在每一步都'比较强'，概率乘起来最高。"}
+      ],
+      "visual_elements": [
+        {"kind": "horizontal_bar_chart", "note": "Recharts风格水平条形图，5色渐变"},
+        {"kind": "path_diagram", "note": "右侧法国夺冠路径节点图"}
+      ],
+      "animation": {"type": "bar_grow", "note": "条形从左生长，路径节点依次亮"}
+    },
+    {
+      "id": "P17",
+      "chapter": "Act IV 结果有多准",
+      "title": "准确率证据：淘汰赛88.9%",
+      "layout": "four_stat_grid",
+      "purpose": "主动暴露小组赛70%反而增可信，用反差点制造记忆",
+      "key_sentence": "淘汰赛18场对16场，88.9%，越关键越准。",
+      "content_blocks": [
+        {"type": "stat_grid", "stats": [
+          {"label": "交叉验证", "value": "78.99%", "note": "5折"},
+          {"label": "综合回测", "value": "74.44%", "note": "90场"},
+          {"label": "小组赛", "value": "70.83%", "note": "72场"},
+          {"label": "淘汰赛", "value": "88.89%", "note": "18场对16场", "highlight": true}
+        ]},
+        {"type": "insight", "text": "反差点：淘汰赛反而比小组赛准——因为淘汰赛有平局/加时/点球，模型的优势更明显。"},
+        {"type": "credibility", "text": "90场是独立验证集（已完赛结果作验证，非训练集泄漏）。"}
+      ],
+      "visual_elements": [
+        {"kind": "four_grid", "note": "四宫格大数字，淘汰赛格金色高亮+放大"},
+        {"kind": "contrast_arrow", "note": "70.83%→88.89% 的上升箭头标注反差"}
+      ],
+      "animation": {"type": "number_count", "note": "四个数字滚动到位"}
+    },
+    {
+      "id": "P18",
+      "chapter": "Act IV 结果有多准",
+      "title": "可解释性：Agent会说人话",
+      "layout": "card_demo_with_table",
+      "purpose": "把Act II决策一兑现成用户视角",
+      "key_sentence": "它不只给概率，还告诉你凭什么。",
+      "content_blocks": [
+        {"type": "match_card", "title": "法国 vs 摩洛哥", "items": ["预测比分 3-0", "胜率 85% vs 5%", "关键因素：法国整体实力占优 / 法国大赛底蕴更深 / 摩洛哥近期状态更佳"]},
+        {"type": "scorer_table", "title": "射手榜Top3", "rows": [
+          {"player": "姆巴佩", "team": "法国", "exist": 7, "pred": 9},
+          {"player": "梅西", "team": "阿根廷", "exist": 7, "pred": 8},
+          {"player": "哈兰德", "team": "挪威", "exist": 5, "pred": 6}
+        ]},
+        {"type": "punchline", "text": "评委看不懂随机森林，但看得懂'法国实力占优'；这就是可解释性的意义。"}
+      ],
+      "visual_elements": [
+        {"kind": "match_card_ui", "note": "复刻线上比赛卡片样式，比分badge+关键因素标签"},
+        {"kind": "scorer_table_ui", "note": "复刻射手榜表格，Top3金色背景"}
+      ],
+      "animation": {"type": "card_flip", "note": "比赛卡片轻翻入场"}
+    },
+    {
+      "id": "P19",
+      "chapter": "尾声",
+      "title": "项目价值：这证明了什么",
+      "layout": "three_insight_plus_formula",
+      "purpose": "把项目从'一个世界杯预测'升维到'一种Agent工程范式'",
+      "key_sentence": "这不只是预测世界杯，是一种造Agent的方法。",
+      "content_blocks": [
+        {"type": "insights", "items": [
+          {"title": "Agent ≠ 模型", "desc": "是有边界的思考体，会记忆、会谦逊"},
+          {"title": "工程让重算变日常", "desc": "预计算让10000次模拟成为CI里的日常操作"},
+          {"title": "可解释是信任前提", "desc": "不是附属功能，是Agent被信任的门槛"}
+        ]},
+        {"type": "formula", "text": "预测类Agent的公式 = 记忆 + 想象 + 谦逊 + 人话 + 可验证"}
+      ],
+      "visual_elements": [
+        {"kind": "three_pillar", "note": "三根柱子，呼应P02但配色更暖（收束感）"},
+        {"kind": "formula_band", "note": "底部一条公式横幅，五个词用彩色高亮"}
+      ],
+      "animation": {"type": "formula_assemble", "note": "五个词依次拼入公式"}
+    },
+    {
+      "id": "P20",
+      "chapter": "尾声",
+      "title": "线上体验 + Q&A",
+      "layout": "cta_dual_url",
+      "purpose": "把信任最后一步交给'你自己验证'，姿态开放",
+      "key_sentence": "不信我说的话，上去按一下试试。",
+      "content_blocks": [
+        {"type": "url_a", "label": "看 · GitHub Pages", "url": "https://ainidbm.github.io/WorldCup-Prediction-mm-/"},
+        {"type": "url_b", "label": "玩 · 阿里云Docker", "note": "POST /api/regenerate 触发重算"},
+        {"type": "repo", "label": "GitHub仓库", "url": "https://github.com/ainidbm/WorldCup-Prediction-mm-"},
+        {"type": "closing", "text": "欢迎提问，特别是'你凭什么信'这类问题。"}
+      ],
+      "visual_elements": [
+        {"kind": "two_big_url", "note": "两个大入口卡片，左静右动"},
+        {"kind": "qr_code", "note": "GitHub仓库二维码，便于现场扫码"}
+      ],
+      "animation": {"type": "fade_in", "note": "整体淡入，安静收尾"}
+    }
+  ]
+}

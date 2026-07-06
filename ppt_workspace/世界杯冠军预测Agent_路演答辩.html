@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026世界杯冠军预测Agent · 路演答辩</title>
+<style>
+/* ========== Reset & Base ========== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0f172a;--bg2:#0b1120;--panel:#1e293b;--panel2:#334155;
+  --cyan:#38bdf8;--green:#4ade80;--gold:#fbbf24;--pink:#fb7185;
+  --text:#e2e8f0;--text-dim:#94a3b8;--text-faint:#64748b;
+  --border:rgba(148,163,184,.15);
+  --radius:12px;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--text);font-family:'Segoe UI','PingFang SC','Microsoft YaHei',system-ui,sans-serif}
+body{display:flex;align-items:center;justify-content:center}
+
+/* ========== Slide Container ========== */
+#deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+.slide{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  display:none;flex-direction:column;justify-content:center;align-items:center;
+  padding:3vh 5vw;opacity:0;transform:translateX(30px);
+  transition:opacity .4s ease,transform .4s ease;
+}
+.slide.active{display:flex;opacity:1;transform:translateX(0)}
+.slide.prev{display:flex;opacity:0;transform:translateX(-30px)}
+
+/* ========== Typography ========== */
+.slide h1{font-size:clamp(28px,4vw,56px);font-weight:800;letter-spacing:-.02em}
+.slide h2{font-size:clamp(22px,2.8vw,40px);font-weight:700;letter-spacing:-.01em;margin-bottom:1.5vh}
+.slide h3{font-size:clamp(16px,1.6vw,24px);font-weight:600}
+.slide p{font-size:clamp(14px,1.4vw,20px);line-height:1.6}
+.slide .label{font-size:clamp(11px,1vw,14px);text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);font-weight:600}
+.slide .mono{font-family:'SF Mono','Cascadia Code','Consolas',monospace}
+.slide .accent{color:var(--cyan)}
+.slide .gold{color:var(--gold)}
+.slide .green{color:var(--green)}
+.slide .pink{color:var(--pink)}
+
+/* ========== Chapter Tag ========== */
+.chapter-tag{
+  position:absolute;top:3vh;left:5vw;
+  font-size:clamp(10px,.9vw,13px);letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-faint);font-weight:600;
+}
+.chapter-tag::before{content:'';display:inline-block;width:24px;height:2px;background:var(--cyan);vertical-align:middle;margin-right:8px;border-radius:2px}
+
+/* ========== Key Sentence Bar ========== */
+.key-bar{
+  position:absolute;bottom:4vh;left:5vw;right:5vw;
+  padding:10px 20px;background:linear-gradient(90deg,rgba(251,191,36,.12),rgba(251,191,36,.02));
+  border-left:3px solid var(--gold);border-radius:0 8px 8px 0;
+  font-size:clamp(13px,1.3vw,18px);color:var(--gold);font-weight:600;
+}
+
+/* ========== Page Number ========== */
+.page-num{position:absolute;bottom:2vh;right:5vw;font-size:clamp(10px,.9vw,13px);color:var(--text-faint);font-family:monospace}
+
+/* ========== Progress Bar ========== */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold));transition:width .3s ease;z-index:100}
+
+/* ========== Navigation Hint ========== */
+#nav-hint{position:fixed;bottom:1vh;left:50%;transform:translateX(-50%);font-size:11px;color:var(--text-faint);z-index:100;opacity:.5}
+
+/* ========== Card ========== */
+.card{background:var(--panel);border-radius:var(--radius);padding:20px 24px;border:1px solid var(--border)}
+.card-cyan{border-left:3px solid var(--cyan)}
+.card-green{border-left:3px solid var(--green)}
+.card-gold{border-left:3px solid var(--gold)}
+.card-pink{border-left:3px solid var(--pink)}
+
+/* ========== Slide P01 Cover ========== */
+#p01{background:radial-gradient(ellipse at 50% 40%,#1e293b 0%,#0f172a 50%,#0b1120 100%)}
+#p01 .cover-content{text-align:center;position:relative;z-index:1}
+#p01 .trophy{font-size:clamp(48px,6vw,80px);margin-bottom:2vh;filter:drop-shadow(0 0 20px rgba(251,191,36,.3))}
+#p01 h1{background:linear-gradient(135deg,#38bdf8,#4ade80,#fbbf24);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1vh}
+#p01 .subtitle{font-size:clamp(15px,1.5vw,22px);color:var(--text-dim);margin-bottom:4vh;font-weight:400}
+#p01 .meta{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:clamp(11px,1vw,14px);color:var(--text-faint)}
+#p01 .meta span{display:flex;align-items:center;gap:6px}
+#p01 .meta .dot{width:4px;height:4px;border-radius:50%;background:var(--cyan)}
+
+/* ========== Slide P02 Hook Three Column ========== */
+.hook-lead{font-size:clamp(18px,2vw,28px);text-align:center;margin-bottom:4vh;color:var(--text);font-weight:300}
+.hook-lead strong{color:var(--cyan);font-weight:700}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;max-width:1100px;margin-bottom:3vh}
+.three-col .col{text-align:center;padding:28px 20px}
+.three-col .col-num{font-size:clamp(36px,4vw,56px);font-weight:800;margin-bottom:8px}
+.three-col .col-title{font-size:clamp(16px,1.6vw,22px);font-weight:700;margin-bottom:10px}
+.three-col .col-desc{font-size:clamp(12px,1.1vw,16px);color:var(--text-dim);line-height:1.5}
+.hook-punch{text-align:center;font-size:clamp(14px,1.4vw,20px);color:var(--text);max-width:900px;line-height:1.6;padding:0 20px}
+
+/* ========== Slide P03 Split Compare ========== */
+.split-compare{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1100px}
+.split-compare .side{padding:28px;border-radius:var(--radius)}
+.split-compare .left{background:rgba(100,116,139,.08);border:1px solid rgba(100,116,139,.2)}
+.split-compare .right{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2)}
+.split-compare .side h3{margin-bottom:16px;font-size:clamp(15px,1.4vw,20px)}
+.split-compare .left h3{color:var(--text-dim)}
+.split-compare .right h3{color:var(--cyan)}
+.cap-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.cap-list li{display:flex;align-items:center;gap:12px;font-size:clamp(13px,1.2vw,17px)}
+.cap-list .cap-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.cap-list .cap-icon.cyan{background:rgba(56,189,248,.15);color:var(--cyan)}
+.cap-list .cap-icon.green{background:rgba(74,222,128,.15);color:var(--green)}
+.cap-list .cap-icon.gold{background:rgba(251,191,36,.15);color:var(--gold)}
+.cap-list .cap-icon.pink{background:rgba(251,113,133,.15);color:var(--pink)}
+.cap-list .cap-icon.purple{background:rgba(167,139,250,.15);color:#a78bfa}
+
+/* ========== Slide P04 Pipeline ========== */
+.pipeline{display:flex;align-items:stretch;gap:0;width:100%;max-width:1150px;margin-bottom:3vh}
+.pipe-node{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;padding:0 8px}
+.pipe-node::after{content:'';position:absolute;top:32px;right:-50%;width:100%;height:2px;background:linear-gradient(90deg,var(--cyan),var(--text-faint));z-index:0}
+.pipe-node:last-child::after{display:none}
+.pipe-circle{width:64px;height:64px;border-radius:50%;background:var(--panel);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--cyan);position:relative;z-index:1;margin-bottom:12px}
+.pipe-tech{font-size:clamp(12px,1.1vw,15px);font-weight:600;margin-bottom:4px}
+.pipe-human{font-size:clamp(11px,1vw,14px);color:var(--text-dim);margin-bottom:6px}
+.pipe-scale{font-size:clamp(10px,.85vw,12px);color:var(--gold);font-family:monospace;background:rgba(251,191,36,.08);padding:2px 8px;border-radius:4px}
+
+/* ========== Slide P05 Radar ========== */
+.radar-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:100%;max-width:1100px;align-items:center}
+.radar-svg{width:100%;max-width:400px;height:auto;margin:0 auto;display:block;overflow:visible}
+.radar-info{display:flex;flex-direction:column;gap:16px}
+.radar-axis{display:flex;align-items:center;gap:12px}
+.radar-axis-name{font-size:clamp(13px,1.2vw,17px);font-weight:600;min-width:80px}
+.radar-axis-weight{font-size:clamp(18px,1.8vw,24px);font-weight:800;margin-left:auto}
+.radar-axis-human{font-size:clamp(11px,1vw,14px);color:var(--text-dim)}
+.radar-callout{margin-top:16px;padding:14px 18px;background:rgba(251,191,36,.08);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:clamp(12px,1.1vw,15px);color:var(--gold)}
+
+/* ========== Slide P06 Before/After ========== */
+.ba-wrap{width:100%;max-width:1100px;text-align:center}
+.ba-concept{font-size:clamp(16px,1.6vw,22px);margin-bottom:3vh;color:var(--text)}
+.ba-compare{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:3vh}
+.ba-card{padding:24px;border-radius:var(--radius);text-align:center}
+.ba-card.before{background:rgba(251,113,133,.06);border:1px solid rgba(251,113,133,.2)}
+.ba-card.after{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.2)}
+.ba-card .ba-label{font-size:clamp(12px,1.1vw,15px);text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;font-weight:600}
+.ba-card.before .ba-label{color:var(--pink)}
+.ba-card.after .ba-label{color:var(--green)}
+.ba-stat{margin-bottom:12px}
+.ba-stat .ba-k{font-size:clamp(11px,1vw,14px);color:var(--text-dim)}
+.ba-stat .ba-v{font-size:clamp(24px,2.5vw,36px);font-weight:800}
+.ba-card.before .ba-v{color:var(--pink)}
+.ba-card.after .ba-v{color:var(--green)}
+.ba-speedup{text-align:center;font-size:clamp(20px,2.2vw,32px);font-weight:800;color:var(--gold)}
+
+/* ========== Slide P07 Dual Card ========== */
+.dual-card{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1100px;margin-bottom:3vh}
+.dual-card .dc{padding:28px;border-radius:var(--radius)}
+.dual-card .dc-left{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2)}
+.dual-card .dc-right{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2)}
+.dc-icon{font-size:32px;margin-bottom:12px}
+.dc-title{font-size:clamp(16px,1.5vw,21px);font-weight:700;margin-bottom:16px}
+.dual-card .dc-left .dc-title{color:var(--cyan)}
+.dual-card .dc-right .dc-title{color:var(--gold)}
+.dc-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.dc-list li{font-size:clamp(12px,1.1vw,16px);color:var(--text);line-height:1.5;padding-left:18px;position:relative}
+.dc-list li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+.dc-left .dc-list li::before{background:var(--cyan)}
+.dc-right .dc-list li::before{background:var(--gold)}
+
+/* ========== Slide P08 Four Layer Stack ========== */
+.layer-stack{display:flex;flex-direction:column;gap:12px;width:100%;max-width:1100px;margin-bottom:2vh}
+.layer{display:grid;grid-template-columns:160px 1fr;gap:20px;padding:18px 24px;border-radius:var(--radius);align-items:center}
+.layer-1{background:rgba(56,189,248,.08);border-left:4px solid var(--cyan)}
+.layer-2{background:rgba(74,222,128,.08);border-left:4px solid var(--green)}
+.layer-3{background:rgba(251,191,36,.08);border-left:4px solid var(--gold)}
+.layer-4{background:rgba(251,113,133,.08);border-left:4px solid var(--pink)}
+.layer-name{font-size:clamp(16px,1.5vw,21px);font-weight:700}
+.layer-duty{font-size:clamp(12px,1.1vw,15px);color:var(--text-dim);font-style:italic}
+.layer-items{font-size:clamp(11px,1vw,14px);color:var(--text);display:flex;gap:12px;flex-wrap:wrap}
+.layer-items span{background:rgba(255,255,255,.05);padding:3px 10px;border-radius:4px}
+
+/* ========== Slide P09 Decision ========== */
+.decision-wrap{width:100%;max-width:1100px}
+.decision-problem{padding:16px 20px;background:rgba(251,113,133,.06);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:2vh;font-size:clamp(13px,1.2vw,17px)}
+.decision-ab{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:2vh}
+.decision-ab .opt{padding:20px;border-radius:var(--radius);position:relative}
+.decision-ab .opt-a{background:rgba(100,116,139,.08);border:1px solid rgba(100,116,139,.2)}
+.decision-ab .opt-b{background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.3)}
+.decision-ab .opt-b::after{content:'✓';position:absolute;top:12px;right:16px;font-size:24px;color:var(--green)}
+.opt-name{font-size:clamp(14px,1.3vw,18px);font-weight:700;margin-bottom:8px}
+.opt-b .opt-name{color:var(--green)}
+.opt-desc{font-size:clamp(12px,1.1vw,15px);color:var(--text-dim)}
+.decision-choice{padding:14px 20px;background:rgba(56,189,248,.06);border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;font-size:clamp(12px,1.1vw,15px);line-height:1.6}
+
+/* ========== Slide P10 Causal Chain ========== */
+.chain-wrap{width:100%;max-width:1150px;text-align:center}
+.chain-wall{padding:16px 24px;background:rgba(251,113,133,.06);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;margin-bottom:2vh;text-align:left;font-size:clamp(13px,1.2vw,17px)}
+.chain-solution{padding:16px 24px;background:rgba(74,222,128,.06);border-left:3px solid var(--green);border-radius:0 8px 8px 0;margin-bottom:2vh;text-align:left;font-size:clamp(13px,1.2vw,17px)}
+.chain-consequence{padding:16px 24px;background:rgba(56,189,248,.06);border-left:3px solid var(--cyan);border-radius:0 8px 8px 0;margin-bottom:3vh;text-align:left;font-size:clamp(13px,1.2vw,17px)}
+.chain-flow{display:flex;align-items:center;justify-content:center;gap:4px;flex-wrap:wrap}
+.chain-node{padding:10px 18px;border-radius:8px;font-size:clamp(12px,1.1vw,15px);font-weight:600;font-family:monospace}
+.chain-node:nth-child(1){background:rgba(251,113,133,.15);color:var(--pink)}
+.chain-node:nth-child(3){background:rgba(251,191,36,.15);color:var(--gold)}
+.chain-node:nth-child(5){background:rgba(74,222,128,.15);color:var(--green)}
+.chain-node:nth-child(7){background:rgba(56,189,248,.15);color:var(--cyan)}
+.chain-node:nth-child(9){background:rgba(56,189,248,.15);color:var(--cyan)}
+.chain-node:nth-child(11){background:rgba(74,222,128,.15);color:var(--green)}
+.chain-arrow{color:var(--text-faint);font-size:18px}
+
+/* ========== Slide P11 Dual Path ========== */
+.dual-path{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1100px;margin-bottom:2vh}
+.dp-card{padding:24px;border-radius:var(--radius)}
+.dp-a{background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2)}
+.dp-b{background:rgba(251,113,133,.06);border:1px solid rgba(251,113,133,.2)}
+.dp-tag{display:inline-block;padding:4px 14px;border-radius:20px;font-size:clamp(11px,1vw,14px);font-weight:700;margin-bottom:12px}
+.dp-a .dp-tag{background:rgba(56,189,248,.15);color:var(--cyan)}
+.dp-b .dp-tag{background:rgba(251,113,133,.15);color:var(--pink)}
+.dp-title{font-size:clamp(15px,1.4vw,20px);font-weight:700;margin-bottom:14px}
+.dp-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.dp-list li{font-size:clamp(12px,1.1vw,15px);color:var(--text);padding-left:16px;position:relative;line-height:1.5}
+.dp-list li::before{content:'▸';position:absolute;left:0;color:var(--text-dim)}
+.dp-tradeoff{padding:12px 20px;background:rgba(255,255,255,.03);border-radius:8px;font-size:clamp(12px,1.1vw,15px);color:var(--text-dim);text-align:center;margin-bottom:1vh}
+.dp-ci{font-size:clamp(10px,.9vw,13px);color:var(--text-faint);text-align:center;font-family:monospace}
+
+/* ========== Slide P12 Timeline ========== */
+.timeline-wrap{width:100%;max-width:1150px}
+.timeline{display:flex;align-items:center;justify-content:space-between;margin-bottom:4vh;position:relative}
+.timeline::before{content:'';position:absolute;top:50%;left:5%;right:5%;height:3px;background:linear-gradient(90deg,var(--cyan),var(--green),var(--gold),var(--pink));border-radius:2px}
+.tl-dot{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;position:relative;z-index:1;border:3px solid var(--bg)}
+.tl-dot:nth-child(1),.tl-dot:nth-child(2),.tl-dot:nth-child(3){background:var(--cyan);color:var(--bg)}
+.tl-dot:nth-child(4),.tl-dot:nth-child(5),.tl-dot:nth-child(6){background:var(--green);color:var(--bg)}
+.tl-dot:nth-child(7),.tl-dot:nth-child(8){background:var(--gold);color:var(--bg)}
+.tl-phases{display:grid;grid-template-columns:3fr 3fr 2fr;gap:24px}
+.tl-phase{padding:20px;border-radius:var(--radius);text-align:center}
+.tl-phase:nth-child(1){background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.15)}
+.tl-phase:nth-child(2){background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15)}
+.tl-phase:nth-child(3){background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.15)}
+.tl-phase-rounds{font-size:clamp(11px,1vw,14px);color:var(--text-dim);margin-bottom:6px;font-family:monospace}
+.tl-phase-name{font-size:clamp(15px,1.4vw,19px);font-weight:700;margin-bottom:6px}
+.tl-phase-theme{font-size:clamp(12px,1.1vw,15px);color:var(--text-dim)}
+
+/* ========== Slide P13/P14 Three Round Cards ========== */
+.round-cards{display:flex;flex-direction:column;gap:16px;width:100%;max-width:1150px;margin-bottom:2vh}
+.round-card{display:grid;grid-template-columns:80px 1fr 1fr 1fr;gap:20px;padding:18px 24px;border-radius:var(--radius);align-items:center}
+.round-card:nth-child(1){background:rgba(56,189,248,.06);border-left:4px solid var(--cyan)}
+.round-card:nth-child(2){background:rgba(74,222,128,.06);border-left:4px solid var(--green)}
+.round-card:nth-child(3){background:rgba(251,191,36,.06);border-left:4px solid var(--gold)}
+.round-num{font-size:clamp(20px,2vw,28px);font-weight:800}
+.round-col-title{font-size:clamp(10px,.9vw,12px);text-transform:uppercase;letter-spacing:.08em;color:var(--text-faint);margin-bottom:4px}
+.round-col-content{font-size:clamp(12px,1.1vw,15px);color:var(--text);line-height:1.4}
+
+/* ========== Slide P15 Two Round Cards ========== */
+.two-round-cards{display:grid;grid-template-columns:1fr 1fr;gap:32px;width:100%;max-width:1100px;margin-bottom:2vh}
+.trc{padding:28px;border-radius:var(--radius)}
+.trc:nth-child(1){background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2)}
+.trc:nth-child(2){background:rgba(251,113,133,.06);border:1px solid rgba(251,113,133,.2)}
+.trc-num{font-size:clamp(18px,1.8vw,26px);font-weight:800;margin-bottom:12px}
+.trc-problem{font-size:clamp(13px,1.2vw,17px);margin-bottom:14px;color:var(--text)}
+.trc-tool{font-size:clamp(12px,1.1vw,15px);color:var(--text-dim);margin-bottom:14px;line-height:1.5}
+.trc-breakthrough{font-size:clamp(12px,1.1vw,15px);color:var(--green);line-height:1.5}
+
+/* ========== Slide P16 Bar Chart ========== */
+.bar-chart-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;width:100%;max-width:1150px;align-items:center}
+.bar-chart{display:flex;flex-direction:column;gap:14px}
+.bar-row{display:grid;grid-template-columns:80px 1fr 70px;gap:12px;align-items:center}
+.bar-team{font-size:clamp(13px,1.2vw,17px);font-weight:600}
+.bar-track{height:clamp(24px,2.5vw,34px);background:rgba(255,255,255,.04);border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:clamp(11px,1vw,14px);font-weight:700;color:var(--bg);transition:width 1s ease}
+.bar-val{font-size:clamp(13px,1.2vw,17px);font-weight:700;font-family:monospace}
+.reasoning-chain{padding:24px;background:var(--panel);border-radius:var(--radius);border:1px solid var(--border)}
+.reasoning-title{font-size:clamp(14px,1.3vw,18px);font-weight:700;margin-bottom:16px;color:var(--gold)}
+.chain-steps{display:flex;flex-direction:column;gap:10px}
+.chain-step{display:flex;align-items:center;gap:12px;font-size:clamp(12px,1.1vw,15px)}
+.chain-step-num{width:28px;height:28px;border-radius:50%;background:rgba(251,191,36,.15);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.chain-step-text{color:var(--text)}
+.chain-step-done{color:var(--green)}
+
+/* ========== Slide P17 Four Stat Grid ========== */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;width:100%;max-width:900px;margin-bottom:3vh}
+.stat-card{padding:28px 24px;border-radius:var(--radius);text-align:center}
+.stat-card:nth-child(1){background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.15)}
+.stat-card:nth-child(2){background:rgba(74,222,128,.06);border:1px solid rgba(74,222,128,.15)}
+.stat-card:nth-child(3){background:rgba(100,116,139,.06);border:1px solid rgba(100,116,139,.15)}
+.stat-card:nth-child(4){background:rgba(251,191,36,.1);border:2px solid rgba(251,191,36,.3);transform:scale(1.05)}
+.stat-label{font-size:clamp(11px,1vw,14px);color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;font-weight:600}
+.stat-value{font-size:clamp(28px,3.5vw,48px);font-weight:800;font-family:monospace;margin-bottom:4px}
+.stat-card:nth-child(1) .stat-value{color:var(--cyan)}
+.stat-card:nth-child(2) .stat-value{color:var(--green)}
+.stat-card:nth-child(3) .stat-value{color:var(--text-dim)}
+.stat-card:nth-child(4) .stat-value{color:var(--gold)}
+.stat-note{font-size:clamp(11px,1vw,14px);color:var(--text-faint)}
+.stat-insight{text-align:center;font-size:clamp(13px,1.2vw,17px);color:var(--text);max-width:800px;line-height:1.6}
+.stat-insight strong{color:var(--gold)}
+
+/* ========== Slide P18 Match Card + Table ========== */
+.explain-wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;width:100%;max-width:1150px}
+.match-card-ui{padding:24px;background:var(--panel);border-radius:var(--radius);border:1px solid var(--border)}
+.match-teams{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.match-team{text-align:center;flex:1}
+.match-team-name{font-size:clamp(18px,1.8vw,26px);font-weight:800}
+.match-score{font-size:clamp(28px,3vw,44px);font-weight:800;color:var(--gold);font-family:monospace;padding:0 20px}
+.match-vs{font-size:clamp(12px,1.1vw,15px);color:var(--text-faint);text-align:center;margin-bottom:14px}
+.match-factors{display:flex;flex-direction:column;gap:8px}
+.factor-tag{padding:8px 14px;background:rgba(56,189,248,.08);border-radius:6px;font-size:clamp(12px,1.1vw,15px);color:var(--text)}
+.factor-tag.gold{background:rgba(251,191,36,.08)}
+.scorer-table{width:100%;border-collapse:collapse;font-size:clamp(12px,1.1vw,15px)}
+.scorer-table th{text-align:left;padding:10px 12px;color:var(--text-dim);font-weight:600;border-bottom:1px solid var(--border);font-size:clamp(11px,1vw,13px)}
+.scorer-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.scorer-table tr.top{background:rgba(251,191,36,.06)}
+.scorer-table .player{font-weight:700}
+
+/* ========== Slide P19 Three Insight + Formula ========== */
+.insight-three{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;width:100%;max-width:1100px;margin-bottom:4vh}
+.insight-card{text-align:center;padding:28px 20px;border-radius:var(--radius)}
+.insight-card:nth-child(1){background:rgba(56,189,248,.06);border-top:3px solid var(--cyan)}
+.insight-card:nth-child(2){background:rgba(74,222,128,.06);border-top:3px solid var(--green)}
+.insight-card:nth-child(3){background:rgba(251,191,36,.06);border-top:3px solid var(--gold)}
+.insight-card-title{font-size:clamp(15px,1.4vw,20px);font-weight:700;margin-bottom:10px}
+.insight-card-desc{font-size:clamp(12px,1.1vw,15px);color:var(--text-dim);line-height:1.5}
+.formula-band{padding:20px 32px;background:linear-gradient(90deg,rgba(56,189,248,.08),rgba(74,222,128,.08),rgba(251,191,36,.08));border-radius:var(--radius);text-align:center;font-size:clamp(15px,1.5vw,22px);font-weight:600}
+.formula-band .f-cyan{color:var(--cyan)}
+.formula-band .f-green{color:var(--green)}
+.formula-band .f-gold{color:var(--gold)}
+.formula-band .f-pink{color:var(--pink)}
+.formula-band .f-purple{color:#a78bfa}
+
+/* ========== Slide P20 CTA ========== */
+#p20{background:radial-gradient(ellipse at 50% 50%,#1e293b 0%,#0f172a 50%,#0b1120 100%)}
+.cta-wrap{text-align:center;width:100%;max-width:900px}
+.cta-urls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:3vh}
+.cta-card{padding:28px;border-radius:var(--radius);text-align:center}
+.cta-card:nth-child(1){background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.2)}
+.cta-card:nth-child(2){background:rgba(251,113,133,.06);border:1px solid rgba(251,113,133,.2)}
+.cta-tag{display:inline-block;padding:4px 16px;border-radius:20px;font-size:clamp(12px,1.1vw,15px);font-weight:700;margin-bottom:12px}
+.cta-card:nth-child(1) .cta-tag{background:rgba(56,189,248,.15);color:var(--cyan)}
+.cta-card:nth-child(2) .cta-tag{background:rgba(251,113,133,.15);color:var(--pink)}
+.cta-url{font-size:clamp(12px,1.1vw,16px);color:var(--text-dim);font-family:monospace;word-break:break-all}
+.cta-repo{font-size:clamp(13px,1.2vw,17px);color:var(--text-dim);margin-bottom:2vh;font-family:monospace}
+.cta-closing{font-size:clamp(15px,1.5vw,21px);color:var(--text);font-weight:300}
+.cta-closing strong{color:var(--gold)}
+
+/* ========== Speaker Notes ========== */
+#notes-overlay{
+  position:fixed;top:0;right:0;width:380px;height:100vh;
+  background:rgba(11,17,32,.98);border-left:1px solid var(--border);
+  padding:24px;overflow-y:auto;z-index:200;display:none;
+  transform:translateX(0);transition:transform .3s ease;
+}
+#notes-overlay.show{display:block}
+#notes-overlay h4{font-size:14px;color:var(--cyan);margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+#notes-overlay .note-content{font-size:13px;color:var(--text);line-height:1.7}
+#notes-overlay .note-time{font-size:12px;color:var(--gold);margin-bottom:8px;font-family:monospace}
+#notes-overlay .note-warn{color:var(--pink);font-size:12px;margin-top:10px;padding:8px 12px;background:rgba(251,113,133,.08);border-radius:6px}
+
+/* ========== Print ========== */
+@media print{
+  #deck{width:100%;height:auto}
+  .slide{position:relative;display:flex !important;opacity:1 !important;transform:none !important;page-break-after:always;height:100vh}
+  #progress,#nav-hint,#notes-overlay{display:none !important}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" style="width:5%"></div>
+<div id="deck">
+
+<!-- P01 Cover -->
+<section class="slide active" id="p01" data-notes="~20秒。报项目名、副标题、一句话立意，立刻进下一页。不要在封面页解释技术栈。">
+  <div class="cover-content">
+    <div class="trophy">🏆</div>
+    <h1>2026世界杯冠军预测Agent</h1>
+    <p class="subtitle">一个会记忆、会想象、知道边界的预测Agent</p>
+    <div class="meta">
+      <span><span class="dot"></span> 线上：ainidbm.github.io/WorldCup-Prediction-mm-</span>
+      <span><span class="dot"></span> GitHub：ainidbm/WorldCup-Prediction-mm-</span>
+      <span><span class="dot"></span> 答辩人 / 2026-07</span>
+    </div>
+  </div>
+  <div class="page-num">01 / 20</div>
+</section>
+
+<!-- P02 Hook -->
+<section class="slide" id="p02" data-notes="~50秒·慢点。用三层不确定性重新定义问题。说完'难的从来不是建模'后停1秒。不要在这里报数字。">
+  <div class="chapter-tag">序幕</div>
+  <h2 style="text-align:center;margin-bottom:3vh">为什么是世界杯</h2>
+  <p class="hook-lead">预测世界杯，难的从来不是<strong>建模</strong>。</p>
+  <div class="three-col">
+    <div class="col card-cyan card">
+      <div class="col-num cyan">①</div>
+      <div class="col-title accent">真实会变</div>
+      <div class="col-desc">已完赛18场结果锁定<br>赛况天天在变</div>
+    </div>
+    <div class="col card-green card">
+      <div class="col-num green">②</div>
+      <div class="col-title green">概率要叠</div>
+      <div class="col-desc">10000次模拟<br>每场都要算晋级路径</div>
+    </div>
+    <div class="col card-gold card">
+      <div class="col-num gold">③</div>
+      <div class="col-title gold">必须实时</div>
+      <div class="col-desc">每日UTC 06:00自动重算<br>不能算一次就死</div>
+    </div>
+  </div>
+  <p class="hook-punch">世界杯是Agent能力的终极试炼场：它必须在<b style="color:var(--cyan)">"已确定的真实"</b>和<b style="color:var(--gold)">"未发生的概率"</b>之间持续思考。</p>
+  <div class="key-bar">世界杯难，不是因为建模难，是因为真实和概率要同时处理。</div>
+  <div class="page-num">02 / 20</div>
+</section>
+
+<!-- P03 Agent ≠ Model -->
+<section class="slide" id="p03" data-notes="~40秒。把Agent从营销词变成五个可检验的动作。不要念定义，让评委看图。">
+  <div class="chapter-tag">Act I · Agent如何思考</div>
+  <h2 style="text-align:center;margin-bottom:3vh">Agent ≠ 模型</h2>
+  <div class="split-compare">
+    <div class="side left">
+      <h3>传统预测</h3>
+      <ul class="cap-list">
+        <li><span style="color:var(--text-dim)">数据 → 模型 → 柱状图</span></li>
+        <li><span style="color:var(--text-dim)">只回答"谁赢"</span></li>
+      </ul>
+    </div>
+    <div class="side right">
+      <h3>本系统 · 一个Agent</h3>
+      <ul class="cap-list">
+        <li><span class="cap-icon cyan">🔒</span> <b>记忆</b> — 赛果锁定</li>
+        <li><span class="cap-icon green">📚</span> <b>学习</b> — 395场历史</li>
+        <li><span class="cap-icon gold">🎲</span> <b>想象</b> — 蒙特卡洛10000次</li>
+        <li><span class="cap-icon pink">💬</span> <b>表达</b> — 中文关键因素</li>
+        <li><span class="cap-icon purple">🛡️</span> <b>谦逊</b> — 85%上限</li>
+      </ul>
+    </div>
+  </div>
+  <div class="key-bar">Agent和模型的区别，是它知道自己能信到几成。</div>
+  <div class="page-num">03 / 20</div>
+</section>
+
+<!-- P04 Six-Step Pipeline -->
+<section class="slide" id="p04" data-notes="~45秒。把main.py的6步讲成思考过程。挑395场和10000次两个数字说就够。">
+  <div class="chapter-tag">Act I · Agent如何思考</div>
+  <h2 style="text-align:center;margin-bottom:3vh">六步思考流程</h2>
+  <div class="pipeline">
+    <div class="pipe-node">
+      <div class="pipe-circle">1</div>
+      <div class="pipe-tech">加载数据</div>
+      <div class="pipe-human">记住事实</div>
+      <div class="pipe-scale">14队·72场·395历史</div>
+    </div>
+    <div class="pipe-node">
+      <div class="pipe-circle">2</div>
+      <div class="pipe-tech">特征工程</div>
+      <div class="pipe-human">形成直觉</div>
+      <div class="pipe-scale">4维·10向量</div>
+    </div>
+    <div class="pipe-node">
+      <div class="pipe-circle">3</div>
+      <div class="pipe-tech">模型训练</div>
+      <div class="pipe-human">学习历史</div>
+      <div class="pipe-scale">RF 200棵·78.99%</div>
+    </div>
+    <div class="pipe-node">
+      <div class="pipe-circle">4</div>
+      <div class="pipe-tech">蒙特卡洛</div>
+      <div class="pipe-human">想象未来</div>
+      <div class="pipe-scale">10000次</div>
+    </div>
+    <div class="pipe-node">
+      <div class="pipe-circle">5</div>
+      <div class="pipe-tech">射手预测</div>
+      <div class="pipe-human">推演个体</div>
+      <div class="pipe-scale">47名球员</div>
+    </div>
+    <div class="pipe-node">
+      <div class="pipe-circle">6</div>
+      <div class="pipe-tech">JSON输出</div>
+      <div class="pipe-human">开口说话</div>
+      <div class="pipe-scale">predictions+accuracy</div>
+    </div>
+  </div>
+  <div class="key-bar">六步不是管线，是一个会思考的过程。</div>
+  <div class="page-num">04 / 20</div>
+</section>
+
+<!-- P05 Feature Engineering -->
+<section class="slide" id="p05" data-notes="~45秒。4维特征是判断依据。卖关子：权重只用于展示，模型不用。指向金色决策标签。">
+  <div class="chapter-tag">Act I · Agent如何思考</div>
+  <h2 style="text-align:center;margin-bottom:3vh">特征工程：Agent的直觉从哪来</h2>
+  <div class="radar-wrap">
+    <svg class="radar-svg" viewBox="0 0 360 360">
+      <defs><radialGradient id="rg1"><stop offset="0%" stop-color="#38bdf8" stop-opacity=".3"/><stop offset="100%" stop-color="#38bdf8" stop-opacity=".05"/></radialGradient></defs>
+      <g transform="translate(30,30)">
+      <!-- 4-axis grid rings -->
+      <polygon points="150,40 260,150 150,260 40,150" fill="none" stroke="rgba(148,163,184,.15)" stroke-width="1"/>
+      <polygon points="150,67.5 232.5,150 150,232.5 67.5,150" fill="none" stroke="rgba(148,163,184,.1)" stroke-width="1"/>
+      <polygon points="150,95 205,150 150,205 95,150" fill="none" stroke="rgba(148,163,184,.08)" stroke-width="1"/>
+      <polygon points="150,122.5 177.5,150 150,177.5 122.5,150" fill="none" stroke="rgba(148,163,184,.06)" stroke-width="1"/>
+      <!-- axes -->
+      <line x1="150" y1="150" x2="150" y2="40" stroke="rgba(148,163,184,.15)" stroke-width="1"/>
+      <line x1="150" y1="150" x2="260" y2="150" stroke="rgba(148,163,184,.15)" stroke-width="1"/>
+      <line x1="150" y1="150" x2="150" y2="260" stroke="rgba(148,163,184,.15)" stroke-width="1"/>
+      <line x1="150" y1="150" x2="40" y2="150" stroke="rgba(148,163,184,.15)" stroke-width="1"/>
+      <!-- data polygon: 40% / 30% / 15% / 15% -->
+      <polygon points="150,106 183,150 150,166.5 133.5,150" fill="url(#rg1)" stroke="#38bdf8" stroke-width="2"/>
+      <circle cx="150" cy="106" r="5" fill="#38bdf8"/>
+      <circle cx="183" cy="150" r="5" fill="#4ade80"/>
+      <circle cx="150" cy="166.5" r="5" fill="#fbbf24"/>
+      <circle cx="133.5" cy="150" r="5" fill="#fb7185"/>
+      <!-- labels -->
+      <text x="150" y="20" text-anchor="middle" dominant-baseline="middle" fill="#38bdf8" font-size="13" font-weight="700">近期状态 40%</text>
+      <text x="270" y="150" text-anchor="start" dominant-baseline="middle" fill="#4ade80" font-size="12" font-weight="600">硬实力 30%</text>
+      <text x="150" y="290" text-anchor="middle" dominant-baseline="middle" fill="#fbbf24" font-size="12" font-weight="600">情境 15%</text>
+      <text x="30" y="150" text-anchor="end" dominant-baseline="middle" fill="#fb7185" font-size="12" font-weight="600">交锋 15%</text>
+      </g>
+    </svg>
+    <div class="radar-info">
+      <div class="radar-axis">
+        <span class="radar-axis-name accent">近期状态</span>
+        <span class="radar-axis-human">最近踢得怎样</span>
+        <span class="radar-axis-weight cyan">40%</span>
+      </div>
+      <div class="radar-axis">
+        <span class="radar-axis-name green">硬实力</span>
+        <span class="radar-axis-human">家底有多厚</span>
+        <span class="radar-axis-weight green">30%</span>
+      </div>
+      <div class="radar-axis">
+        <span class="radar-axis-name pink">交锋记录</span>
+        <span class="radar-axis-human">历史谁克谁</span>
+        <span class="radar-axis-weight pink">15%</span>
+      </div>
+      <div class="radar-axis">
+        <span class="radar-axis-name gold">情境因素</span>
+        <span class="radar-axis-human">东道主与经验</span>
+        <span class="radar-axis-weight gold">15%</span>
+      </div>
+      <div class="radar-callout">⚠ 关键决策：这4维权重只用于展示，模型用原始10维特征训练（见Act II决策一）</div>
+    </div>
+  </div>
+  <div class="key-bar">它的直觉来自四件事：状态、实力、交锋、情境。</div>
+  <div class="page-num">05 / 20</div>
+</section>
+
+<!-- P06 Monte Carlo -->
+<section class="slide" id="p06" data-notes="~50秒。100x性能故事。'31万到496'要咬清楚，这是全场最高光工程数字。">
+  <div class="chapter-tag">Act I · Agent如何思考</div>
+  <h2 style="text-align:center;margin-bottom:2vh">蒙特卡洛：想象一万种未来</h2>
+  <div class="ba-wrap">
+    <p class="ba-concept">同一个赛程，跑一万遍，数谁拿冠军最多。</p>
+    <div class="ba-compare">
+      <div class="ba-card before">
+        <div class="ba-label">朴素做法</div>
+        <div class="ba-stat"><div class="ba-k">模型调用</div><div class="ba-v">310,000次</div></div>
+        <div class="ba-stat"><div class="ba-k">耗时</div><div class="ba-v">&gt;60秒</div></div>
+      </div>
+      <div class="ba-card after">
+        <div class="ba-label">预计算后</div>
+        <div class="ba-stat"><div class="ba-k">对阵预计算</div><div class="ba-v">91组</div></div>
+        <div class="ba-stat"><div class="ba-k">实际调用</div><div class="ba-v">496次</div></div>
+        <div class="ba-stat"><div class="ba-k">耗时</div><div class="ba-v">&lt;2秒</div></div>
+      </div>
+    </div>
+    <div class="ba-speedup">⚡ 提速 100x+</div>
+  </div>
+  <div class="key-bar">不是算得慢就认真，预计算让"想象一万次"变成可日常运行的事。</div>
+  <div class="page-num">06 / 20</div>
+</section>
+
+<!-- P07 Memory & Humility -->
+<section class="slide" id="p07" data-notes="~50秒·慢点。全场最人感的一页。说完'不翻车'后停2秒，让人格感落地。">
+  <div class="chapter-tag">Act I · Agent如何思考</div>
+  <h2 style="text-align:center;margin-bottom:3vh">记忆与谦逊</h2>
+  <div class="dual-card">
+    <div class="dc dc-left">
+      <div class="dc-icon">🔒</div>
+      <div class="dc-title">记忆 · 渐进式赛果融合</div>
+      <ul class="dc-list">
+        <li>已完赛18场真实结果锁定进模拟</li>
+        <li>剩余只推演未完成场次</li>
+        <li>随赛况进化，越往后越准</li>
+      </ul>
+    </div>
+    <div class="dc dc-right">
+      <div class="dc-icon">🛡️</div>
+      <div class="dc-title">谦逊 · 85%胜率硬上限</div>
+      <ul class="dc-list">
+        <li>超出85%的部分按比例退给平局和对手</li>
+        <li>再强也不说自己稳赢</li>
+        <li>防过度自信的设计红线</li>
+      </ul>
+      <div style="margin-top:16px;padding:12px;background:rgba(251,191,36,.08);border-radius:8px;text-align:center">
+        <span style="font-size:28px;font-weight:800;color:var(--gold)">85%</span>
+        <span style="font-size:14px;color:var(--text-dim);margin-left:8px">胜率天花板</span>
+      </div>
+    </div>
+  </div>
+  <div class="key-bar">记忆让它随赛况进化，谦逊让它不翻车。</div>
+  <div class="page-num">07 / 20</div>
+</section>
+
+<!-- P08 Four Layer Architecture -->
+<section class="slide" id="p08" data-notes="~30秒·快带过。30秒必须翻页，细节留给后三页。">
+  <div class="chapter-tag">Act II · 架构如何支撑</div>
+  <h2 style="text-align:center;margin-bottom:2vh">四层架构总览</h2>
+  <div class="layer-stack">
+    <div class="layer layer-1">
+      <div><div class="layer-name accent">数据层</div><div class="layer-duty">管"事实"</div></div>
+      <div class="layer-items"><span>teams.json · 14队</span><span>group_results · 72场</span><span>knockout_bracket</span><span>historical.csv · 395场</span></div>
+    </div>
+    <div class="layer layer-2">
+      <div><div class="layer-name green">预测引擎层</div><div class="layer-duty">管"思考"</div></div>
+      <div class="layer-items"><span>features</span><span>model</span><span>monte_carlo</span><span>output</span><span>top_scorer</span><span>config</span><span>main</span></div>
+    </div>
+    <div class="layer layer-3">
+      <div><div class="layer-name gold">可视化层</div><div class="layer-duty">管"翻译"</div></div>
+      <div class="layer-items"><span>React19</span><span>TypeScript</span><span>Recharts</span><span>SVG</span></div>
+    </div>
+    <div class="layer layer-4">
+      <div><div class="layer-name pink">部署层</div><div class="layer-duty">管"活着"</div></div>
+      <div class="layer-items"><span>GitHub Actions → Pages</span><span>CI/CD 全自动</span></div>
+    </div>
+  </div>
+  <div class="key-bar">四层，每层只干一件事，边界清楚。</div>
+  <div class="page-num">08 / 20</div>
+</section>
+
+<!-- P09 Decision 1 -->
+<section class="slide" id="p09" data-notes="~45秒。解开关子。不要展开10维特征是哪10个，说'原始特征'就够。">
+  <div class="chapter-tag">Act II · 架构如何支撑</div>
+  <h2 style="text-align:center;margin-bottom:2vh">决策一：模型与可解释性分离</h2>
+  <div class="decision-wrap">
+    <div class="decision-problem">❌ 如果用4维加权直接训练，模型会过拟合权重，且黑箱不可解释。</div>
+    <div class="decision-ab">
+      <div class="opt opt-a">
+        <div class="opt-name">方案A</div>
+        <div class="opt-desc">权重即特征，简单但黑箱</div>
+      </div>
+      <div class="opt opt-b">
+        <div class="opt-name">方案B</div>
+        <div class="opt-desc">原始特征训练 + 4维仅展示<br>复杂但双解释层</div>
+      </div>
+    </div>
+    <div class="decision-choice">
+      ✅ <b>选B：</b>随机森林吃10维原始特征训练；4维权重(40/30/15/15)只生成中文关键因素给前端。<br>
+      <span style="color:var(--text-dim)">证据：比赛旁出现"法国整体实力占优""摩洛哥近期状态更佳"这种人话。</span>
+    </div>
+  </div>
+  <div class="key-bar">模型归模型，解释归解释，两层分开才都稳。</div>
+  <div class="page-num">09 / 20</div>
+</section>
+
+<!-- P10 Decision 2 -->
+<section class="slide" id="p10" data-notes="~45秒。把'算得快'和'敢做静态部署'串成因果。">
+  <div class="chapter-tag">Act II · 架构如何支撑</div>
+  <h2 style="text-align:center;margin-bottom:2vh">决策二：概率预计算 + 静态部署</h2>
+  <div class="chain-wrap">
+    <div class="chain-wall">🧱 <b>性能墙：</b>朴素蒙特卡洛310000次调用，&gt;60秒，CI里跑不动。</div>
+    <div class="chain-solution">💡 <b>解法：</b>14队两两预计算91组对阵概率，模拟内只查表，调用降到496次。</div>
+    <div class="chain-consequence">🔗 <b>连带决策：</b>因为算得快，敢做"纯静态部署"——所有计算在CI跑完，GitHub Pages只发静态文件，零服务端依赖。</div>
+    <div class="chain-flow">
+      <span class="chain-node">310000次</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">预计算91组</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">496次</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">&lt;2秒</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">敢塞进CI</span>
+      <span class="chain-arrow">→</span>
+      <span class="chain-node">纯静态Pages</span>
+    </div>
+  </div>
+  <div class="key-bar">算得快，才敢把后端塞进CI，前端纯静态。</div>
+  <div class="page-num">10 / 20</div>
+</section>
+
+<!-- P11 CI/CD Pipeline -->
+<section class="slide" id="p11" data-notes="~40秒。CI/CD是项目的血脉，强调全自动、零运维。">
+  <div class="chapter-tag">Act II · 架构如何支撑</div>
+  <h2 style="text-align:center;margin-bottom:2vh">CI/CD 全自动流水线</h2>
+  <div style="display:flex;gap:24px;width:100%;max-width:1100px;margin-bottom:2vh">
+    <div class="card card-cyan" style="flex:1;text-align:center">
+      <div style="font-size:clamp(28px,3vw,42px);font-weight:800;color:var(--cyan);margin-bottom:6px">06:00</div>
+      <div style="font-size:clamp(14px,1.3vw,18px);font-weight:700;margin-bottom:6px">每日自动触发</div>
+      <div style="font-size:clamp(11px,1vw,14px);color:var(--text-dim)">UTC 06:00 定时跑<br>零人工干预</div>
+    </div>
+    <div class="card card-green" style="flex:1;text-align:center">
+      <div style="font-size:clamp(28px,3vw,42px);font-weight:800;color:var(--green);margin-bottom:6px">10步</div>
+      <div style="font-size:clamp(14px,1.3vw,18px);font-weight:700;margin-bottom:6px">CI/CD 管线</div>
+      <div style="font-size:clamp(11px,1vw,14px);color:var(--text-dim)">checkout → build → deploy<br>全链路自动化</div>
+    </div>
+    <div class="card card-gold" style="flex:1;text-align:center">
+      <div style="font-size:clamp(28px,3vw,42px);font-weight:800;color:var(--gold);margin-bottom:6px">0</div>
+      <div style="font-size:clamp(14px,1.3vw,18px);font-weight:700;margin-bottom:6px">服务端依赖</div>
+      <div style="font-size:clamp(11px,1vw,14px);color:var(--text-dim)">GitHub Pages 纯静态<br>零成本 · 零运维</div>
+    </div>
+  </div>
+  <div class="dp-tradeoff" style="max-width:900px">所有计算在 CI 跑完，GitHub Pages 只发静态文件。用户永远看到最新预测，无需服务端。</div>
+  <div class="dp-ci" style="margin-top:1vh">CI/CD 10步：checkout → py3.12 → pip → main.py → node20 → npm ci → build → cp json → artifact → pages</div>
+  <div class="key-bar">算完就发，零服务端，零运维。</div>
+  <div class="page-num">11 / 20</div>
+</section>
+
+<!-- P12 Timeline -->
+<section class="slide" id="p12" data-notes="~30秒·快带过。给开发地形图，细节在后三页。">
+  <div class="chapter-tag">Act III · 工具链如何落地</div>
+  <h2 style="text-align:center;margin-bottom:3vh">八轮迭代地图</h2>
+  <div class="timeline-wrap">
+    <div class="timeline">
+      <div class="tl-dot">1</div>
+      <div class="tl-dot">2</div>
+      <div class="tl-dot">3</div>
+      <div class="tl-dot">4</div>
+      <div class="tl-dot">5</div>
+      <div class="tl-dot">6</div>
+      <div class="tl-dot">7</div>
+      <div class="tl-dot">8</div>
+    </div>
+    <div class="tl-phases">
+      <div class="tl-phase">
+        <div class="tl-phase-rounds">轮 1-3</div>
+        <div class="tl-phase-name accent">从0到1</div>
+        <div class="tl-phase-theme">打地基：代码·文档·数据</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-phase-rounds">轮 4-6</div>
+        <div class="tl-phase-name green">核心演进</div>
+        <div class="tl-phase-theme">进化：过滤·比分·像样</div>
+      </div>
+      <div class="tl-phase">
+        <div class="tl-phase-rounds">轮 7-8</div>
+        <div class="tl-phase-name gold">上线交付</div>
+        <div class="tl-phase-theme">收口：文档·上线</div>
+      </div>
+    </div>
+  </div>
+  <div class="key-bar">八轮迭代，handoff接力，每轮解决一个真问题。</div>
+  <div class="page-num">12 / 20</div>
+</section>
+
+<!-- P13 Phase 1 -->
+<section class="slide" id="p13" data-notes="~45秒。三段式问题→工具→突破。不要逐个报Task名，12个Task是量级感。">
+  <div class="chapter-tag">Act III · 工具链如何落地</div>
+  <h2 style="text-align:center;margin-bottom:2vh">第一阶段：从0到1（轮1-3）</h2>
+  <div class="round-cards">
+    <div class="round-card">
+      <div class="round-num accent">轮1</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">从零搭一个全栈预测系统</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">WorkBuddy多Task编排（12个Task：7后端+5前端+CI/CD）</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">一次会话产出可运行全栈</div></div>
+    </div>
+    <div class="round-card">
+      <div class="round-num green">轮2</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">代码有了但缺架构文档</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">Qoder RepoWiki自动生成知识库</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">6页架构文档+3张知识卡+wiki_plan.yaml</div></div>
+    </div>
+    <div class="round-card">
+      <div class="round-num gold">轮3</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">训练数据只有117场，太少</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">openfootball/worldcup.json+euro.json+清洗脚本</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">117→395场，身价单位统一</div></div>
+    </div>
+  </div>
+  <div class="key-bar">前三轮打地基：代码、文档、数据。</div>
+  <div class="page-num">13 / 20</div>
+</section>
+
+<!-- P14 Phase 2 -->
+<section class="slide" id="p14" data-notes="~50秒。技术含金量最高段。参数可以说但别展开公式。">
+  <div class="chapter-tag">Act III · 工具链如何落地</div>
+  <h2 style="text-align:center;margin-bottom:2vh">第二阶段：核心演进（轮4-6）</h2>
+  <div class="round-cards">
+    <div class="round-card">
+      <div class="round-num accent">轮4</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">模拟按全部32队跑，已淘汰队伍污染预测</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">actual_results赛果注入+KnockoutProgress组件+Vite分包</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">32→14队过滤，回测扩到90场，包体547KB→193KB</div></div>
+    </div>
+    <div class="round-card">
+      <div class="round-num green">轮5</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">只预测谁赢，不够直观</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">Poisson PMF比分预测+CSS badge</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">每场给出预测比分（如巴西2-1挪威）</div></div>
+    </div>
+    <div class="round-card">
+      <div class="round-num gold">轮6</div>
+      <div><div class="round-col-title">问题</div><div class="round-col-content">纯Poisson比分太保守（全是1-0）</div></div>
+      <div><div class="round-col-title">工具</div><div class="round-col-content">参数调优(decay 0.72→0.85·blend 60:40→30:70)+平局修正</div></div>
+      <div><div class="round-col-title">突破</div><div class="round-col-content green">比分多样化（2-1/0-2/3-0都有）</div></div>
+    </div>
+  </div>
+  <div class="key-bar">三轮核心进化：先算对谁晋级，再算比分，最后让比分像真比赛。</div>
+  <div class="page-num">14 / 20</div>
+</section>
+
+<!-- P15 Phase 3 -->
+<section class="slide" id="p15" data-notes="~40秒。从能跑到能答辩到能交互，闭环。">
+  <div class="chapter-tag">Act III · 工具链如何落地</div>
+  <h2 style="text-align:center;margin-bottom:3vh">第三阶段：上线交付（轮7-8）</h2>
+  <div class="two-round-cards">
+    <div class="trc">
+      <div class="trc-num accent">轮7</div>
+      <div class="trc-problem">📋 要参赛提交，得有完整答辩材料</div>
+      <div class="trc-tool">工具：通读全部源码 + 撰写 competition-submission.md</div>
+      <div class="trc-breakthrough">✓ 覆盖架构30分/可视化30分/创新20分/加分项的完整文档</div>
+    </div>
+    <div class="trc">
+      <div class="trc-num pink">轮8</div>
+      <div class="trc-problem">🚀 要让评委能在线访问，得部署上线</div>
+      <div class="trc-tool">工具：GitHub Actions CI/CD + Pages 静态部署 + Vite 构建 + 自动重算</div>
+      <div class="trc-breakthrough">✓ 每日UTC 06:00自动重算，零服务端依赖，零成本</div>
+    </div>
+  </div>
+  <div class="key-bar">最后两轮：先写成文档，再做成能看的线上服务。</div>
+  <div class="page-num">15 / 20</div>
+</section>
+
+<!-- P16 Champion Prediction -->
+<section class="slide" id="p16" data-notes="~45秒。强调不是法国最强，是每一步都比较强，概率乘起来最高。">
+  <div class="chapter-tag">Act IV · 结果有多准</div>
+  <h2 style="text-align:center;margin-bottom:2vh">冠军预测：法国 19.51%</h2>
+  <div class="bar-chart-wrap">
+    <div class="bar-chart">
+      <div class="bar-row">
+        <div class="bar-team">🇫🇷 法国</div>
+        <div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#38bdf8,#4ade80)">19.51%</div></div>
+        <div class="bar-val cyan">19.51%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-team">🇧🇷 巴西</div>
+        <div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#4ade80,#fbbf24)">14.62%</div></div>
+        <div class="bar-val green">14.62%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-team">🇲🇦 摩洛哥</div>
+        <div class="bar-track"><div class="bar-fill" style="width:71%;background:linear-gradient(90deg,#4ade80,#fbbf24)">13.82%</div></div>
+        <div class="bar-val green">13.82%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-team">🇨🇴 哥伦比亚</div>
+        <div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#fbbf24,#fb7185)">9.84%</div></div>
+        <div class="bar-val gold">9.84%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-team">🇧🇪 比利时</div>
+        <div class="bar-track"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,#fbbf24,#fb7185)">7.89%</div></div>
+        <div class="bar-val gold">7.89%</div>
+      </div>
+    </div>
+    <div class="reasoning-chain">
+      <div class="reasoning-title">🇫🇷 法国夺冠推理链</div>
+      <div class="chain-steps">
+        <div class="chain-step"><span class="chain-step-num">R16</span><span class="chain-step-done">已完成 ✓</span></div>
+        <div class="chain-step"><span class="chain-step-num">QF</span><span class="chain-step-text">预测 3-0</span></div>
+        <div class="chain-step"><span class="chain-step-num">SF</span><span class="chain-step-text">约 65%</span></div>
+        <div class="chain-step"><span class="chain-step-num">F</span><span class="chain-step-text">约 55%</span></div>
+        <div class="chain-step"><span class="chain-step-num">🏆</span><span class="chain-step-text gold">约 60%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="key-bar">法国19.5%排第一，因为它每一步都稳，不是某一步爆。</div>
+  <div class="page-num">16 / 20</div>
+</section>
+
+<!-- P17 Accuracy -->
+<section class="slide" id="p17" data-notes="~50秒·慢点。主动暴露70.83%反而增加可信度。说完'才更值得信'后停1.5秒。">
+  <div class="chapter-tag">Act IV · 结果有多准</div>
+  <h2 style="text-align:center;margin-bottom:3vh">准确率证据：淘汰赛 88.9%</h2>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">交叉验证</div>
+      <div class="stat-value">78.99%</div>
+      <div class="stat-note">5折</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">综合回测</div>
+      <div class="stat-value">74.44%</div>
+      <div class="stat-note">90场</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">小组赛</div>
+      <div class="stat-value">70.83%</div>
+      <div class="stat-note">72场</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">⭐ 淘汰赛</div>
+      <div class="stat-value">88.89%</div>
+      <div class="stat-note">18场对16场</div>
+    </div>
+  </div>
+  <p class="stat-insight"><strong>反差点：</strong>淘汰赛反而比小组赛准——因为淘汰赛有平局/加时/点球，模型的优势更明显。<br>90场是独立验证集（已完赛结果作验证，非训练集泄漏）。</p>
+  <div class="key-bar">淘汰赛18场对16场，88.9%，越关键越准。</div>
+  <div class="page-num">17 / 20</div>
+</section>
+
+<!-- P18 Explainability -->
+<section class="slide" id="p18" data-notes="~35秒。把决策一兑现成用户视角。">
+  <div class="chapter-tag">Act IV · 结果有多准</div>
+  <h2 style="text-align:center;margin-bottom:2vh">可解释性：Agent会说人话</h2>
+  <div class="explain-wrap">
+    <div class="match-card-ui">
+      <div class="match-teams">
+        <div class="match-team"><div class="match-team-name">🇫🇷 法国</div></div>
+        <div class="match-score">3 - 0</div>
+        <div class="match-team"><div class="match-team-name">🇲🇦 摩洛哥</div></div>
+      </div>
+      <div class="match-vs">胜率 85% vs 5%</div>
+      <div class="match-factors">
+        <div class="factor-tag">📊 法国整体实力占优</div>
+        <div class="factor-tag gold">🏆 法国大赛底蕴更深</div>
+        <div class="factor-tag">📈 摩洛哥近期状态更佳</div>
+      </div>
+    </div>
+    <div>
+      <table class="scorer-table">
+        <thead><tr><th>球员</th><th>球队</th><th>已进</th><th>预测</th></tr></thead>
+        <tbody>
+          <tr class="top"><td class="player gold">姆巴佩</td><td>法国</td><td>7</td><td class="gold">9</td></tr>
+          <tr class="top"><td class="player">梅西</td><td>阿根廷</td><td>7</td><td class="gold">8</td></tr>
+          <tr class="top"><td class="player">哈兰德</td><td>挪威</td><td>5</td><td class="gold">6</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="key-bar">它不只给概率，还告诉你凭什么。</div>
+  <div class="page-num">18 / 20</div>
+</section>
+
+<!-- P19 Value -->
+<section class="slide" id="p19" data-notes="~40秒。升维到Agent工程范式。">
+  <div class="chapter-tag">尾声</div>
+  <h2 style="text-align:center;margin-bottom:3vh">项目价值：这证明了什么</h2>
+  <div class="insight-three">
+    <div class="insight-card">
+      <div class="insight-card-title accent">Agent ≠ 模型</div>
+      <div class="insight-card-desc">是有边界的思考体<br>会记忆、会谦逊</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title green">工程让重算变日常</div>
+      <div class="insight-card-desc">预计算让10000次模拟<br>成为CI里的日常操作</div>
+    </div>
+    <div class="insight-card">
+      <div class="insight-card-title gold">可解释是信任前提</div>
+      <div class="insight-card-desc">不是附属功能<br>是Agent被信任的门槛</div>
+    </div>
+  </div>
+  <div class="formula-band">
+    预测类Agent的公式 = 
+    <span class="f-cyan">记忆</span> + 
+    <span class="f-green">想象</span> + 
+    <span class="f-gold">谦逊</span> + 
+    <span class="f-pink">人话</span> + 
+    <span class="f-purple">可验证</span>
+  </div>
+  <div class="page-num">19 / 20</div>
+</section>
+
+<!-- P20 CTA -->
+<section class="slide" id="p20" data-notes="~30秒。把验证权交给评委，开放姿态收尾。不要在Q&A页再总结一遍。">
+  <div class="cta-wrap">
+    <h2 style="margin-bottom:3vh">线上体验 + Q&A</h2>
+    <div class="cta-urls" style="grid-template-columns:1fr;max-width:600px;margin:0 auto 3vh">
+      <div class="cta-card">
+        <span class="cta-tag">看 · GitHub Pages</span>
+        <div class="cta-url">ainidbm.github.io/<br>WorldCup-Prediction-mm-</div>
+      </div>
+    </div>
+    <div class="cta-repo">📦 github.com/ainidbm/WorldCup-Prediction-mm-</div>
+    <p class="cta-closing">欢迎提问，特别是<strong>"你凭什么信"</strong>这类问题。</p>
+  </div>
+  <div class="page-num">20 / 20</div>
+</section>
+
+</div><!-- /deck -->
+
+<!-- Speaker Notes Overlay -->
+<div id="notes-overlay">
+  <h4>📝 演讲提示</h4>
+  <div id="notes-content"></div>
+</div>
+
+<div id="nav-hint">← → 翻页 · S 演讲提示 · F 全屏 · P 打印PDF</div>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const progress = document.getElementById('progress');
+  const notesOverlay = document.getElementById('notes-overlay');
+  const notesContent = document.getElementById('notes-content');
+  let current = 0;
+
+  function show(idx){
+    if(idx<0) idx=0;
+    if(idx>=total) idx=total-1;
+    slides.forEach((s,i)=>{
+      s.classList.remove('active','prev');
+      if(i===idx) s.classList.add('active');
+      else if(i<idx) s.classList.add('prev');
+    });
+    current = idx;
+    progress.style.width = ((idx+1)/total*100)+'%';
+    // Update notes
+    const note = slides[idx].getAttribute('data-notes')||'';
+    notesContent.innerHTML = note ? '<div class="note-content">'+note.replace(/\n/g,'<br>')+'</div>' : '<div class="note-content" style="color:var(--text-faint)">本页无额外提示</div>';
+  }
+
+  function next(){ show(current+1); }
+  function prev(){ show(current-1); }
+
+  document.addEventListener('keydown',(e)=>{
+    switch(e.key){
+      case 'ArrowRight': case ' ': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'PageUp': e.preventDefault(); prev(); break;
+      case 'Home': show(0); break;
+      case 'End': show(total-1); break;
+      case 's': case 'S': notesOverlay.classList.toggle('show'); break;
+      case 'f': case 'F':
+        if(!document.fullscreenElement) document.documentElement.requestFullscreen();
+        else document.exitFullscreen();
+        break;
+      case 'p': case 'P':
+        window.print();
+        break;
+    }
+  });
+
+  // Click to advance
+  document.getElementById('deck').addEventListener('click',(e)=>{
+    if(e.target.closest('a')) return;
+    next();
+  });
+
+  // Touch support
+  let touchStartX = 0;
+  document.addEventListener('touchstart',(e)=>{ touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend',(e)=>{
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx)>50){ dx<0 ? next() : prev(); }
+  });
+
+  show(0);
+})();
+</script>
+
+</body>
+</html>
