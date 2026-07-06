@@ -1,33 +1,72 @@
 """
-射手预测模块
+射手预测模块 v2
 
-加权公式：
-预测总进球 = 已进球 + 剩余场次 × 场均射门数 × 射门转化率 × 出场概率
+改进点：
+1. 根据 actual_results 自动识别已淘汰球队，已淘汰球队的球员不进 Top 10
+2. 球员级差异化：场均进球率、转化率基于实际表现计算
+3. 置信度评估：基于预测差距 + 球队晋级概率
+4. 公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
 """
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Set, Tuple
 
 
-# 默认射手数据（小组赛进球者汇总 + 估算属性）
-DEFAULT_SHOTS_PER_GAME = {
-    "姆巴佩": 5.0, "哈兰德": 4.5, "凯恩": 4.0, "梅西": 3.5,
-    "维尼修斯": 4.0, "C罗": 3.0, "贝林厄姆": 3.0, "亚马尔": 3.5,
-    "萨拉赫": 3.5, "劳塔罗": 3.0, "孙兴慜": 3.0, "穆夏拉": 3.0,
+# 精英射手名单（高转化率，~0.20-0.22）
+ELITE_SCORERS: Set[str] = {
+    "姆巴佩", "哈兰德", "凯恩", "梅西", "C罗", "维尼修斯",
+    "登贝莱", "萨拉赫", "劳塔罗", "莱万多夫斯基",
+}
+
+# 主力射手（中等转化率，~0.15-0.18）
+STARTER_SCORERS: Set[str] = {
+    "贝林厄姆", "亚马尔", "穆夏拉", "孙兴慜", "哲凯赖什", "伊萨克",
+    "奥亚萨瓦尔", "加克波", "约翰·曼赞比", "基尼奥内斯", "库尼亚",
+    "戴维", "佩德里", "萨卡", "帕尔默", "福登",
+}
+
+# 默认射门数（每场）
+DEFAULT_SHOTS_PER_GAME: Dict[str, float] = {
+    "姆巴佩": 5.5, "哈兰德": 5.0, "凯恩": 4.5, "梅西": 4.0,
+    "维尼修斯": 4.5, "C罗": 3.5, "贝林厄姆": 3.5, "亚马尔": 3.5,
+    "萨拉赫": 4.0, "劳塔罗": 3.5, "孙兴慜": 3.5, "穆夏拉": 3.5,
     "加克波": 3.0, "普利西奇": 3.0, "哲科": 2.5, "希克": 3.0,
     "久保建英": 3.0, "三笘薰": 2.5, "布拉欣·迪亚斯": 2.5,
     "恩内斯里": 3.0, "J罗": 2.5, "路易斯·迪亚斯": 3.0,
     "努涅斯": 3.5, "巴尔韦德": 2.0, "伊萨克": 3.5,
-    "哲凯赖什": 3.0, "库杜斯": 3.0, "莫德里奇": 1.5,
+    "哲凯赖什": 3.5, "库杜斯": 3.0, "莫德里奇": 1.5,
     "德布劳内": 2.0, "多库": 3.0, "奥彭达": 3.0,
-    "萨卡": 3.0, "帕尔默": 2.5, "福登": 2.5,
+    "萨卡": 3.5, "帕尔默": 2.5, "福登": 2.5,
     "萨比策": 2.0, "扎卡": 1.5, "乔纳森·戴维": 3.0,
     "戴维斯": 1.5, "居莱尔": 2.5, "耶尔德兹": 2.5,
     "尼科·威廉姆斯": 2.5, "佩德里": 1.5, "罗德里": 1.0,
     "塔雷米": 3.0, "马赫雷斯": 2.5, "阿穆拉": 2.0,
     "莱默": 2.0, "麦肯尼": 2.0, "巴洛贡": 2.5,
+    "登贝莱": 4.0,
+    "约翰·曼赞比": 3.0, "基尼奥内斯": 3.5, "赛巴里": 2.5,
+    "库尼亚": 3.0, "拉希米": 2.5, "拉林": 3.0,
+    "伊利亚·贾斯特": 2.5, "德尼斯·翁达夫": 2.5, "布罗比": 2.5,
+    "伊斯梅拉·萨尔": 2.5, "约安·维萨": 2.5, "奥亚萨瓦尔": 3.0,
+    "蒂莱曼斯": 2.5, "马丁内斯": 2.5, "希门尼斯": 2.0,
+    "乌纳希": 2.5,
+    "欧斯塔基奥": 2.0, "卡塞米罗": 1.5, "佐野海舟": 1.0,
+    "哈弗茨": 2.0, "胡里奥·恩西索": 1.5, "伊萨·迪奥普": 1.5,
+    "阿马德": 2.0, "安东尼奥·努萨": 1.5, "巴科拉": 1.5,
+    "巴尔加斯": 2.0, "E·马赫米奇": 1.5, "弗拉林·巴洛贡": 2.0,
+    "尼古拉斯·佩佩": 2.5, "萨默维尔": 2.0, "镰田大地": 1.5,
+    "亚辛·阿亚里": 1.5, "弗洛伦蒂诺": 1.0,
 }
 
-DEFAULT_CONVERSION_RATE = 0.15  # 射门转化率（淘汰赛阶段精英射手偏高）
-DEFAULT_APPEARANCE_PROB = 0.95  # 出场概率（淘汰赛核心球员几乎必上场）
+# 球队核心射手（默认射门数查不到时使用）
+TEAM_FALLBACK_SHOTS = 2.5
+
+# 转化率（射门转进球）
+ELITE_CONVERSION = 0.20   # 精英射手
+STARTER_CONVERSION = 0.16  # 主力射手
+ROLE_CONVERSION = 0.10     # 角色球员
+
+# 出场概率（淘汰赛核心球员几乎必上场）
+ELITE_APPEARANCE = 0.97
+STARTER_APPEARANCE = 0.90
+ROLE_APPEARANCE = 0.65
 
 
 def _is_excluded(scorer: str) -> bool:
@@ -35,38 +74,61 @@ def _is_excluded(scorer: str) -> bool:
     return "(乌龙)" in scorer or "(点球)" in scorer
 
 
+def _classify_player(player: str) -> str:
+    """球员分级：elite / starter / role"""
+    if player in ELITE_SCORERS:
+        return "elite"
+    if player in STARTER_SCORERS:
+        return "starter"
+    return "role"
+
+
+def _get_player_params(player: str) -> Tuple[float, float, float]:
+    """获取球员的射门数、转化率、出场概率"""
+    tier = _classify_player(player)
+    shots = DEFAULT_SHOTS_PER_GAME.get(player, TEAM_FALLBACK_SHOTS)
+    if tier == "elite":
+        conversion = ELITE_CONVERSION
+        appearance = ELITE_APPEARANCE
+    elif tier == "starter":
+        conversion = STARTER_CONVERSION
+        appearance = STARTER_APPEARANCE
+    else:
+        conversion = ROLE_CONVERSION
+        appearance = ROLE_APPEARANCE
+    return shots, conversion, appearance
+
+
+def _get_eliminated_teams(bracket: dict) -> Set[str]:
+    """从实际赛果中提取已淘汰球队"""
+    eliminated = set()
+    for r in bracket.get("results", []):
+        if "winner" in r:
+            loser = r["teamA"] if r["teamA"] != r["winner"] else r["teamB"]
+            eliminated.add(loser)
+    return eliminated
+
+
 def _extract_group_scorers(group_results: list) -> Dict[str, Dict[str, Any]]:
     """从小组赛结果中提取射手统计"""
     scorers = {}
 
     for match in group_results:
-        # 处理 A 队射手（过滤乌龙球）
         for scorer in match.get("scorersA", []):
             if _is_excluded(scorer):
                 continue
             if scorer not in scorers:
-                scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0}
+                scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0, "groupGoals": 0}
             scorers[scorer]["goals"] += 1
+            scorers[scorer]["groupGoals"] += 1
 
-        # 处理 B 队射手（过滤乌龙球）
         for scorer in match.get("scorersB", []):
             if _is_excluded(scorer):
                 continue
             if scorer not in scorers:
-                scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0}
+                scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0, "groupGoals": 0}
             scorers[scorer]["goals"] += 1
-
-    # 计算每人出场场次（简化：按所属球队的小赛比赛场数）
-    team_matches = {}
-    for match in group_results:
-        for team in [match["teamA"], match["teamB"]]:
-            team_matches[team] = team_matches.get(team, 0) + 1
-
-    # 每队每场2个半场比赛，每人出场次数约等于队比赛场次 * 0.85
-    for scorer, data in scorers.items():
-        team = data["team"]
-        total_team_matches = team_matches.get(team, 3)
-        data["matches"] = total_team_matches  # 简化为全部出场
+            scorers[scorer]["groupGoals"] += 1
 
     return scorers
 
@@ -86,35 +148,49 @@ def _extract_knockout_scorers(bracket: dict) -> Dict[str, Dict[str, Any]]:
             if _is_excluded(scorer):
                 continue
             if scorer not in scorers:
-                scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0}
+                scorers[scorer] = {"goals": 0, "team": match["teamA"], "matches": 0, "knockoutGoals": 0}
             scorers[scorer]["goals"] += 1
+            scorers[scorer].setdefault("knockoutGoals", 0)
+            scorers[scorer]["knockoutGoals"] += 1
 
         for scorer in match.get("scorersB", []):
             if _is_excluded(scorer):
                 continue
             if scorer not in scorers:
-                scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0}
+                scorers[scorer] = {"goals": 0, "team": match["teamB"], "matches": 0, "knockoutGoals": 0}
             scorers[scorer]["goals"] += 1
+            scorers[scorer].setdefault("knockoutGoals", 0)
+            scorers[scorer]["knockoutGoals"] += 1
 
     return scorers
 
 
-def _estimate_remaining_matches(team: str, stage_probs: Dict) -> float:
+def _estimate_confidence(predicted: float, runner_up: float, team_champion_prob: float) -> str:
     """
-    估算剩余场次。
-    基于蒙特卡洛模拟中的晋级概率：
-    - 进入 8 强 = 额外 1 场
-    - 进入 4 强 = 额外 1 场
-    - 进入决赛 = 额外 1 场
-    - 夺冠 = 额外 1 场（三四名决赛不计）
+    评估预测置信度。
+
+    考虑因素：
+    1. 预测进球与第 11 名的差距（差距越大越置信）
+    2. 球队晋级概率（球队越强，未来场次越确定）
     """
-    probs = stage_probs.get(team, {})
-    remaining = 0.0
-    remaining += probs.get("quarter", 0.5)   # 晋级8强的概率 = 打8强赛
-    remaining += probs.get("semi", 0.25)     # 晋级4强
-    remaining += probs.get("final", 0.125)   # 晋级决赛
-    remaining += probs.get("champion", 0.06) # 冠军赛
-    return max(remaining, 0.5)  # 至少还有 0.5 场（16强本身）
+    if predicted <= 0:
+        return "低"
+
+    margin = predicted - runner_up
+    # 差距比例
+    margin_ratio = margin / max(predicted, 1)
+
+    # 球队概率权重
+    team_weight = 0.5 + min(team_champion_prob * 5, 0.5)  # 0.5 ~ 1.0
+
+    score = margin_ratio * team_weight
+
+    if score >= 0.30:
+        return "高"
+    elif score >= 0.15:
+        return "中"
+    else:
+        return "低"
 
 
 def predict_top_scorers(
@@ -128,11 +204,18 @@ def predict_top_scorers(
     预测最佳射手 Top 10。
 
     公式：预测总进球 = 已进球 + 剩余场次 × 场均射门 × 转化率 × 出场概率
-    remaining_matches 由蒙特卡洛模拟的条件概率计算得出。
+
+    改进点：
+    1. 自动识别已淘汰球队，剔除其球员
+    2. 球员级差异化（精英/主力/角色）
+    3. 置信度评估
     """
+    # 1. 收集已淘汰球队
+    eliminated_teams = _get_eliminated_teams(bracket) if bracket else set()
+
+    # 2. 提取射手数据
     group_scorers = _extract_group_scorers(group_results)
 
-    # 合并淘汰赛进球（如有）
     if bracket:
         knockout_scorers = _extract_knockout_scorers(bracket)
         for player, data in knockout_scorers.items():
@@ -146,31 +229,64 @@ def predict_top_scorers(
         existing_goals = data["goals"]
         team = data["team"]
 
-        # 使用条件概率计算的剩余场次，淘汰队伍为0
+        # 已淘汰球队球员不参与预测（保留已进球数，predicted=existing）
+        if team in eliminated_teams:
+            predictions.append({
+                "player": player,
+                "team": team,
+                "existingGoals": existing_goals,
+                "predictedGoals": existing_goals,  # 已淘汰，预测=已进球
+                "remainingMatches": 0.0,
+                "confidence": "已淘汰",
+                "status": "eliminated",
+            })
+            continue
+
+        # 未淘汰球队球员
         if remaining_matches is not None:
             remaining = remaining_matches.get(team, 0.0)
         else:
             remaining = 0.0
 
-        # 已淘汰的队伍不参与预测
         if remaining <= 0:
             continue
 
-        shots_per_game = DEFAULT_SHOTS_PER_GAME.get(player, 2.5)
-        conversion_rate = DEFAULT_CONVERSION_RATE
-        appearance_prob = DEFAULT_APPEARANCE_PROB
+        # 球员级差异化参数
+        shots, conversion, appearance = _get_player_params(player)
 
-        predicted_additional = remaining * shots_per_game * conversion_rate * appearance_prob
+        predicted_additional = remaining * shots * conversion * appearance
         predicted_total = existing_goals + predicted_additional
 
         predictions.append({
             "player": player,
             "team": team,
             "existingGoals": existing_goals,
-            "predictedGoals": round(predicted_total),
+            "predictedGoals": round(predicted_total, 1),
             "remainingMatches": round(remaining, 1),
+            "confidence": "中",  # 后面统一计算
+            "status": "active",
         })
 
-    # 按预测总进球排序，取 Top 10
-    predictions.sort(key=lambda x: x["predictedGoals"], reverse=True)
-    return predictions[:10]
+    # 排序：先按状态（active 优先），再按预测进球
+    predictions.sort(key=lambda x: (
+        0 if x["status"] == "active" else 1,
+        -x["predictedGoals"],
+    ))
+
+    # 取前 10 个 active 球员进行置信度评估
+    top_active = [p for p in predictions if p["status"] == "active"][:10]
+
+    if top_active:
+        # 第 11 名作为参照
+        active_11th = [p for p in predictions if p["status"] == "active"]
+        runner_up_pred = active_11th[10]["predictedGoals"] if len(active_11th) > 10 else 0
+
+        for p in top_active:
+            team_champion = stage_probs.get(p["team"], {}).get("champion", 0)
+            p["confidence"] = _estimate_confidence(
+                p["predictedGoals"], runner_up_pred, team_champion
+            )
+            # 标准化 predictedGoals 为整数（用于展示）
+            p["predictedGoals"] = round(p["predictedGoals"])
+
+    return top_active

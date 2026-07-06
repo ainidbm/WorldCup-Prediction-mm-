@@ -28,6 +28,8 @@ export interface TopScorer {
   existingGoals: number;
   predictedGoals: number;
   remainingMatches: number;
+  confidence?: string;
+  status?: string;
 }
 
 export interface KnockoutMatch {

@@ -233,26 +233,56 @@ def compute_remaining_matches(
     for team, probs in stage_probs.items():
         furthest = team_furthest.get(team)
 
-        # 已淘汰的队伍
-        if probs["champion"] == 0 and probs["roundOf16"] > 0:
+        # 已淘汰的队伍（实际赛果中输了 QF/SF/Final）
+        if furthest in ("quarter", "semi", "final") and team not in [
+            actual_results.get(m["id"])
+            for stage in ("quarter", "semi", "final", "championship")
+            for m in structure.get(stage, [])
+            if m["id"] in actual_results
+        ]:
             remaining[team] = 0.0
             continue
 
         if furthest == "quarter":
-            # 已打完QF: 保证已打1场 + 条件概率
-            rem = 1.0
-            rem += probs["semi"] / max(probs["quarter"], 0.01)
-            rem += probs["champion"] / max(probs["quarter"], 0.01)
+            # 已打完QF: 判断是胜者还是败者
+            quarter_winners = {
+                actual_results.get(m["id"])
+                for m in structure.get("quarter", [])
+                if m["id"] in actual_results
+            }
+            if team in quarter_winners:
+                # QF 胜者：保证已打 1 场 + 条件概率
+                rem = 0.0  # 还未打 SF
+                rem += probs["semi"] / max(probs["quarter"], 0.01)  # 期望进 SF
+                rem += probs["champion"] / max(probs["quarter"], 0.01)  # 期望最终夺冠
+                # SF 阶段才算 1 场
+                rem = (probs["semi"] / max(probs["quarter"], 0.01)) * 1.0  \
+                    + (probs["final"] / max(probs["quarter"], 0.01)) * 1.0  \
+                    + (probs["champion"] / max(probs["quarter"], 0.01)) * 1.0
+            else:
+                # QF 败者：已淘汰
+                remaining[team] = 0.0
+                continue
         elif furthest == "semi":
-            rem = 1.0
-            rem += probs["champion"] / max(probs["semi"], 0.01)
+            # 已打完 SF
+            semi_winners = {
+                actual_results.get(m["id"])
+                for m in structure.get("semi", [])
+                if m["id"] in actual_results
+            }
+            if team in semi_winners:
+                rem = 1.0  # 保证打 Final
+                rem += probs["champion"] / max(probs["semi"], 0.01)  # 期望夺冠
+            else:
+                remaining[team] = 0.0
+                continue
         elif furthest in ("final", "championship"):
             rem = 1.0
         else:
             # 默认在 QF 阶段（R16 全部完成）
-            rem = 1.0
-            rem += probs["semi"] / max(probs["quarter"], 0.01)
-            rem += probs["champion"] / max(probs["quarter"], 0.01)
+            rem = (probs["semi"] / max(probs["quarter"], 0.01)) * 1.0 \
+                + (probs["final"] / max(probs["quarter"], 0.01)) * 1.0 \
+                + (probs["champion"] / max(probs["quarter"], 0.01)) * 1.0
 
         remaining[team] = round(rem, 2)
 

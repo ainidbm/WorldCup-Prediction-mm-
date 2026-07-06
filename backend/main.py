@@ -11,6 +11,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from config import (
+    DATA_DIR,
     TEAMS_FILE,
     GROUP_RESULTS_FILE,
     KNOCKOUT_BRACKET_FILE,
@@ -23,6 +24,7 @@ from model import train_model, create_match_predictor
 from monte_carlo import run_monte_carlo_simulation, compute_remaining_matches
 from top_scorer import predict_top_scorers
 from output import generate_predictions_json, generate_accuracy_json
+from looking_ahead import load_match_analysis
 
 
 def load_json(path: str) -> dict | list:
@@ -36,7 +38,7 @@ def main():
     print("=" * 60)
 
     # 1. 加载数据
-    print("\n[1/6] 加载数据...")
+    print("\n[1/7] 加载数据...")
     teams = load_json(TEAMS_FILE)
     group_results = load_json(GROUP_RESULTS_FILE)
     bracket = load_json(KNOCKOUT_BRACKET_FILE)
@@ -44,37 +46,43 @@ def main():
     print(f"  - 小组赛场次: {len(group_results)}")
     print(f"  - 16 强对阵数: {len(bracket.get('round_of_16', []))}")
 
+    # 1.5 加载前瞻数据
+    print("\n[1.5/7] 加载比赛前瞻数据...")
+    match_analysis = load_match_analysis(DATA_DIR)
+    print(f"  - 前瞻比赛数: {len(match_analysis)}")
+
     # 2. 特征工程
-    print("\n[2/6] 构建特征工程...")
+    print("\n[2/7] 构建特征工程...")
     feature_engine = build_feature_engine(teams, group_results)
     print("  - 特征引擎构建完成")
 
     # 3. 训练模型
-    print("\n[3/6] 训练随机森林模型...")
+    print("\n[3/7] 训练随机森林模型...")
     model, accuracy = train_model(feature_engine, group_results)
     predictor = create_match_predictor(model, feature_engine)
     print(f"  - 模型准确率: {accuracy:.2%}")
 
     # 4. 蒙特卡洛模拟
-    print("\n[4/6] 运行蒙特卡洛模拟 (10000 次)...")
+    print("\n[4/7] 运行蒙特卡洛模拟 (10000 次)...")
     stage_probs, match_predictions, actual_results = run_monte_carlo_simulation(
         bracket, predictor, teams
     )
     print("  - 模拟完成")
 
     # 5. 射手预测
-    print("\n[5/6] 预测最佳射手 Top 10...")
+    print("\n[5/7] 预测最佳射手 Top 10...")
     remaining_matches = compute_remaining_matches(bracket, stage_probs, actual_results)
     top_scorers = predict_top_scorers(teams, group_results, stage_probs, bracket, remaining_matches)
     print(f"  - Top 10 射手已生成")
 
     # 6. 输出 JSON
-    print("\n[6/6] 生成预测结果 JSON...")
+    print("\n[6/7] 生成预测结果 JSON...")
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     predictions = generate_predictions_json(
         stage_probs, match_predictions, top_scorers, feature_engine,
         bracket=bracket, actual_results=actual_results, predictor=predictor,
+        match_analysis=match_analysis,
     )
     with open(PREDICTIONS_OUTPUT, "w", encoding="utf-8") as f:
         json.dump(predictions, f, ensure_ascii=False, indent=2)
