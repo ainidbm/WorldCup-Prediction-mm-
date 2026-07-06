@@ -11,7 +11,6 @@ from typing import Callable, Tuple, Dict, Any
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
 
 from config import (
     HISTORICAL_FILE,
@@ -159,13 +158,12 @@ def _calibrate_probs(probs: np.ndarray) -> np.ndarray:
 def train_model(
     feature_engine: FeatureEngine,
     group_results: list,
-) -> Tuple[RandomForestClassifier, float]:
+) -> RandomForestClassifier:
     """
     训练随机森林模型。
 
     返回:
         model: 训练好的 RandomForestClassifier
-        accuracy: 交叉验证准确率
     """
     historical_df = _load_historical_matches()
 
@@ -191,17 +189,10 @@ def train_model(
 
     model = RandomForestClassifier(**RANDOM_FOREST_PARAMS)
 
-    # 交叉验证
-    if len(X) >= 5:
-        cv_scores = cross_val_score(model, X, y, cv=min(5, len(X)), scoring="accuracy")
-        accuracy = cv_scores.mean()
-    else:
-        accuracy = 0.5
-
     # 全量训练
     model.fit(X, y)
 
-    return model, accuracy
+    return model
 
 
 def create_match_predictor(

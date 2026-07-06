@@ -175,7 +175,7 @@ def validate_accuracy(accuracy: dict):
         return
 
     required_fields = [
-        "modelAccuracy", "groupStageAccuracy", "knockoutAccuracy",
+        "groupStageAccuracy", "knockoutAccuracy",
         "overallAccuracy", "totalMatchesEvaluated", "correctPredictions",
         "groupMatches", "knockoutMatches",
     ]
@@ -194,7 +194,7 @@ def validate_accuracy(accuracy: dict):
         ok(f"模型准确率：{correct}/{total} 场 ({group} 小组赛 + {knockout} 淘汰赛)")
 
     # 校验 accuracy 值范围
-    for key in ["modelAccuracy", "groupStageAccuracy", "knockoutAccuracy", "overallAccuracy"]:
+    for key in ["groupStageAccuracy", "knockoutAccuracy", "overallAccuracy"]:
         val = accuracy.get(key, -1)
         if not (0 <= val <= 1):
             warn(f"{key} = {val}，超出 0-1 合理范围")

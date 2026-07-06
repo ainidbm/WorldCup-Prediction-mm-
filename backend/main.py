@@ -58,9 +58,9 @@ def main():
 
     # 3. 训练模型
     print("\n[3/7] 训练随机森林模型...")
-    model, accuracy = train_model(feature_engine, group_results)
+    model = train_model(feature_engine, group_results)
     predictor = create_match_predictor(model, feature_engine)
-    print(f"  - 模型准确率: {accuracy:.2%}")
+    print(f"  - 模型训练完成")
 
     # 4. 蒙特卡洛模拟
     print("\n[4/7] 运行蒙特卡洛模拟 (10000 次)...")
@@ -99,7 +99,7 @@ def main():
             accuracy_cache = None
 
     accuracy_data = generate_accuracy_json(
-        accuracy, group_results, predictor, bracket,
+        group_results, predictor, bracket,
         accuracy_cache=accuracy_cache,
     )
     with open(ACCURACY_OUTPUT, "w", encoding="utf-8") as f:

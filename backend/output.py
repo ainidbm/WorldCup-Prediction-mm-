@@ -334,7 +334,6 @@ def _build_knockout_bracket(
 
 
 def generate_accuracy_json(
-    model_accuracy: float,
     group_results: list,
     predictor: Callable,
     bracket: dict = None,
@@ -450,7 +449,6 @@ def generate_accuracy_json(
     )
 
     return {
-        "modelAccuracy": round(model_accuracy, 4),
         "groupStageAccuracy": round(group_accuracy, 4),
         "knockoutAccuracy": round(knockout_accuracy, 4),
         "overallAccuracy": round(overall_accuracy, 4),

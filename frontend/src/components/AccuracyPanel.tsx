@@ -38,12 +38,6 @@ export default function AccuracyPanel({ data }: Props) {
           </div>
         </div>
 
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '2.5rem', fontWeight: 800, color: '#a78bfa' }}>
-            {(data.modelAccuracy * 100).toFixed(1)}%
-          </div>
-          <div style={{ color: '#94a3b8', fontSize: '0.85rem', marginTop: 4 }}>交叉验证准确率</div>
-        </div>
       </div>
 
       <div
