@@ -4,7 +4,7 @@ JSON 输出生成模块
 生成 predictions.json 和 accuracy.json，全中文字段。
 """
 import math
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, List, Any, Callable, Tuple
 
 # 前瞻数据辅助函数（避免循环导入）
@@ -68,7 +68,7 @@ def generate_predictions_json(
         enriched_matches.append(enriched_match)
 
     return {
-        "generatedAt": datetime.now().isoformat(),
+        "generatedAt": datetime.now(timezone.utc).isoformat(),
         "championProb": champion_prob,
         "stageProb": stage_prob_detail,
         "matches": enriched_matches,
