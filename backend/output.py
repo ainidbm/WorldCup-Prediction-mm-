@@ -338,8 +338,18 @@ def generate_accuracy_json(
     group_results: list,
     predictor: Callable,
     bracket: dict = None,
+    accuracy_cache: dict = None,
 ) -> Dict[str, Any]:
-    """生成 accuracy.json，回测小组赛 + 淘汰赛全部已完成比赛"""
+    """生成 accuracy.json，回测小组赛 + 淘汰赛全部已完成比赛
+
+    accuracy_cache 允许冻结历史评估结果，避免重跑模型时改判。
+    结构：{
+        "group": { "<teamA>|<teamB>": { "actual": "A/B/D", "predicted": "A/B/D", "correct": bool } },
+        "knockout": { "<matchId>": { "teamA": ..., "teamB": ..., "winner": ..., "predicted": ..., "correct": ... } },
+    }
+    """
+    if accuracy_cache is None:
+        accuracy_cache = {"group": {}, "knockout": {}}
 
     correct = 0
     total = 0
@@ -347,11 +357,14 @@ def generate_accuracy_json(
     group_total = 0
     knockout_correct = 0
     knockout_total = 0
+    group_cache = accuracy_cache.setdefault("group", {})
+    knockout_cache = accuracy_cache.setdefault("knockout", {})
 
     # --- 小组赛回测 ---
     for match in group_results:
         team_a, team_b = match["teamA"], match["teamB"]
         score_a, score_b = match["scoreA"], match["scoreB"]
+        cache_key = f"{team_a}|{team_b}"
 
         if score_a > score_b:
             actual = "A"
@@ -361,13 +374,22 @@ def generate_accuracy_json(
             actual = "D"
 
         try:
-            p_a, p_draw, p_b = predictor(team_a, team_b)
-            if p_a > p_b and p_a > p_draw:
-                predicted = "A"
-            elif p_b > p_a and p_b > p_draw:
-                predicted = "B"
+            if cache_key in group_cache:
+                # 沿用缓存的预测结果
+                predicted = group_cache[cache_key]["predicted"]
             else:
-                predicted = "D"
+                p_a, p_draw, p_b = predictor(team_a, team_b)
+                if p_a > p_b and p_a > p_draw:
+                    predicted = "A"
+                elif p_b > p_a and p_b > p_draw:
+                    predicted = "B"
+                else:
+                    predicted = "D"
+                group_cache[cache_key] = {
+                    "actual": actual,
+                    "predicted": predicted,
+                    "correct": predicted == actual,
+                }
 
             if predicted == actual:
                 correct += 1
@@ -382,22 +404,38 @@ def generate_accuracy_json(
         for match in bracket.get("results", []):
             if "winner" not in match:
                 continue
+            match_id = match["id"]
             team_a, team_b = match["teamA"], match["teamB"]
             winner = match["winner"]
 
             try:
-                p_a, p_draw, p_b = predictor(team_a, team_b)
-                # 淘汰赛无平局，比较两队胜率
-                if p_a >= p_b:
-                    predicted_winner = team_a
+                if match_id in knockout_cache:
+                    # 沿用缓存：直接用缓存的 correct 标志
+                    if knockout_cache[match_id].get("correct"):
+                        correct += 1
+                        knockout_correct += 1
+                    total += 1
+                    knockout_total += 1
                 else:
-                    predicted_winner = team_b
-
-                if predicted_winner == winner:
-                    correct += 1
-                    knockout_correct += 1
-                total += 1
-                knockout_total += 1
+                    p_a, p_draw, p_b = predictor(team_a, team_b)
+                    # 淘汰赛无平局，比较两队胜率
+                    if p_a >= p_b:
+                        predicted_winner = team_a
+                    else:
+                        predicted_winner = team_b
+                    is_correct = predicted_winner == winner
+                    knockout_cache[match_id] = {
+                        "teamA": team_a,
+                        "teamB": team_b,
+                        "winner": winner,
+                        "predicted": predicted_winner,
+                        "correct": is_correct,
+                    }
+                    if is_correct:
+                        correct += 1
+                        knockout_correct += 1
+                    total += 1
+                    knockout_total += 1
             except Exception:
                 pass
 
@@ -421,4 +459,5 @@ def generate_accuracy_json(
         "groupMatches": group_total,
         "knockoutMatches": knockout_total,
         "calibrationNote": note,
+        "evaluationCache": accuracy_cache,
     }

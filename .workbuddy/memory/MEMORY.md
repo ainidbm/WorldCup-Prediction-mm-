@@ -28,7 +28,8 @@
 - 历史训练数据补充：8强赛果（挪威2:1巴西、英格兰3:2墨西哥）
 - 模型准确率：77.85%（小组赛70.8%，淘汰赛90%）
 
-## Python 运行环境
-- 使用 `C:\Users\32739\.workbuddy\binaries\python\versions\3.13.12\python.exe`
-- 依赖已安装：scikit-learn, pandas, numpy, openpyxl
-- 运行命令：`cd "D:\World Cup championship prediction" && python backend/main.py`
+## ⚠️ 数据泄露问题（重要 - 待修复）
+- 2026 真实赛果（72场小组赛 + 16场R16 + 4场QF）被手动加入 `historical.csv` 作为训练集
+- 这导致 `generate_accuracy_json` 在淘汰赛回测时存在数据泄露，准确率被人为抬高
+- `historical.csv` 存在 5 对反向重复行（巴西-埃及/摩洛哥、比利时-埃及、挪威-法国、葡萄牙-哥伦比亚）
+- 修复方向：训练/验证集分离、或在 accuracy 计算时排除 2026 数据

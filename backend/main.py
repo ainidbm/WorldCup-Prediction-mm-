@@ -88,7 +88,20 @@ def main():
         json.dump(predictions, f, ensure_ascii=False, indent=2)
     print(f"  - predictions.json -> {PREDICTIONS_OUTPUT}")
 
-    accuracy_data = generate_accuracy_json(accuracy, group_results, predictor, bracket)
+    # 读取上一次的 evaluationCache 以冻结历史评估
+    accuracy_cache = None
+    if os.path.exists(ACCURACY_OUTPUT):
+        try:
+            with open(ACCURACY_OUTPUT, "r", encoding="utf-8") as f:
+                prev = json.load(f)
+                accuracy_cache = prev.get("evaluationCache")
+        except Exception:
+            accuracy_cache = None
+
+    accuracy_data = generate_accuracy_json(
+        accuracy, group_results, predictor, bracket,
+        accuracy_cache=accuracy_cache,
+    )
     with open(ACCURACY_OUTPUT, "w", encoding="utf-8") as f:
         json.dump(accuracy_data, f, ensure_ascii=False, indent=2)
     print(f"  - accuracy.json -> {ACCURACY_OUTPUT}")

@@ -1,11 +1,517 @@
 {
   "modelAccuracy": 0.7785,
   "groupStageAccuracy": 0.7083,
-  "knockoutAccuracy": 0.9,
-  "overallAccuracy": 0.75,
+  "knockoutAccuracy": 0.8,
+  "overallAccuracy": 0.7283,
   "totalMatchesEvaluated": 92,
-  "correctPredictions": 69,
+  "correctPredictions": 67,
   "groupMatches": 72,
   "knockoutMatches": 20,
-  "calibrationNote": "回测范围：72 场小组赛 + 20 场淘汰赛 = 92 场。小组赛准确率 70.8%，淘汰赛准确率 90.0%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。"
+  "calibrationNote": "回测范围：72 场小组赛 + 20 场淘汰赛 = 92 场。小组赛准确率 70.8%，淘汰赛准确率 80.0%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。",
+  "evaluationCache": {
+    "group": {
+      "墨西哥|南非": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "韩国|捷克": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "墨西哥|韩国": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "捷克|南非": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "捷克|墨西哥": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "南非|韩国": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "加拿大|波黑": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "卡塔尔|瑞士": {
+        "actual": "D",
+        "predicted": "B",
+        "correct": false
+      },
+      "加拿大|卡塔尔": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "瑞士|波黑": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "瑞士|加拿大": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "波黑|卡塔尔": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "巴西|摩洛哥": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "海地|苏格兰": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "巴西|海地": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "苏格兰|摩洛哥": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "苏格兰|巴西": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "摩洛哥|海地": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "美国|巴拉圭": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "澳大利亚|土耳其": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "美国|澳大利亚": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "土耳其|巴拉圭": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "土耳其|美国": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "巴拉圭|澳大利亚": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "德国|库拉索": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "科特迪瓦|厄瓜多尔": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "德国|科特迪瓦": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "库拉索|厄瓜多尔": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "厄瓜多尔|德国": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "库拉索|科特迪瓦": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "荷兰|日本": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "瑞典|突尼斯": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "荷兰|瑞典": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "突尼斯|日本": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "突尼斯|荷兰": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "日本|瑞典": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "比利时|埃及": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "伊朗|新西兰": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "比利时|伊朗": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "新西兰|埃及": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "新西兰|比利时": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "埃及|伊朗": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "西班牙|佛得角": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "沙特|乌拉圭": {
+        "actual": "D",
+        "predicted": "B",
+        "correct": false
+      },
+      "西班牙|沙特": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "乌拉圭|佛得角": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "乌拉圭|西班牙": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "佛得角|沙特": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "法国|塞内加尔": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "伊拉克|挪威": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "法国|伊拉克": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "挪威|塞内加尔": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "挪威|法国": {
+        "actual": "A",
+        "predicted": "D",
+        "correct": false
+      },
+      "塞内加尔|伊拉克": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "阿根廷|阿尔及利亚": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "奥地利|约旦": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "阿根廷|奥地利": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "约旦|阿尔及利亚": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "约旦|阿根廷": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "阿尔及利亚|奥地利": {
+        "actual": "D",
+        "predicted": "A",
+        "correct": false
+      },
+      "葡萄牙|刚果金": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "乌兹别克斯坦|哥伦比亚": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "葡萄牙|乌兹别克斯坦": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "哥伦比亚|刚果金": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "葡萄牙|哥伦比亚": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "刚果金|乌兹别克斯坦": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "英格兰|克罗地亚": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "加纳|巴拿马": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      },
+      "英格兰|加纳": {
+        "actual": "D",
+        "predicted": "D",
+        "correct": true
+      },
+      "巴拿马|克罗地亚": {
+        "actual": "B",
+        "predicted": "A",
+        "correct": false
+      },
+      "巴拿马|英格兰": {
+        "actual": "B",
+        "predicted": "B",
+        "correct": true
+      },
+      "克罗地亚|加纳": {
+        "actual": "A",
+        "predicted": "A",
+        "correct": true
+      }
+    },
+    "knockout": {
+      "R16_1": {
+        "teamA": "南非",
+        "teamB": "加拿大",
+        "winner": "加拿大",
+        "predicted": "南非",
+        "correct": false
+      },
+      "R16_2": {
+        "teamA": "巴西",
+        "teamB": "日本",
+        "winner": "巴西",
+        "predicted": "巴西",
+        "correct": true
+      },
+      "R16_3": {
+        "teamA": "德国",
+        "teamB": "巴拉圭",
+        "winner": "巴拉圭",
+        "predicted": "德国",
+        "correct": false
+      },
+      "R16_4": {
+        "teamA": "荷兰",
+        "teamB": "摩洛哥",
+        "winner": "摩洛哥",
+        "predicted": "摩洛哥",
+        "correct": true
+      },
+      "R16_5": {
+        "teamA": "科特迪瓦",
+        "teamB": "挪威",
+        "winner": "挪威",
+        "predicted": "挪威",
+        "correct": true
+      },
+      "R16_6": {
+        "teamA": "法国",
+        "teamB": "瑞典",
+        "winner": "法国",
+        "predicted": "法国",
+        "correct": true
+      },
+      "R16_7": {
+        "teamA": "墨西哥",
+        "teamB": "厄瓜多尔",
+        "winner": "墨西哥",
+        "predicted": "墨西哥",
+        "correct": true
+      },
+      "R16_8": {
+        "teamA": "英格兰",
+        "teamB": "刚果金",
+        "winner": "英格兰",
+        "predicted": "英格兰",
+        "correct": true
+      },
+      "R16_9": {
+        "teamA": "比利时",
+        "teamB": "塞内加尔",
+        "winner": "比利时",
+        "predicted": "比利时",
+        "correct": true
+      },
+      "R16_10": {
+        "teamA": "美国",
+        "teamB": "波黑",
+        "winner": "美国",
+        "predicted": "美国",
+        "correct": true
+      },
+      "R16_11": {
+        "teamA": "西班牙",
+        "teamB": "奥地利",
+        "winner": "西班牙",
+        "predicted": "西班牙",
+        "correct": true
+      },
+      "R16_12": {
+        "teamA": "葡萄牙",
+        "teamB": "克罗地亚",
+        "winner": "葡萄牙",
+        "predicted": "葡萄牙",
+        "correct": true
+      },
+      "R16_13": {
+        "teamA": "瑞士",
+        "teamB": "阿尔及利亚",
+        "winner": "瑞士",
+        "predicted": "瑞士",
+        "correct": true
+      },
+      "R16_14": {
+        "teamA": "澳大利亚",
+        "teamB": "埃及",
+        "winner": "埃及",
+        "predicted": "埃及",
+        "correct": true
+      },
+      "R16_15": {
+        "teamA": "阿根廷",
+        "teamB": "佛得角",
+        "winner": "阿根廷",
+        "predicted": "阿根廷",
+        "correct": true
+      },
+      "R16_16": {
+        "teamA": "哥伦比亚",
+        "teamB": "加纳",
+        "winner": "哥伦比亚",
+        "predicted": "哥伦比亚",
+        "correct": true
+      },
+      "QF_1": {
+        "teamA": "加拿大",
+        "teamB": "摩洛哥",
+        "winner": "摩洛哥",
+        "predicted": "摩洛哥",
+        "correct": true
+      },
+      "QF_2": {
+        "teamA": "巴拉圭",
+        "teamB": "法国",
+        "winner": "法国",
+        "predicted": "法国",
+        "correct": true
+      },
+      "QF_3": {
+        "teamA": "巴西",
+        "teamB": "挪威",
+        "winner": "挪威",
+        "predicted": "巴西",
+        "correct": false
+      },
+      "QF_4": {
+        "teamA": "墨西哥",
+        "teamB": "英格兰",
+        "winner": "英格兰",
+        "predicted": "墨西哥",
+        "correct": false
+      }
+    }
+  }
 }
