@@ -1,11 +1,11 @@
 {
-  "modelAccuracy": 0.7899,
+  "modelAccuracy": 0.7785,
   "groupStageAccuracy": 0.7083,
-  "knockoutAccuracy": 0.8889,
-  "overallAccuracy": 0.7444,
-  "totalMatchesEvaluated": 90,
-  "correctPredictions": 67,
+  "knockoutAccuracy": 0.9,
+  "overallAccuracy": 0.75,
+  "totalMatchesEvaluated": 92,
+  "correctPredictions": 69,
   "groupMatches": 72,
-  "knockoutMatches": 18,
-  "calibrationNote": "回测范围：72 场小组赛 + 18 场淘汰赛 = 90 场。小组赛准确率 70.8%，淘汰赛准确率 88.9%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。"
+  "knockoutMatches": 20,
+  "calibrationNote": "回测范围：72 场小组赛 + 20 场淘汰赛 = 92 场。小组赛准确率 70.8%，淘汰赛准确率 90.0%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。"
 }

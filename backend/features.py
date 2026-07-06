@@ -90,15 +90,19 @@ class FeatureEngine:
         fifa_rank = info.get("fifaRank", 50)
         rank_score = max(0, (100 - fifa_rank) / 100.0)
 
-        # 身价归一化 (最高约11亿欧元)
+        # 身价归一化 (最高约15亿欧元)
         squad_value = info.get("squadValue", 0.5)
-        value_score = min(squad_value / 11.0, 1.0)
+        value_score = min(squad_value / 15.0, 1.0)
 
-        # 历史大赛成绩
+        # 历史大赛成绩（降低权重，避免历史底蕴过度影响当前实力评估）
         titles = info.get("majorHistory", {}).get("worldCupTitles", 0)
         history_score = min(titles / 5.0, 1.0)
 
-        return 0.4 * rank_score + 0.35 * value_score + 0.25 * history_score
+        # 球队层级加分（top/first/second/other）
+        tier = info.get("tier", "other")
+        tier_bonus = {"top": 1.0, "first": 0.7, "second": 0.45, "host": 0.6, "mid": 0.3, "other": 0.2}.get(tier, 0.3)
+
+        return 0.40 * rank_score + 0.35 * value_score + 0.10 * history_score + 0.15 * tier_bonus
 
     def get_h2h_score(self, team_a: str, team_b: str) -> Dict[str, float]:
         """交锋记录：返回 A 胜/平/B 胜的概率"""
@@ -112,24 +116,31 @@ class FeatureEngine:
         """情境因素分数 (0-1)"""
         info = self.teams.get(team, {})
 
-        # 东道主加分
+        # 东道主加分（降低权重，避免过度影响）
         host_bonus = 1.0 if info.get("host", False) else 0.0
 
-        # 淘汰赛经验（基于历史最佳成绩）
-        recent_best = info.get("majorHistory", {}).get("recentBest", "")
+        # 淘汰赛经验（修复：使用 historyBest 和 2022年世界杯 字段）
+        history_best = info.get("majorHistory", {}).get("historyBest", "")
+        wc2022 = info.get("majorHistory", {}).get("2022年世界杯", "")
         experience = 0.3  # 默认
-        if "冠军" in recent_best or "4强" in recent_best or "决赛" in recent_best:
+        # 综合历史最佳成绩和2022世界杯成绩
+        combined = history_best + " " + wc2022
+        if "冠军" in combined or "5届冠军" in combined or "3届冠军" in combined:
             experience = 1.0
-        elif "8强" in recent_best or "季军" in recent_best:
-            experience = 0.8
-        elif "16强" in recent_best:
+        elif "4强" in combined or "决赛" in combined or "亚军" in combined:
+            experience = 0.9
+        elif "8强" in combined or "季军" in combined:
+            experience = 0.7
+        elif "16强" in combined:
             experience = 0.5
+        elif "小组赛" in combined:
+            experience = 0.3
 
         # 年龄结构（25-28岁为最佳，偏离越远扣分越多）
         avg_age = info.get("avgAge", 27.0)
         age_score = max(0, 1.0 - abs(avg_age - 26.5) / 10.0)
 
-        return 0.4 * host_bonus + 0.35 * experience + 0.25 * age_score
+        return 0.25 * host_bonus + 0.45 * experience + 0.30 * age_score
 
     def get_match_features(self, team_a: str, team_b: str) -> Dict[str, Any]:
         """获取两队对阵的完整特征向量"""

@@ -7,6 +7,9 @@ import math
 from datetime import datetime
 from typing import Dict, List, Any, Callable, Tuple
 
+# 前瞻数据辅助函数（避免循环导入）
+from looking_ahead import get_match_analysis_for_match
+
 
 def generate_predictions_json(
     stage_probs: Dict[str, Dict[str, float]],
@@ -16,8 +19,11 @@ def generate_predictions_json(
     bracket: Dict = None,
     actual_results: Dict[str, str] = None,
     predictor: Any = None,
+    match_analysis: List[Dict[str, Any]] | None = None,
 ) -> Dict[str, Any]:
     """生成 predictions.json 的完整数据结构"""
+    if match_analysis is None:
+        match_analysis = []
 
     # 夺冠概率排行（降序），过滤已淘汰球队（prob == 0）
     champion_prob = sorted(
@@ -67,7 +73,10 @@ def generate_predictions_json(
         "stageProb": stage_prob_detail,
         "matches": enriched_matches,
         "topScorers": top_scorers,
-        "knockoutBracket": _build_knockout_bracket(bracket, actual_results, predictor, feature_engine),
+        "knockoutBracket": _build_knockout_bracket(
+            bracket, actual_results, predictor, feature_engine, match_analysis
+        ),
+        "matchAnalysis": match_analysis,
     }
 
 
@@ -90,21 +99,20 @@ def _predict_score(
     """
     基于小组赛统计数据 + 胜率概率，预测最可能的比分。
 
-    改进版算法 v2（解决比分过于保守的问题）：
+    改进版算法 v3（基于实际赛果校准）：
 
-    根本原因分析：
-    - 旧参数 decay=0.72, base=1.8, blend=60/40 导致 xG 过低（0.6-1.4）
-    - 纯 Poisson MAP 在 lambda<1.5 时几乎总是选 0 或 1 球
-    - 所有比赛预测都是 1-0 或 0-1
+    根本问题分析：
+    - v2 的 30/70 统计/概率混合导致概率偏差直接传导到比分
+    - 概率基线 3.5 过高，过度放大强队预期进球
+    - 强弱悬殊阈值 0.75 太高，导致 60-75% 区间的非对称放大不触发
 
     核心改进：
-    1. 淘汰赛衰减 0.72→0.85（淘汰赛仍有进球，平均 2.5 球/场）
-    2. 胜率基础值 1.8→3.5（大幅提高预期进球基线）
-    3. 统计/概率混合 60/40→30/70（概率权重远大于统计）
-    4. 总进球下限 2.5（保证至少 2-3 球的比赛预期）
-    5. 强弱悬殊非对称放大（强队 ×1.15，弱队 ×0.80）
-    6. Poisson MAP 搜索范围扩展至 0-6 球
-    7. 平局修正：当 MAP 给出平局但胜率差异显著时，给强者加 1 球
+    1. 统计/概率混合 30/70→40/60（统计权重提高，降低概率偏差影响）
+    2. 概率基线 3.5→3.0（更保守的预期进球）
+    3. 强弱悬殊阈值 0.75→0.65（更早触发非对称调整）
+    4. 淘汰赛衰减 0.85→0.88（淘汰赛进球数略高于预期）
+    5. Poisson MAP 搜索范围扩展至 0-7 球
+    6. 平局修正阈值 0.15→0.12（更积极地打破平局）
     """
     stats_a = feature_engine.group_stats.get(team_a, {})
     stats_b = feature_engine.group_stats.get(team_b, {})
@@ -122,9 +130,9 @@ def _predict_score(
     xg_a = gpg_a * 0.55 + gapg_b * 0.45
     xg_b = gpg_b * 0.55 + gapg_a * 0.45
 
-    # 淘汰赛微调（0.85，而非 0.72）
-    xg_a *= 0.85
-    xg_b *= 0.85
+    # 淘汰赛微调（0.88）
+    xg_a *= 0.88
+    xg_b *= 0.88
 
     # 胜率比例
     total_prob = prob_a + prob_b
@@ -134,35 +142,35 @@ def _predict_score(
     else:
         ratio_a = ratio_b = 0.5
 
-    # 混合：30% 统计 + 70% 概率（概率在淘汰赛决定性更强）
-    xg_a = xg_a * 0.30 + ratio_a * 3.5 * 0.70
-    xg_b = xg_b * 0.30 + ratio_b * 3.5 * 0.70
+    # 混合：40% 统计 + 60% 概率（提高统计权重，降低概率偏差影响）
+    xg_a = xg_a * 0.40 + ratio_a * 3.0 * 0.60
+    xg_b = xg_b * 0.40 + ratio_b * 3.0 * 0.60
 
-    # 总进球下限 2.5（淘汰赛场均 2.5+ 球）
+    # 总进球下限 2.2（淘汰赛场均 2.5 球，但允许稍低）
     xg_total = xg_a + xg_b
-    if xg_total < 2.5:
-        scale = 2.5 / xg_total
+    if xg_total < 2.2:
+        scale = 2.2 / xg_total
         xg_a *= scale
         xg_b *= scale
 
-    # 强弱悬殊时非对称放大
-    if ratio_a > 0.75:
-        xg_a = min(xg_a * 1.15, 3.5)
-        xg_b = max(xg_b * 0.80, 0.25)
-    elif ratio_b > 0.75:
-        xg_b = min(xg_b * 1.15, 3.5)
-        xg_a = max(xg_a * 0.80, 0.25)
+    # 强弱悬殊时非对称放大（阈值降低 0.75→0.65）
+    if ratio_a > 0.65:
+        xg_a = min(xg_a * 1.10, 3.0)
+        xg_b = max(xg_b * 0.85, 0.3)
+    elif ratio_b > 0.65:
+        xg_b = min(xg_b * 1.10, 3.0)
+        xg_a = max(xg_a * 0.85, 0.3)
 
     # 限制范围
-    xg_a = max(0.25, min(xg_a, 3.5))
-    xg_b = max(0.25, min(xg_b, 3.5))
+    xg_a = max(0.3, min(xg_a, 3.0))
+    xg_b = max(0.3, min(xg_b, 3.0))
 
-    # Poisson PMF 搜索最可能的比分（0-6 球范围）
+    # Poisson PMF 搜索最可能的比分（0-7 球范围）
     best_score = (1, 0)
     best_prob = 0.0
 
-    for sa in range(7):
-        for sb in range(7):
+    for sa in range(8):
+        for sb in range(8):
             p = _poisson_pmf(sa, xg_a) * _poisson_pmf(sb, xg_b)
             if p > best_prob:
                 best_prob = p
@@ -175,10 +183,10 @@ def _predict_score(
         else:
             best_score = (0, 1)
 
-    # 平局修正：当 MAP 给出平局但胜率差异显著（>15%）时，
+    # 平局修正：当 MAP 给出平局但胜率差异显著（>12%）时，
     # 给胜率高的一方加 1 球，打破平局
     prob_diff = abs(ratio_a - ratio_b)
-    if best_score[0] == best_score[1] and prob_diff > 0.15:
+    if best_score[0] == best_score[1] and prob_diff > 0.12:
         if ratio_a > ratio_b:
             best_score = (best_score[0] + 1, best_score[1])
         else:
@@ -192,10 +200,13 @@ def _build_knockout_bracket(
     actual_results: Dict[str, str],
     predictor: Any,
     feature_engine: Any = None,
+    match_analysis: List[Dict[str, Any]] | None = None,
 ) -> Dict[str, Any]:
-    """构建淘汰赛晋级图数据"""
+    """构建淘汰赛晋级图数据，自动关联前瞻分析"""
     if not bracket or not actual_results:
         return {}
+    if match_analysis is None:
+        match_analysis = []
 
     results_map = {}
     for r in bracket.get("results", []):
@@ -219,6 +230,14 @@ def _build_knockout_bracket(
             entry["scoreA"] = r.get("scoreA", 0)
             entry["scoreB"] = r.get("scoreB", 0)
             entry["winner"] = actual_results[mid]
+            # 点球信息
+            if "penaltyScoreA" in r:
+                entry["penaltyScoreA"] = r["penaltyScoreA"]
+                entry["penaltyScoreB"] = r["penaltyScoreB"]
+        # 关联前瞻分析
+        analysis = get_match_analysis_for_match(match_analysis, m["teamA"], m["teamB"])
+        if analysis:
+            entry["analysis"] = analysis["analysis"]
         r16_matches.append(entry)
     rounds.append({"name": "16强", "matches": r16_matches})
 
@@ -281,6 +300,11 @@ def _build_knockout_bracket(
                 if "penaltyScoreA" in r:
                     entry["penaltyScoreA"] = r["penaltyScoreA"]
                     entry["penaltyScoreB"] = r["penaltyScoreB"]
+                # 关联前瞻分析
+                if team_a and team_b and team_a != "待定" and team_b != "待定":
+                    analysis = get_match_analysis_for_match(match_analysis, team_a, team_b)
+                    if analysis:
+                        entry["analysis"] = analysis["analysis"]
             elif team_a and team_b and team_a != "待定" and team_b != "待定" and predictor:
                 try:
                     p_a, p_draw, p_b = predictor(team_a, team_b)
@@ -293,6 +317,10 @@ def _build_knockout_bracket(
                         entry["predScoreB"] = sb
                 except Exception:
                     pass
+                # 关联前瞻分析
+                analysis = get_match_analysis_for_match(match_analysis, team_a, team_b)
+                if analysis:
+                    entry["analysis"] = analysis["analysis"]
 
             # 记录胜者用于后续轮次推导
             if completed:

@@ -90,8 +90,8 @@ def _build_training_data(
 
 def _apply_win_cap(probs: np.ndarray) -> np.ndarray:
     """
-    应用胜率硬上限 85%。
-    如果任一方的胜率超过 85%，将超出部分按比例分配给平局和另一方。
+    应用胜率硬上限 72%。
+    如果任一方的胜率超过 72%，将超出部分按比例分配给平局和另一方。
     """
     probs = probs.copy()
 
@@ -121,6 +121,37 @@ def _apply_win_cap(probs: np.ndarray) -> np.ndarray:
             probs[1] += excess / 2
 
     # 确保概率和为 1
+    probs = probs / probs.sum()
+    return probs
+
+
+def _calibrate_probs(probs: np.ndarray) -> np.ndarray:
+    """
+    概率校准：向均值收缩，减少极端预测。
+
+    淘汰赛冷门率约 30%（FIFA 统计），
+    对胜率 > 60% 的一方进行收缩，将部分概率转移给对手和平局。
+    """
+    probs = probs.copy()
+
+    # 温度收缩参数
+    shrink = 0.15
+
+    # 对两方胜率分别向 0.33 收缩
+    for i in [0, 2]:
+        if probs[i] > 0.55:
+            excess = probs[i] - 0.55
+            probs[i] -= excess * shrink
+            # 将收缩量分配给另外两项
+            others = [j for j in range(3) if j != i]
+            total_others = sum(probs[j] for j in others)
+            if total_others > 0:
+                for j in others:
+                    probs[j] += excess * shrink * (probs[j] / total_others)
+            else:
+                probs[others[0]] += excess * shrink / 2
+                probs[others[1]] += excess * shrink / 2
+
     probs = probs / probs.sum()
     return probs
 
@@ -201,6 +232,9 @@ def create_match_predictor(
             probs = probs / probs.sum()
         else:
             probs = np.array([0.4, 0.25, 0.35])
+
+        # 概率校准：减少极端预测
+        probs = _calibrate_probs(probs)
 
         # 应用胜率上限
         probs = _apply_win_cap(probs)

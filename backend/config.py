@@ -21,12 +21,12 @@ MONTE_CARLO_ITERATIONS = 10000
 RANDOM_SEED = 42
 
 # 模型参数
-WIN_RATE_CAP = 0.85  # 胜率硬上限 85%
+WIN_RATE_CAP = 0.72  # 胜率硬上限 72%（降低过拟合风险）
 RANDOM_FOREST_PARAMS = {
-    "n_estimators": 200,
-    "max_depth": 10,
-    "min_samples_split": 20,
-    "min_samples_leaf": 10,
+    "n_estimators": 300,
+    "max_depth": 8,
+    "min_samples_split": 25,
+    "min_samples_leaf": 12,
     "random_state": RANDOM_SEED,
 }
 
