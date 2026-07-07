@@ -1,12 +1,12 @@
 {
   "groupStageAccuracy": 0.7083,
-  "knockoutAccuracy": 0.8,
-  "overallAccuracy": 0.7283,
-  "totalMatchesEvaluated": 92,
-  "correctPredictions": 67,
+  "knockoutAccuracy": 0.8182,
+  "overallAccuracy": 0.734,
+  "totalMatchesEvaluated": 94,
+  "correctPredictions": 69,
   "groupMatches": 72,
-  "knockoutMatches": 20,
-  "calibrationNote": "回测范围：72 场小组赛 + 20 场淘汰赛 = 92 场。小组赛准确率 70.8%，淘汰赛准确率 80.0%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。",
+  "knockoutMatches": 22,
+  "calibrationNote": "回测范围：72 场小组赛 + 22 场淘汰赛 = 94 场。小组赛准确率 70.8%，淘汰赛准确率 81.8%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。",
   "evaluationCache": {
     "group": {
       "墨西哥|南非": {
@@ -510,6 +510,20 @@
         "winner": "英格兰",
         "predicted": "墨西哥",
         "correct": false
+      },
+      "QF_5": {
+        "teamA": "葡萄牙",
+        "teamB": "西班牙",
+        "winner": "西班牙",
+        "predicted": "西班牙",
+        "correct": true
+      },
+      "QF_6": {
+        "teamA": "美国",
+        "teamB": "比利时",
+        "winner": "比利时",
+        "predicted": "比利时",
+        "correct": true
       }
     }
   }
