@@ -1,117 +1,95 @@
 {
-  "generatedAt": "2026-07-07T03:12:58.372023+00:00",
+  "generatedAt": "2026-07-08T00:34:07.837115+00:00",
   "championProb": [
     {
       "team": "法国",
-      "prob": 0.2026
+      "prob": 0.2443
     },
     {
       "team": "挪威",
-      "prob": 0.1403
-    },
-    {
-      "team": "哥伦比亚",
-      "prob": 0.1302
+      "prob": 0.1752
     },
     {
       "team": "摩洛哥",
-      "prob": 0.126
-    },
-    {
-      "team": "比利时",
-      "prob": 0.1028
-    },
-    {
-      "team": "西班牙",
-      "prob": 0.1028
-    },
-    {
-      "team": "埃及",
-      "prob": 0.0788
-    },
-    {
-      "team": "英格兰",
-      "prob": 0.0585
+      "prob": 0.1533
     },
     {
       "team": "阿根廷",
-      "prob": 0.0419
+      "prob": 0.127
+    },
+    {
+      "team": "西班牙",
+      "prob": 0.1055
+    },
+    {
+      "team": "比利时",
+      "prob": 0.09
+    },
+    {
+      "team": "英格兰",
+      "prob": 0.0654
     },
     {
       "team": "瑞士",
-      "prob": 0.0161
+      "prob": 0.0393
     }
   ],
   "stageProb": {
+    "比利时": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6412,
+      "champion": 0.09
+    },
     "挪威": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6266,
-      "champion": 0.1403
+      "final": 0.6223,
+      "champion": 0.1752
     },
-    "英格兰": {
+    "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3734,
-      "champion": 0.0585
-    },
-    "瑞士": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.3654,
-      "final": 0.1319,
-      "champion": 0.0161
+      "final": 0.6999,
+      "champion": 0.127
     },
     "摩洛哥": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3744,
-      "champion": 0.126
+      "final": 0.3791,
+      "champion": 0.1533
     },
-    "比利时": {
+    "瑞士": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6362,
-      "champion": 0.1028
+      "final": 0.3001,
+      "champion": 0.0393
     },
-    "哥伦比亚": {
+    "英格兰": {
       "roundOf16": 1.0,
       "quarter": 1.0,
-      "semi": 0.6346,
-      "final": 0.3943,
-      "champion": 0.1302
-    },
-    "阿根廷": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.4575,
-      "final": 0.2373,
-      "champion": 0.0419
-    },
-    "埃及": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 0.5425,
-      "final": 0.2365,
-      "champion": 0.0788
+      "semi": 1.0,
+      "final": 0.3777,
+      "champion": 0.0654
     },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3638,
-      "champion": 0.1028
+      "final": 0.3588,
+      "champion": 0.1055
     },
     "法国": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6256,
-      "champion": 0.2026
+      "final": 0.6209,
+      "champion": 0.2443
     }
   },
   "matches": [],
@@ -125,10 +103,18 @@
       "status": "active"
     },
     {
+      "player": "梅西",
+      "team": "阿根廷",
+      "existingGoals": 8,
+      "predictedGoals": 11,
+      "confidence": "高",
+      "status": "active"
+    },
+    {
       "player": "哈兰德",
       "team": "挪威",
       "existingGoals": 7,
-      "predictedGoals": 10,
+      "predictedGoals": 11,
       "confidence": "高",
       "status": "active"
     },
@@ -137,14 +123,6 @@
       "team": "英格兰",
       "existingGoals": 6,
       "predictedGoals": 9,
-      "confidence": "高",
-      "status": "active"
-    },
-    {
-      "player": "梅西",
-      "team": "阿根廷",
-      "existingGoals": 7,
-      "predictedGoals": 8,
       "confidence": "高",
       "status": "active"
     },
@@ -165,22 +143,6 @@
       "status": "active"
     },
     {
-      "player": "卢卡库",
-      "team": "比利时",
-      "existingGoals": 3,
-      "predictedGoals": 4,
-      "confidence": "高",
-      "status": "active"
-    },
-    {
-      "player": "赛巴里",
-      "team": "摩洛哥",
-      "existingGoals": 3,
-      "predictedGoals": 4,
-      "confidence": "中",
-      "status": "active"
-    },
-    {
       "player": "约翰·曼赞比",
       "team": "瑞士",
       "existingGoals": 3,
@@ -189,11 +151,27 @@
       "status": "active"
     },
     {
-      "player": "奥亚萨瓦尔",
-      "team": "西班牙",
-      "existingGoals": 2,
-      "predictedGoals": 3,
+      "player": "卢卡库",
+      "team": "比利时",
+      "existingGoals": 3,
+      "predictedGoals": 4,
       "confidence": "中",
+      "status": "active"
+    },
+    {
+      "player": "赛巴里",
+      "team": "摩洛哥",
+      "existingGoals": 3,
+      "predictedGoals": 4,
+      "confidence": "低",
+      "status": "active"
+    },
+    {
+      "player": "劳塔罗",
+      "team": "阿根廷",
+      "existingGoals": 1,
+      "predictedGoals": 3,
+      "confidence": "低",
       "status": "active"
     }
   ],
@@ -543,11 +521,10 @@
             "id": "QF_7",
             "teamA": "阿根廷",
             "teamB": "埃及",
-            "completed": false,
-            "probA": 0.5304,
-            "probB": 0.1934,
-            "predScoreA": 2,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 3,
+            "scoreB": 2,
+            "winner": "阿根廷",
             "analysis": {
               "实力": {
                 "teamA": "稳居世界前三，卫冕冠军实力强劲",
@@ -587,11 +564,12 @@
             "id": "QF_8",
             "teamA": "瑞士",
             "teamB": "哥伦比亚",
-            "completed": false,
-            "probA": 0.5043,
-            "probB": 0.1932,
-            "predScoreA": 1,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 0,
+            "scoreB": 0,
+            "winner": "瑞士",
+            "penaltyScoreA": 4,
+            "penaltyScoreB": 3,
             "analysis": {
               "实力": {
                 "teamA": "欧洲实力强劲队伍，防守体系成熟",
@@ -684,7 +662,37 @@
             "probA": 0.4936,
             "probB": 0.1939,
             "predScoreA": 1,
-            "predScoreB": 0
+            "predScoreB": 0,
+            "analysis": {
+              "实力": {
+                "teamA": "稳居世界前三，攻防均衡，大赛稳定性强",
+                "teamB": "世界前十，韧性足但后防老化，体能存隐患"
+              },
+              "身价": {
+                "teamA": "总身价12.2亿欧，亚马尔2亿欧领跑",
+                "teamB": "总身价5.5亿欧，多库7500万欧最高"
+              },
+              "战绩": {
+                "teamA": "本届5战全胜零失球，连续35场不败",
+                "teamB": "本届5战3胜2平，4-1淘汰美国士气大振"
+              },
+              "伤病": {
+                "teamA": "全员健康，尼科·威廉姆斯伤愈复出",
+                "teamB": "中场奥纳纳重伤缺阵，防线核心年迈"
+              },
+              "战术": {
+                "teamA": "极致传控，高位逼抢，边路突破犀利",
+                "teamB": "4231阵型，依赖德布劳内，反击高效"
+              },
+              "关键球员": {
+                "teamA": "罗德里控场，亚马尔突破，奥亚萨瓦尔高效",
+                "teamB": "卢卡库支点，多库速度快，德凯特拉雷爆发"
+              },
+              "教练": {
+                "teamA": "德拉富恩特战术成熟，轮换合理",
+                "teamB": "加西亚临场调整大胆，经验丰富"
+              }
+            }
           },
           {
             "id": "SF_3",
@@ -728,9 +736,13 @@
           },
           {
             "id": "SF_4",
-            "teamA": "待定",
-            "teamB": "待定",
-            "completed": false
+            "teamA": "阿根廷",
+            "teamB": "瑞士",
+            "completed": false,
+            "probA": 0.72,
+            "probB": 0.1017,
+            "predScoreA": 2,
+            "predScoreB": 0
           }
         ]
       },
@@ -1065,6 +1077,40 @@
         "交锋": {
           "teamA": "历史2胜4平8负，近期连败",
           "teamB": "近5次交锋4胜1平，心理占优"
+        }
+      }
+    },
+    {
+      "teamA": "西班牙",
+      "teamB": "比利时",
+      "analysis": {
+        "实力": {
+          "teamA": "稳居世界前三，攻防均衡，大赛稳定性强",
+          "teamB": "世界前十，韧性足但后防老化，体能存隐患"
+        },
+        "身价": {
+          "teamA": "总身价12.2亿欧，亚马尔2亿欧领跑",
+          "teamB": "总身价5.5亿欧，多库7500万欧最高"
+        },
+        "战绩": {
+          "teamA": "本届5战全胜零失球，连续35场不败",
+          "teamB": "本届5战3胜2平，4-1淘汰美国士气大振"
+        },
+        "伤病": {
+          "teamA": "全员健康，尼科·威廉姆斯伤愈复出",
+          "teamB": "中场奥纳纳重伤缺阵，防线核心年迈"
+        },
+        "战术": {
+          "teamA": "极致传控，高位逼抢，边路突破犀利",
+          "teamB": "4231阵型，依赖德布劳内，反击高效"
+        },
+        "关键球员": {
+          "teamA": "罗德里控场，亚马尔突破，奥亚萨瓦尔高效",
+          "teamB": "卢卡库支点，多库速度快，德凯特拉雷爆发"
+        },
+        "教练": {
+          "teamA": "德拉富恩特战术成熟，轮换合理",
+          "teamB": "加西亚临场调整大胆，经验丰富"
         }
       }
     }
