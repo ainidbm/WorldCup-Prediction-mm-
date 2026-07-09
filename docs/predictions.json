@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-09T00:13:51.748511+00:00",
+  "generatedAt": "2026-07-09T00:25:00.917916+00:00",
   "championProb": [
     {
       "team": "法国",
@@ -35,33 +35,19 @@
     }
   ],
   "stageProb": {
+    "法国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6223,
+      "champion": 0.2439
+    },
     "挪威": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 0.6224,
       "champion": 0.1751
-    },
-    "阿根廷": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6992,
-      "champion": 0.1276
-    },
-    "西班牙": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3576,
-      "champion": 0.106
-    },
-    "摩洛哥": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3777,
-      "champion": 0.1534
     },
     "英格兰": {
       "roundOf16": 1.0,
@@ -77,19 +63,33 @@
       "final": 0.6424,
       "champion": 0.09
     },
+    "西班牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3576,
+      "champion": 0.106
+    },
+    "阿根廷": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6992,
+      "champion": 0.1276
+    },
+    "摩洛哥": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3777,
+      "champion": 0.1534
+    },
     "瑞士": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 0.3008,
       "champion": 0.0393
-    },
-    "法国": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6223,
-      "champion": 0.2439
     }
   },
   "matches": [],
@@ -615,8 +615,8 @@
             "teamA": "法国",
             "teamB": "摩洛哥",
             "completed": false,
-            "probA": 0.72,
-            "probB": 0.0996,
+            "probA": 0.8102,
+            "probB": 0.1898,
             "predScoreA": 2,
             "predScoreB": 0,
             "analysis": {
@@ -659,8 +659,8 @@
             "teamA": "西班牙",
             "teamB": "比利时",
             "completed": false,
-            "probA": 0.4936,
-            "probB": 0.1941,
+            "probA": 0.6497,
+            "probB": 0.3503,
             "predScoreA": 1,
             "predScoreB": 0,
             "analysis": {
@@ -699,8 +699,8 @@
             "teamA": "挪威",
             "teamB": "英格兰",
             "completed": false,
-            "probA": 0.4444,
-            "probB": 0.1991,
+            "probA": 0.6226,
+            "probB": 0.3774,
             "predScoreA": 1,
             "predScoreB": 0,
             "analysis": {
@@ -739,8 +739,8 @@
             "teamA": "阿根廷",
             "teamB": "瑞士",
             "completed": false,
-            "probA": 0.72,
-            "probB": 0.097,
+            "probA": 0.8115,
+            "probB": 0.1885,
             "predScoreA": 2,
             "predScoreB": 0,
             "analysis": {

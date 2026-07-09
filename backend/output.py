@@ -308,9 +308,12 @@ def _build_knockout_bracket(
             elif team_a and team_b and team_a != "待定" and team_b != "待定" and predictor:
                 try:
                     p_a, p_draw, p_b = predictor(team_a, team_b)
-                    entry["probA"] = round(p_a, 4)
-                    entry["probB"] = round(p_b, 4)
-                    # 预测比分
+                    # 淘汰赛：平局概率按 50/50 分配给双方（加时/点球）
+                    ko_prob_a = p_a + p_draw * 0.5
+                    ko_prob_b = p_b + p_draw * 0.5
+                    entry["probA"] = round(ko_prob_a, 4)
+                    entry["probB"] = round(ko_prob_b, 4)
+                    # 预测比分（用原始概率，保留平局可能用于 Poisson 计算）
                     if feature_engine:
                         sa, sb = _predict_score(team_a, team_b, feature_engine, p_a, p_b)
                         entry["predScoreA"] = sa
