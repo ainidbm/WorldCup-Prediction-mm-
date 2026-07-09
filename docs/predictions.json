@@ -1,25 +1,25 @@
 {
-  "generatedAt": "2026-07-08T00:34:07.837115+00:00",
+  "generatedAt": "2026-07-09T00:13:51.748511+00:00",
   "championProb": [
     {
       "team": "法国",
-      "prob": 0.2443
+      "prob": 0.2439
     },
     {
       "team": "挪威",
-      "prob": 0.1752
+      "prob": 0.1751
     },
     {
       "team": "摩洛哥",
-      "prob": 0.1533
+      "prob": 0.1534
     },
     {
       "team": "阿根廷",
-      "prob": 0.127
+      "prob": 0.1276
     },
     {
       "team": "西班牙",
-      "prob": 0.1055
+      "prob": 0.106
     },
     {
       "team": "比利时",
@@ -27,7 +27,7 @@
     },
     {
       "team": "英格兰",
-      "prob": 0.0654
+      "prob": 0.0647
     },
     {
       "team": "瑞士",
@@ -35,61 +35,61 @@
     }
   ],
   "stageProb": {
-    "比利时": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6412,
-      "champion": 0.09
-    },
     "挪威": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6223,
-      "champion": 0.1752
+      "final": 0.6224,
+      "champion": 0.1751
     },
     "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6999,
-      "champion": 0.127
-    },
-    "摩洛哥": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3791,
-      "champion": 0.1533
-    },
-    "瑞士": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3001,
-      "champion": 0.0393
-    },
-    "英格兰": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3777,
-      "champion": 0.0654
+      "final": 0.6992,
+      "champion": 0.1276
     },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3588,
-      "champion": 0.1055
+      "final": 0.3576,
+      "champion": 0.106
+    },
+    "摩洛哥": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3777,
+      "champion": 0.1534
+    },
+    "英格兰": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3776,
+      "champion": 0.0647
+    },
+    "比利时": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6424,
+      "champion": 0.09
+    },
+    "瑞士": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3008,
+      "champion": 0.0393
     },
     "法国": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6209,
-      "champion": 0.2443
+      "final": 0.6223,
+      "champion": 0.2439
     }
   },
   "matches": [],
@@ -616,7 +616,7 @@
             "teamB": "摩洛哥",
             "completed": false,
             "probA": 0.72,
-            "probB": 0.1006,
+            "probB": 0.0996,
             "predScoreA": 2,
             "predScoreB": 0,
             "analysis": {
@@ -660,7 +660,7 @@
             "teamB": "比利时",
             "completed": false,
             "probA": 0.4936,
-            "probB": 0.1939,
+            "probB": 0.1941,
             "predScoreA": 1,
             "predScoreB": 0,
             "analysis": {
@@ -699,8 +699,8 @@
             "teamA": "挪威",
             "teamB": "英格兰",
             "completed": false,
-            "probA": 0.4445,
-            "probB": 0.1992,
+            "probA": 0.4444,
+            "probB": 0.1991,
             "predScoreA": 1,
             "predScoreB": 0,
             "analysis": {
@@ -740,9 +740,35 @@
             "teamB": "瑞士",
             "completed": false,
             "probA": 0.72,
-            "probB": 0.1017,
+            "probB": 0.097,
             "predScoreA": 2,
-            "predScoreB": 0
+            "predScoreB": 0,
+            "analysis": {
+              "身价": {
+                "teamA": "总身价7.8亿欧元，阵容豪华实力强劲",
+                "teamB": "总身价3.3亿欧元，性价比高防守稳固"
+              },
+              "状态": {
+                "teamA": "小组赛全胜，淘汰赛涉险过关，梅西状态火热",
+                "teamB": "本届不败，防守零封能力强，反击高效"
+              },
+              "伤病": {
+                "teamA": "冈萨雷斯伤缺，主力框架完整",
+                "teamB": "核心曼赞比伤缺，进攻火力受损"
+              },
+              "战术": {
+                "teamA": "控球渗透为主，梅西自由人串联进攻",
+                "teamB": "442绞杀防反，定位球为主要得分手段"
+              },
+              "教练": {
+                "teamA": "斯卡洛尼战术成熟，大赛经验丰富",
+                "teamB": "雅金治军严明，防守战术执行力强"
+              },
+              "交锋": {
+                "teamA": "历史5次交锋3胜2平，心理优势明显",
+                "teamB": "世界杯曾0-1负阿根廷，处于下风"
+              }
+            }
           }
         ]
       },
@@ -1111,6 +1137,36 @@
         "教练": {
           "teamA": "德拉富恩特战术成熟，轮换合理",
           "teamB": "加西亚临场调整大胆，经验丰富"
+        }
+      }
+    },
+    {
+      "teamA": "阿根廷",
+      "teamB": "瑞士",
+      "analysis": {
+        "身价": {
+          "teamA": "总身价7.8亿欧元，阵容豪华实力强劲",
+          "teamB": "总身价3.3亿欧元，性价比高防守稳固"
+        },
+        "状态": {
+          "teamA": "小组赛全胜，淘汰赛涉险过关，梅西状态火热",
+          "teamB": "本届不败，防守零封能力强，反击高效"
+        },
+        "伤病": {
+          "teamA": "冈萨雷斯伤缺，主力框架完整",
+          "teamB": "核心曼赞比伤缺，进攻火力受损"
+        },
+        "战术": {
+          "teamA": "控球渗透为主，梅西自由人串联进攻",
+          "teamB": "442绞杀防反，定位球为主要得分手段"
+        },
+        "教练": {
+          "teamA": "斯卡洛尼战术成熟，大赛经验丰富",
+          "teamB": "雅金治军严明，防守战术执行力强"
+        },
+        "交锋": {
+          "teamA": "历史5次交锋3胜2平，心理优势明显",
+          "teamB": "世界杯曾0-1负阿根廷，处于下风"
         }
       }
     }
