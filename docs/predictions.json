@@ -1,95 +1,84 @@
 {
-  "generatedAt": "2026-07-09T00:25:00.917916+00:00",
+  "generatedAt": "2026-07-10T17:07:39.013463+00:00",
   "championProb": [
     {
       "team": "法国",
-      "prob": 0.2439
+      "prob": 0.3791
     },
     {
       "team": "挪威",
-      "prob": 0.1751
-    },
-    {
-      "team": "摩洛哥",
-      "prob": 0.1534
-    },
-    {
-      "team": "阿根廷",
-      "prob": 0.1276
-    },
-    {
-      "team": "西班牙",
-      "prob": 0.106
+      "prob": 0.1846
     },
     {
       "team": "比利时",
-      "prob": 0.09
+      "prob": 0.1176
+    },
+    {
+      "team": "阿根廷",
+      "prob": 0.1173
+    },
+    {
+      "team": "西班牙",
+      "prob": 0.1117
     },
     {
       "team": "英格兰",
-      "prob": 0.0647
+      "prob": 0.0564
     },
     {
       "team": "瑞士",
-      "prob": 0.0393
+      "prob": 0.0333
     }
   ],
   "stageProb": {
-    "法国": {
+    "瑞士": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6223,
-      "champion": 0.2439
-    },
-    "挪威": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6224,
-      "champion": 0.1751
-    },
-    "英格兰": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3776,
-      "champion": 0.0647
-    },
-    "比利时": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.6424,
-      "champion": 0.09
+      "final": 0.3107,
+      "champion": 0.0333
     },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3576,
-      "champion": 0.106
+      "final": 0.3734,
+      "champion": 0.1117
+    },
+    "英格兰": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.3774,
+      "champion": 0.0564
+    },
+    "法国": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 1.0,
+      "champion": 0.3791
+    },
+    "比利时": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6266,
+      "champion": 0.1176
+    },
+    "挪威": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 0.6226,
+      "champion": 0.1846
     },
     "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6992,
-      "champion": 0.1276
-    },
-    "摩洛哥": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3777,
-      "champion": 0.1534
-    },
-    "瑞士": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3008,
-      "champion": 0.0393
+      "final": 0.6893,
+      "champion": 0.1173
     }
   },
   "matches": [],
@@ -97,7 +86,7 @@
     {
       "player": "姆巴佩",
       "team": "法国",
-      "existingGoals": 7,
+      "existingGoals": 8,
       "predictedGoals": 11,
       "confidence": "高",
       "status": "active"
@@ -129,7 +118,7 @@
     {
       "player": "登贝莱",
       "team": "法国",
-      "existingGoals": 4,
+      "existingGoals": 5,
       "predictedGoals": 7,
       "confidence": "高",
       "status": "active"
@@ -155,15 +144,15 @@
       "team": "比利时",
       "existingGoals": 3,
       "predictedGoals": 4,
-      "confidence": "中",
+      "confidence": "高",
       "status": "active"
     },
     {
-      "player": "赛巴里",
-      "team": "摩洛哥",
-      "existingGoals": 3,
-      "predictedGoals": 4,
-      "confidence": "低",
+      "player": "奥亚萨瓦尔",
+      "team": "西班牙",
+      "existingGoals": 2,
+      "predictedGoals": 3,
+      "confidence": "中",
       "status": "active"
     },
     {
@@ -614,11 +603,10 @@
             "id": "SF_1",
             "teamA": "法国",
             "teamB": "摩洛哥",
-            "completed": false,
-            "probA": 0.8102,
-            "probB": 0.1898,
-            "predScoreA": 2,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 0,
+            "winner": "法国",
             "analysis": {
               "实力": {
                 "teamA": "稳居世界足坛前三，硬实力顶尖",
@@ -777,7 +765,7 @@
         "matches": [
           {
             "id": "F_1",
-            "teamA": "待定",
+            "teamA": "法国",
             "teamB": "待定",
             "completed": false
           },
