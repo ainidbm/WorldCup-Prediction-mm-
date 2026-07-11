@@ -18,7 +18,7 @@
   },
   "瑞士": {
     "tier": "first",
-    "fifaRank": 14,
+    "fifaRank": 14 ,
     "keyPlayers": [
       "约翰·曼赞比",
       "扎卡里亚",
@@ -127,7 +127,7 @@
   },
   "西班牙": {
     "tier": "top",
-    "fifaRank": 3,
+    "fifaRank": 2,
     "keyPlayers": [
       "亚马尔",
       "佩德里",
@@ -183,7 +183,7 @@
   },
   "阿根廷": {
     "tier": "top",
-    "fifaRank": 2,
+    "fifaRank": 3,
     "keyPlayers": [
       "梅西",
       "劳塔罗",

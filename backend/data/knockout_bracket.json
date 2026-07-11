@@ -70,6 +70,7 @@
     {"id": "QF_6", "teamA": "美国", "teamB": "比利时", "scoreA": 1, "scoreB": 4, "scorersA": ["蒂尔曼"], "scorersB": ["德凯特拉雷", "德凯特拉雷", "法纳肯", "卢卡库"], "winner": "比利时"},
     {"id": "QF_7", "teamA": "阿根廷", "teamB": "埃及", "scoreA": 3, "scoreB": 2, "scorersA": ["罗梅罗", "梅西", "恩佐"], "scorersB": ["亚西尔·伊布拉西姆", "莫斯塔法·兹科"], "winner": "阿根廷"},
     {"id": "QF_8", "teamA": "瑞士", "teamB": "哥伦比亚", "scoreA": 0, "scoreB": 0, "scorersA": [], "scorersB": [], "penaltyA": ["扎卡", "泽基·安杜尼", "克莱迪克·埃", "巴尔加斯"], "penaltyB": ["金特罗", "坎帕斯", "路易斯·迪亚斯"], "penaltyScoreA": 4, "penaltyScoreB": 3, "winner": "瑞士"},
-    {"id": "SF_1", "teamA": "法国", "teamB": "摩洛哥", "scoreA": 2, "scoreB": 0, "scorersA": ["姆巴佩", "登贝莱"], "scorersB": [], "winner": "法国"}
+    {"id": "SF_1", "teamA": "法国", "teamB": "摩洛哥", "scoreA": 2, "scoreB": 0, "scorersA": ["姆巴佩", "登贝莱"], "scorersB": [], "winner": "法国"},
+    {"id": "SF_2", "teamA": "西班牙", "teamB": "比利时", "scoreA": 2, "scoreB": 1, "scorersA": ["法比安", "梅里诺"], "scorersB": ["德凯特拉雷"], "winner": "西班牙"}
   ]
 }

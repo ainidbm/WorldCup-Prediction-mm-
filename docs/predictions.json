@@ -1,84 +1,73 @@
 {
-  "generatedAt": "2026-07-10T17:07:39.013463+00:00",
+  "generatedAt": "2026-07-11T06:58:21.222388+00:00",
   "championProb": [
     {
       "team": "法国",
-      "prob": 0.3791
+      "prob": 0.5271
     },
     {
       "team": "挪威",
-      "prob": 0.1846
-    },
-    {
-      "team": "比利时",
-      "prob": 0.1176
-    },
-    {
-      "team": "阿根廷",
-      "prob": 0.1173
+      "prob": 0.1571
     },
     {
       "team": "西班牙",
-      "prob": 0.1117
+      "prob": 0.1398
+    },
+    {
+      "team": "阿根廷",
+      "prob": 0.0864
     },
     {
       "team": "英格兰",
-      "prob": 0.0564
+      "prob": 0.0574
     },
     {
       "team": "瑞士",
-      "prob": 0.0333
+      "prob": 0.0322
     }
   ],
   "stageProb": {
-    "瑞士": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 0.3107,
-      "champion": 0.0333
-    },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3734,
-      "champion": 0.1117
+      "final": 1.0,
+      "champion": 0.1398
     },
-    "英格兰": {
+    "瑞士": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.3774,
-      "champion": 0.0564
+      "final": 0.3039,
+      "champion": 0.0322
     },
     "法国": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.3791
+      "champion": 0.5271
     },
-    "比利时": {
+    "英格兰": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6266,
-      "champion": 0.1176
+      "final": 0.3869,
+      "champion": 0.0574
     },
     "挪威": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6226,
-      "champion": 0.1846
+      "final": 0.6131,
+      "champion": 0.1571
     },
     "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
-      "final": 0.6893,
-      "champion": 0.1173
+      "final": 0.6961,
+      "champion": 0.0864
     }
   },
   "matches": [],
@@ -103,7 +92,7 @@
       "player": "哈兰德",
       "team": "挪威",
       "existingGoals": 7,
-      "predictedGoals": 11,
+      "predictedGoals": 10,
       "confidence": "高",
       "status": "active"
     },
@@ -119,7 +108,7 @@
       "player": "登贝莱",
       "team": "法国",
       "existingGoals": 5,
-      "predictedGoals": 7,
+      "predictedGoals": 8,
       "confidence": "高",
       "status": "active"
     },
@@ -140,11 +129,11 @@
       "status": "active"
     },
     {
-      "player": "卢卡库",
-      "team": "比利时",
-      "existingGoals": 3,
-      "predictedGoals": 4,
-      "confidence": "高",
+      "player": "劳塔罗",
+      "team": "阿根廷",
+      "existingGoals": 1,
+      "predictedGoals": 3,
+      "confidence": "中",
       "status": "active"
     },
     {
@@ -152,13 +141,13 @@
       "team": "西班牙",
       "existingGoals": 2,
       "predictedGoals": 3,
-      "confidence": "中",
+      "confidence": "低",
       "status": "active"
     },
     {
-      "player": "劳塔罗",
-      "team": "阿根廷",
-      "existingGoals": 1,
+      "player": "恩博洛",
+      "team": "瑞士",
+      "existingGoals": 2,
       "predictedGoals": 3,
       "confidence": "低",
       "status": "active"
@@ -646,11 +635,10 @@
             "id": "SF_2",
             "teamA": "西班牙",
             "teamB": "比利时",
-            "completed": false,
-            "probA": 0.6497,
-            "probB": 0.3503,
-            "predScoreA": 1,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 2,
+            "scoreB": 1,
+            "winner": "西班牙",
             "analysis": {
               "实力": {
                 "teamA": "稳居世界前三，攻防均衡，大赛稳定性强",
@@ -687,10 +675,10 @@
             "teamA": "挪威",
             "teamB": "英格兰",
             "completed": false,
-            "probA": 0.6226,
-            "probB": 0.3774,
-            "predScoreA": 1,
-            "predScoreB": 0,
+            "probA": 0.6137,
+            "probB": 0.3863,
+            "predScoreA": 2,
+            "predScoreB": 1,
             "analysis": {
               "实力": {
                 "teamA": "实力强劲，淘汰巴西创队史最佳",
@@ -727,8 +715,8 @@
             "teamA": "阿根廷",
             "teamB": "瑞士",
             "completed": false,
-            "probA": 0.8115,
-            "probB": 0.1885,
+            "probA": 0.8075,
+            "probB": 0.1925,
             "predScoreA": 2,
             "predScoreB": 0,
             "analysis": {
@@ -766,8 +754,12 @@
           {
             "id": "F_1",
             "teamA": "法国",
-            "teamB": "待定",
-            "completed": false
+            "teamB": "西班牙",
+            "completed": false,
+            "probA": 0.7407,
+            "probB": 0.2593,
+            "predScoreA": 2,
+            "predScoreB": 0
           },
           {
             "id": "F_2",
@@ -1155,6 +1147,36 @@
         "交锋": {
           "teamA": "历史5次交锋3胜2平，心理优势明显",
           "teamB": "世界杯曾0-1负阿根廷，处于下风"
+        }
+      }
+    },
+    {
+      "teamA": "英格兰",
+      "teamB": "挪威",
+      "analysis": {
+        "实力": {
+          "teamA": "稳居世界顶级强队，夺冠热门之一",
+          "teamB": "欧洲中游球队，队史首进世界杯八强"
+        },
+        "身价": {
+          "teamA": "总身价13.6亿欧元，阵容厚度碾压对手",
+          "teamB": "总身价5.9亿欧元，依赖哈兰德、厄德高"
+        },
+        "状态": {
+          "teamA": "连克强敌，凯恩6球，贝林厄姆状态火热",
+          "teamB": "淘汰巴西士气高涨，哈兰德4场7球"
+        },
+        "伤病": {
+          "teamA": "宽萨红牌停赛，格伊、赖斯和詹姆斯参加最后一轮合练",
+          "teamB": "否认流感传闻，26名球员全员参加训练"
+        },
+        "战术": {
+          "teamA": "控球主导，边路突破中路渗透结合",
+          "teamB": "541防守反击，边路传中找哈兰德"
+        },
+        "教练": {
+          "teamA": "图赫尔战术灵活，大赛经验丰富",
+          "teamB": "索尔巴肯务实，善用反击和定位球"
         }
       }
     }
