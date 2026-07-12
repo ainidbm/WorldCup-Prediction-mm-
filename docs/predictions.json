@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:03:24.394854+00:00",
+  "generatedAt": "2026-07-12T07:29:28.845623+00:00",
   "championProb": [
     {
       "team": "法国",
@@ -91,44 +91,44 @@
       "status": "active"
     },
     {
-      "player": "劳塔罗",
-      "team": "阿根廷",
-      "existingGoals": 2,
-      "predictedGoals": 4,
-      "confidence": "高",
-      "status": "active"
+      "player": "哈兰德",
+      "team": "挪威",
+      "existingGoals": 7,
+      "predictedGoals": 7,
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
       "player": "奥亚萨瓦尔",
       "team": "西班牙",
-      "existingGoals": 2,
-      "predictedGoals": 3,
+      "existingGoals": 4,
+      "predictedGoals": 5,
       "confidence": "高",
       "status": "active"
     },
     {
-      "player": "奥亚萨巴尔",
-      "team": "西班牙",
-      "existingGoals": 2,
-      "predictedGoals": 3,
-      "confidence": "中",
-      "status": "active"
+      "player": "基尼奥内斯",
+      "team": "墨西哥",
+      "existingGoals": 4,
+      "predictedGoals": 4,
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
-      "player": "梅里诺",
-      "team": "西班牙",
-      "existingGoals": 2,
-      "predictedGoals": 3,
-      "confidence": "中",
-      "status": "active"
+      "player": "维尼修斯",
+      "team": "巴西",
+      "existingGoals": 4,
+      "predictedGoals": 4,
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
-      "player": "巴科拉",
-      "team": "法国",
-      "existingGoals": 2,
-      "predictedGoals": 2,
-      "confidence": "中",
-      "status": "active"
+      "player": "伊斯梅拉·萨尔",
+      "team": "塞内加尔",
+      "existingGoals": 4,
+      "predictedGoals": 4,
+      "confidence": "已锁定",
+      "status": "eliminated"
     }
   ],
   "knockoutBracket": {

@@ -8,7 +8,7 @@ const CONFIDENCE_COLOR: Record<string, string> = {
   '高': '#10b981',     // 绿
   '中': '#fbbf24',     // 黄
   '低': '#ef4444',     // 红
-  '已淘汰': '#6b7280', // 灰
+  '已锁定': '#6b7280', // 灰
 };
 
 export default function TopScorer({ data }: Props) {

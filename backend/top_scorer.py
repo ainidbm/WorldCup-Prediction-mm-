@@ -258,7 +258,7 @@ def predict_top_scorers(
                 "team": team,
                 "existingGoals": existing_goals,
                 "predictedGoals": existing_goals,  # 已淘汰，预测=已进球
-                "confidence": "已淘汰",
+                "confidence": "已锁定",
                 "status": "eliminated",
             })
             continue
@@ -290,21 +290,23 @@ def predict_top_scorers(
             "status": "active",
         })
 
-    # 排序：先按状态（active 优先），再按预测进球
+    # 排序：主排序 predictedGoals 降序，同分时 active 优先，再按已进球降序
     predictions.sort(key=lambda x: (
-        0 if x["status"] == "active" else 1,
         -x["predictedGoals"],
+        0 if x["status"] == "active" else 1,
+        -x["existingGoals"],
     ))
 
-    # 取前 10 个 active 球员进行置信度评估
-    top_active = [p for p in predictions if p["status"] == "active"][:10]
+    # 全员参与排名，取前 10
+    top_10 = predictions[:10]
 
-    if top_active:
-        # 第 11 名作为参照
-        active_11th = [p for p in predictions if p["status"] == "active"]
-        runner_up_pred = active_11th[10]["predictedGoals"] if len(active_11th) > 10 else 0
+    if top_10:
+        # 第 11 名（全体）作为置信度参照
+        runner_up_pred = predictions[10]["predictedGoals"] if len(predictions) > 10 else 0
 
-        for p in top_active:
+        for p in top_10:
+            if p.get("status") == "eliminated":
+                continue  # 已锁定球员不需要置信度计算
             team_champion = stage_probs.get(p["team"], {}).get("champion", 0)
             p["confidence"] = _estimate_confidence(
                 p["predictedGoals"], runner_up_pred, team_champion
@@ -312,4 +314,4 @@ def predict_top_scorers(
             # 标准化 predictedGoals 为整数（向上偏移 0.3，避免保守取整）
             p["predictedGoals"] = round(p["predictedGoals"] + 0.3)
 
-    return top_active
+    return top_10
