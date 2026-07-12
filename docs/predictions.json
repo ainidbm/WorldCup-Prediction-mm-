@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:29:28.845623+00:00",
+  "generatedAt": "2026-07-12T07:39:14.733163+00:00",
   "championProb": [
     {
       "team": "法国",
@@ -19,13 +19,6 @@
     }
   ],
   "stageProb": {
-    "西班牙": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 1.0,
-      "champion": 0.154
-    },
     "法国": {
       "roundOf16": 1.0,
       "quarter": 1.0,
@@ -39,6 +32,13 @@
       "semi": 1.0,
       "final": 1.0,
       "champion": 0.1296
+    },
+    "西班牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 1.0,
+      "champion": 0.154
     },
     "英格兰": {
       "roundOf16": 1.0,

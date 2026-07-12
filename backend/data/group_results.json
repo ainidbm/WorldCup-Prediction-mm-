@@ -50,7 +50,7 @@
 
   {"date": "2026-06-14", "group": "H", "teamA": "西班牙", "teamB": "佛得角", "scoreA": 0, "scoreB": 0, "scorersA": [], "scorersB": []},
   {"date": "2026-06-14", "group": "H", "teamA": "沙特", "teamB": "乌拉圭", "scoreA": 1, "scoreB": 1, "scorersA": ["阿姆里"], "scorersB": ["阿劳霍"]},
-  {"date": "2026-06-18", "group": "H", "teamA": "西班牙", "teamB": "沙特", "scoreA": 4, "scoreB": 0, "scorersA": ["亚马尔", "奥亚萨巴尔", "奥亚萨巴尔"], "scorersB": ["坦巴克蒂(乌龙)"]},
+  {"date": "2026-06-18", "group": "H", "teamA": "西班牙", "teamB": "沙特", "scoreA": 4, "scoreB": 0, "scorersA": ["亚马尔", "奥亚萨瓦尔", "奥亚萨瓦尔"], "scorersB": ["坦巴克蒂(乌龙)"]},
   {"date": "2026-06-18", "group": "H", "teamA": "乌拉圭", "teamB": "佛得角", "scoreA": 2, "scoreB": 2, "scorersA": ["阿劳霍", "卡诺比奥"], "scorersB": ["凯文·皮纳", "艾里奥·瓦雷拉"]},
   {"date": "2026-06-22", "group": "H", "teamA": "乌拉圭", "teamB": "西班牙", "scoreA": 0, "scoreB": 1, "scorersA": [], "scorersB": ["巴埃纳"]},
   {"date": "2026-06-22", "group": "H", "teamA": "佛得角", "teamB": "沙特", "scoreA": 0, "scoreB": 0, "scorersA": [], "scorersB": []},
