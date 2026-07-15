@@ -1,12 +1,12 @@
 {
   "groupStageAccuracy": 0.7083,
-  "knockoutAccuracy": 0.8214,
-  "overallAccuracy": 0.74,
-  "totalMatchesEvaluated": 100,
+  "knockoutAccuracy": 0.7931,
+  "overallAccuracy": 0.7327,
+  "totalMatchesEvaluated": 101,
   "correctPredictions": 74,
   "groupMatches": 72,
-  "knockoutMatches": 28,
-  "calibrationNote": "回测范围：72 场小组赛 + 28 场淘汰赛 = 100 场。小组赛准确率 70.8%，淘汰赛准确率 82.1%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。",
+  "knockoutMatches": 29,
+  "calibrationNote": "回测范围：72 场小组赛 + 29 场淘汰赛 = 101 场。小组赛准确率 70.8%，淘汰赛准确率 79.3%。模型使用历史赛事数据训练，已完赛结果作为独立验证集。",
   "evaluationCache": {
     "group": {
       "墨西哥|南非": {
@@ -566,6 +566,13 @@
         "winner": "阿根廷",
         "predicted": "阿根廷",
         "correct": true
+      },
+      "F_1": {
+        "teamA": "法国",
+        "teamB": "西班牙",
+        "winner": "西班牙",
+        "predicted": "法国",
+        "correct": false
       }
     }
   }

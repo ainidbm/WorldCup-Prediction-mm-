@@ -1,63 +1,44 @@
 {
-  "generatedAt": "2026-07-14T05:06:47.039900+00:00",
+  "generatedAt": "2026-07-15T16:39:37.435778+00:00",
   "championProb": [
     {
-      "team": "法国",
-      "prob": 0.5719
-    },
-    {
       "team": "西班牙",
-      "prob": 0.1522
+      "prob": 0.5924
     },
     {
       "team": "英格兰",
-      "prob": 0.1456
+      "prob": 0.2296
     },
     {
       "team": "阿根廷",
-      "prob": 0.1303
+      "prob": 0.178
     }
   ],
   "stageProb": {
+    "西班牙": {
+      "roundOf16": 1.0,
+      "quarter": 1.0,
+      "semi": 1.0,
+      "final": 1.0,
+      "champion": 0.5924
+    },
     "阿根廷": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.1303
-    },
-    "法国": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 1.0,
-      "champion": 0.5719
+      "champion": 0.178
     },
     "英格兰": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.1456
-    },
-    "西班牙": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 1.0,
-      "champion": 0.1522
+      "champion": 0.2296
     }
   },
   "matches": [],
   "topScorers": [
-    {
-      "player": "姆巴佩",
-      "team": "法国",
-      "existingGoals": 8,
-      "predictedGoals": 11,
-      "confidence": "高",
-      "status": "active"
-    },
     {
       "player": "梅西",
       "team": "阿根廷",
@@ -75,12 +56,12 @@
       "status": "active"
     },
     {
-      "player": "登贝莱",
+      "player": "姆巴佩",
       "team": "法国",
-      "existingGoals": 5,
+      "existingGoals": 8,
       "predictedGoals": 8,
-      "confidence": "高",
-      "status": "active"
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
       "player": "贝林厄姆",
@@ -101,10 +82,18 @@
     {
       "player": "奥亚萨瓦尔",
       "team": "西班牙",
-      "existingGoals": 4,
-      "predictedGoals": 5,
+      "existingGoals": 5,
+      "predictedGoals": 6,
       "confidence": "高",
       "status": "active"
+    },
+    {
+      "player": "登贝莱",
+      "team": "法国",
+      "existingGoals": 5,
+      "predictedGoals": 5,
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
       "player": "基尼奥内斯",
@@ -731,11 +720,10 @@
             "id": "F_1",
             "teamA": "法国",
             "teamB": "西班牙",
-            "completed": false,
-            "probA": 0.7408,
-            "probB": 0.2592,
-            "predScoreA": 2,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 0,
+            "scoreB": 2,
+            "winner": "西班牙",
             "analysis": {
               "身价": {
                 "teamA": "总身价15.2亿欧元，本届赛事最高",
@@ -772,8 +760,8 @@
             "teamA": "英格兰",
             "teamB": "阿根廷",
             "completed": false,
-            "probA": 0.5791,
-            "probB": 0.4209,
+            "probA": 0.5783,
+            "probB": 0.4217,
             "predScoreA": 2,
             "predScoreB": 1,
             "analysis": {
@@ -818,7 +806,7 @@
         "matches": [
           {
             "id": "THIRD",
-            "teamA": "待定",
+            "teamA": "法国",
             "teamB": "待定",
             "completed": false
           }
@@ -829,7 +817,7 @@
         "matches": [
           {
             "id": "CHAMP",
-            "teamA": "待定",
+            "teamA": "西班牙",
             "teamB": "待定",
             "completed": false
           }
@@ -1335,6 +1323,48 @@
         "历史交锋": {
           "teamA": "近两次半决赛负于西班牙，需复仇",
           "teamB": "近两次半决赛击败法国，心理占优"
+        }
+      }
+    },
+    {
+      "teamA": "英格兰",
+      "teamB": "阿根廷",
+      "analysis": {
+        "实力": {
+          "teamA": "稳居世界前三，青春风暴冲击力强",
+          "teamB": "稳居世界前三，卫冕冠军经验老道"
+        },
+        "身价": {
+          "teamA": "总身价约14.6亿欧元，阵容豪华",
+          "teamB": "总身价约8.2亿欧元，核心框架稳定"
+        },
+        "伤病": {
+          "teamA": "宽萨停赛、詹姆斯伤缺，右路防守残缺",
+          "teamB": "全员健康，仅老将体能存在隐患"
+        },
+        "状态": {
+          "teamA": "6战不败，淘汰赛韧性十足，逆转能力强",
+          "teamB": "6战全胜，连续加时晋级，抗压能力顶级"
+        },
+        "关键球员": {
+          "teamA": "贝林厄姆6球，凯恩6球1助，双核驱动",
+          "teamB": "梅西主导进攻，劳塔罗、阿尔瓦雷斯高效终结"
+        },
+        "战术": {
+          "teamA": "高位逼抢，边路冲击，依赖体能和后插上",
+          "teamB": "低位防反，梅西调度，抓对手压上身后空当"
+        },
+        "教练": {
+          "teamA": "图赫尔战术灵活，擅长打造铁血防守",
+          "teamB": "斯卡洛尼沉稳务实，大赛战术调整精准"
+        },
+        "体能": {
+          "teamA": "平均年龄26.5岁，仅1次加时，体能充沛",
+          "teamB": "核心老化，连续3轮加时，体能消耗巨大"
+        },
+        "历史": {
+          "teamA": "世界杯交手占优，淘汰赛逢阿不胜",
+          "teamB": "半决赛5战全胜，对英淘汰赛2战全胜"
         }
       }
     }
