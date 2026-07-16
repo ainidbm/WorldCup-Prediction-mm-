@@ -26,8 +26,14 @@ def _load_historical_matches() -> pd.DataFrame:
     if not os.path.exists(HISTORICAL_FILE):
         return pd.DataFrame(columns=["home_team", "away_team", "home_goals", "away_goals", "result"])
 
-    df = pd.read_csv(HISTORICAL_FILE, encoding="utf-8")
-    return df
+    # 自动检测编码：先试 UTF-8，失败则用 GBK
+    for enc in ["utf-8", "gbk"]:
+        try:
+            df = pd.read_csv(HISTORICAL_FILE, encoding=enc)
+            return df
+        except (UnicodeDecodeError, UnicodeError):
+            continue
+    return pd.DataFrame(columns=["home_team", "away_team", "home_goals", "away_goals", "result"])
 
 
 def _build_training_data(

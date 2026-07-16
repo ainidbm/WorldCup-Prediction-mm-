@@ -233,29 +233,35 @@ def _load_h2h_data() -> Dict:
     if not os.path.exists(HISTORICAL_FILE):
         return h2h
 
-    with open(HISTORICAL_FILE, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            home, away = row["home_team"], row["away_team"]
-            result = row["result"]
-            key = tuple(sorted([home, away]))
+    # 自动检测编码：先试 UTF-8，失败则用 GBK
+    for enc in ["utf-8", "gbk"]:
+        try:
+            with open(HISTORICAL_FILE, "r", encoding=enc) as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    home, away = row["home_team"], row["away_team"]
+                    result = row["result"]
+                    key = tuple(sorted([home, away]))
 
-            if key not in h2h:
-                h2h[key] = {"wins": 0, "draws": 0, "losses": 0, "total": 0}
+                    if key not in h2h:
+                        h2h[key] = {"wins": 0, "draws": 0, "losses": 0, "total": 0}
 
-            h2h[key]["total"] += 1
-            if result == "H":
-                if home == key[0]:
-                    h2h[key]["wins"] += 1
-                else:
-                    h2h[key]["losses"] += 1
-            elif result == "A":
-                if home == key[0]:
-                    h2h[key]["losses"] += 1
-                else:
-                    h2h[key]["wins"] += 1
-            else:
-                h2h[key]["draws"] += 1
+                    h2h[key]["total"] += 1
+                    if result == "H":
+                        if home == key[0]:
+                            h2h[key]["wins"] += 1
+                        else:
+                            h2h[key]["losses"] += 1
+                    elif result == "A":
+                        if home == key[0]:
+                            h2h[key]["losses"] += 1
+                        else:
+                            h2h[key]["wins"] += 1
+                    else:
+                        h2h[key]["draws"] += 1
+            break  # 成功读取，跳出编码检测循环
+        except (UnicodeDecodeError, UnicodeError):
+            h2h = {}  # 重置，准备下一个编码尝试
 
     # 转换为概率
     result = {}
