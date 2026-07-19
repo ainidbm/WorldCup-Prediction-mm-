@@ -75,6 +75,7 @@
     {"id": "SF_3", "teamA": "挪威", "teamB": "英格兰", "scoreA": 1, "scoreB": 2, "scorersA": ["谢尔德鲁普"], "scorersB": ["贝林厄姆", "贝林厄姆"], "winner": "英格兰"},
     {"id": "SF_4", "teamA": "阿根廷", "teamB": "瑞士", "scoreA": 3, "scoreB": 1, "scorersA": ["麦卡利斯特", "阿尔瓦雷斯", "劳塔罗"], "scorersB": ["恩多耶"], "winner": "阿根廷"},
     {"id": "F_1", "teamA": "法国", "teamB": "西班牙", "scoreA": 0, "scoreB": 2, "scorersA": [], "scorersB": ["奥亚萨瓦尔", "波罗"], "winner": "西班牙"},
-    {"id": "F_2", "teamA": "英格兰", "teamB": "阿根廷", "scoreA": 1, "scoreB": 2, "scorersA": ["安东尼·戈登"], "scorersB": ["恩佐", "劳塔罗"], "winner": "阿根廷"}
+    {"id": "F_2", "teamA": "英格兰", "teamB": "阿根廷", "scoreA": 1, "scoreB": 2, "scorersA": ["安东尼·戈登"], "scorersB": ["恩佐", "劳塔罗"], "winner": "阿根廷"},
+    {"id": "THIRD", "teamA": "法国", "teamB": "英格兰", "scoreA": 4, "scoreB": 6, "scorersA": ["姆巴佩", "巴科拉", "姆巴佩", "登贝莱"], "scorersB": ["赖斯", "埃兹里·孔萨", "萨卡", "萨卡", "萨卡", "贝林厄姆"], "winner": "英格兰"}
   ]
 }

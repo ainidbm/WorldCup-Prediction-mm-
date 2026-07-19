@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-16T03:47:03.634997+00:00",
+  "generatedAt": "2026-07-19T12:58:56.884107+00:00",
   "championProb": [
     {
       "team": "西班牙",
-      "prob": 0.5816
+      "prob": 0.5823
     },
     {
       "team": "阿根廷",
-      "prob": 0.4184
+      "prob": 0.4177
     }
   ],
   "stageProb": {
@@ -16,18 +16,26 @@
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.4184
+      "champion": 0.4177
     },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.5816
+      "champion": 0.5823
     }
   },
   "matches": [],
   "topScorers": [
+    {
+      "player": "姆巴佩",
+      "team": "法国",
+      "existingGoals": 10,
+      "predictedGoals": 10,
+      "confidence": "已锁定",
+      "status": "eliminated"
+    },
     {
       "player": "梅西",
       "team": "阿根廷",
@@ -35,14 +43,6 @@
       "predictedGoals": 10,
       "confidence": "高",
       "status": "active"
-    },
-    {
-      "player": "姆巴佩",
-      "team": "法国",
-      "existingGoals": 8,
-      "predictedGoals": 8,
-      "confidence": "已锁定",
-      "status": "eliminated"
     },
     {
       "player": "哈兰德",
@@ -53,15 +53,23 @@
       "status": "eliminated"
     },
     {
-      "player": "凯恩",
+      "player": "贝林厄姆",
       "team": "英格兰",
+      "existingGoals": 7,
+      "predictedGoals": 7,
+      "confidence": "已锁定",
+      "status": "eliminated"
+    },
+    {
+      "player": "登贝莱",
+      "team": "法国",
       "existingGoals": 6,
       "predictedGoals": 6,
       "confidence": "已锁定",
       "status": "eliminated"
     },
     {
-      "player": "贝林厄姆",
+      "player": "凯恩",
       "team": "英格兰",
       "existingGoals": 6,
       "predictedGoals": 6,
@@ -75,14 +83,6 @@
       "predictedGoals": 6,
       "confidence": "中",
       "status": "active"
-    },
-    {
-      "player": "登贝莱",
-      "team": "法国",
-      "existingGoals": 5,
-      "predictedGoals": 5,
-      "confidence": "已锁定",
-      "status": "eliminated"
     },
     {
       "player": "劳塔罗",
@@ -796,11 +796,10 @@
             "id": "THIRD",
             "teamA": "法国",
             "teamB": "英格兰",
-            "completed": false,
-            "probA": 0.8022,
-            "probB": 0.1978,
-            "predScoreA": 2,
-            "predScoreB": 0,
+            "completed": true,
+            "scoreA": 4,
+            "scoreB": 6,
+            "winner": "英格兰",
             "analysis": {
               "身价": {
                 "teamA": "总身价15.2亿欧元，锋线豪华全球居首",
@@ -842,8 +841,8 @@
             "teamA": "西班牙",
             "teamB": "阿根廷",
             "completed": false,
-            "probA": 0.5827,
-            "probB": 0.4173,
+            "probA": 0.5832,
+            "probB": 0.4168,
             "predScoreA": 2,
             "predScoreB": 1,
             "analysis": {
