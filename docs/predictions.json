@@ -1,29 +1,18 @@
 {
-  "generatedAt": "2026-07-19T12:58:56.884107+00:00",
+  "generatedAt": "2026-07-21T09:08:31.485633+00:00",
   "championProb": [
     {
       "team": "西班牙",
-      "prob": 0.5823
-    },
-    {
-      "team": "阿根廷",
-      "prob": 0.4177
+      "prob": 1.0
     }
   ],
   "stageProb": {
-    "阿根廷": {
-      "roundOf16": 1.0,
-      "quarter": 1.0,
-      "semi": 1.0,
-      "final": 1.0,
-      "champion": 0.4177
-    },
     "西班牙": {
       "roundOf16": 1.0,
       "quarter": 1.0,
       "semi": 1.0,
       "final": 1.0,
-      "champion": 0.5823
+      "champion": 1.0
     }
   },
   "matches": [],
@@ -40,9 +29,9 @@
       "player": "梅西",
       "team": "阿根廷",
       "existingGoals": 8,
-      "predictedGoals": 10,
-      "confidence": "高",
-      "status": "active"
+      "predictedGoals": 8,
+      "confidence": "已锁定",
+      "status": "eliminated"
     },
     {
       "player": "哈兰德",
@@ -81,15 +70,7 @@
       "team": "西班牙",
       "existingGoals": 5,
       "predictedGoals": 6,
-      "confidence": "中",
-      "status": "active"
-    },
-    {
-      "player": "劳塔罗",
-      "team": "阿根廷",
-      "existingGoals": 3,
-      "predictedGoals": 4,
-      "confidence": "低",
+      "confidence": "高",
       "status": "active"
     },
     {
@@ -103,6 +84,14 @@
     {
       "player": "维尼修斯",
       "team": "巴西",
+      "existingGoals": 4,
+      "predictedGoals": 4,
+      "confidence": "已锁定",
+      "status": "eliminated"
+    },
+    {
+      "player": "伊斯梅拉·萨尔",
+      "team": "塞内加尔",
       "existingGoals": 4,
       "predictedGoals": 4,
       "confidence": "已锁定",
@@ -840,11 +829,10 @@
             "id": "CHAMP",
             "teamA": "西班牙",
             "teamB": "阿根廷",
-            "completed": false,
-            "probA": 0.5832,
-            "probB": 0.4168,
-            "predScoreA": 2,
-            "predScoreB": 1,
+            "completed": true,
+            "scoreA": 1,
+            "scoreB": 0,
+            "winner": "西班牙",
             "analysis": {
               "本届表现": {
                 "teamA": "7战6胜1平仅失1球，零封5场，状态火热",
