@@ -270,6 +270,15 @@ def predict_top_scorers(
             remaining = 0.0
 
         if remaining <= 0:
+            # 无剩余比赛（比赛已全部结束），预测=已进球，锁定
+            predictions.append({
+                "player": player,
+                "team": team,
+                "existingGoals": existing_goals,
+                "predictedGoals": existing_goals,
+                "confidence": "已锁定",
+                "status": "active_locked",
+            })
             continue
 
         # 球员级差异化参数
@@ -290,10 +299,10 @@ def predict_top_scorers(
             "status": "active",
         })
 
-    # 排序：主排序 predictedGoals 降序，同分时 active 优先，再按已进球降序
+    # 排序：主排序 predictedGoals 降序，同分时 active/active_locked 优先，再按已进球降序
     predictions.sort(key=lambda x: (
         -x["predictedGoals"],
-        0 if x["status"] == "active" else 1,
+        0 if x["status"] in ("active", "active_locked") else 1,
         -x["existingGoals"],
     ))
 
@@ -305,7 +314,7 @@ def predict_top_scorers(
         runner_up_pred = predictions[10]["predictedGoals"] if len(predictions) > 10 else 0
 
         for p in top_10:
-            if p.get("status") == "eliminated":
+            if p.get("status") in ("eliminated", "active_locked"):
                 continue  # 已锁定球员不需要置信度计算
             team_champion = stage_probs.get(p["team"], {}).get("champion", 0)
             p["confidence"] = _estimate_confidence(

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T09:08:31.485633+00:00",
+  "generatedAt": "2026-07-21T09:32:33.401288+00:00",
   "championProb": [
     {
       "team": "西班牙",
@@ -69,9 +69,9 @@
       "player": "奥亚萨瓦尔",
       "team": "西班牙",
       "existingGoals": 5,
-      "predictedGoals": 6,
-      "confidence": "高",
-      "status": "active"
+      "predictedGoals": 5,
+      "confidence": "已锁定",
+      "status": "active_locked"
     },
     {
       "player": "基尼奥内斯",

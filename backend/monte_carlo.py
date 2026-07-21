@@ -233,8 +233,8 @@ def compute_remaining_matches(
     for team, probs in stage_probs.items():
         furthest = team_furthest.get(team)
 
-        # 已淘汰的队伍（实际赛果中输了 QF/SF/Final）
-        if furthest in ("quarter", "semi", "final") and team not in [
+        # 已淘汰的队伍（实际赛果中输了 QF/SF/Final/Championship）
+        if furthest in ("quarter", "semi", "final", "championship") and team not in [
             actual_results.get(m["id"])
             for stage in ("quarter", "semi", "final", "championship")
             for m in structure.get(stage, [])
@@ -276,7 +276,11 @@ def compute_remaining_matches(
             else:
                 remaining[team] = 0.0
                 continue
-        elif furthest in ("final", "championship"):
+        elif furthest == "championship":
+            # 冠军赛已打完，无剩余比赛
+            remaining[team] = 0.0
+            continue
+        elif furthest == "final":
             rem = 1.0
         else:
             # 默认在 QF 阶段（R16 全部完成）
